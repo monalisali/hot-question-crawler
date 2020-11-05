@@ -20,6 +20,19 @@ public class Helper {
         return pro;
     }
 
+    public static Properties getAppPropertiesByName(String propertyFileName) {
+        Properties pro = null;
+        try {
+            pro = new Properties();
+            FileInputStream in = new FileInputStream("./src/main/resources/" + propertyFileName);
+            pro.load(in);
+            in.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return pro;
+    }
+
     public static String getHttpsURLConnectionResponse(HttpsURLConnection connection) {
         StringBuilder sbResp = new StringBuilder();
 

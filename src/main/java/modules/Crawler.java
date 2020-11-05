@@ -2,12 +2,15 @@ package modules;
 
 import dto.ConnectDto;
 import dto.QuestionResultDto;
+import org.apache.commons.codec.Charsets;
 import utils.FileHelper;
 import utils.Helper;
 import utils.NetworkConnect;
 
 import javax.net.ssl.HttpsURLConnection;
 import java.io.IOException;
+import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
@@ -32,8 +35,8 @@ public class Crawler {
                 ConnectDto connectDto = new ConnectDto("https://readhub.cn/topic/5bMmlAm75lD"
                         , "GET"
                         , properties.getProperty("accept1")
-                        , properties.getProperty("contentType1")
-                        , properties.getProperty("userAgent"));
+                        , properties.getProperty("contentType1"),"","",""
+                );
                 HttpsURLConnection resp = NetworkConnect.createHttpConnection(connectDto);
                 System.out.println("是否使用代理: " + isCnnByProxy);
                 System.out.println("请求返回代码： " + resp.getResponseCode());
@@ -55,15 +58,29 @@ public class Crawler {
         List<String> hotWords = FileHelper.ReadHotWords();
 //        List<String> hotWords = new ArrayList<>();
 //        hotWords.add("保温饭盒");
+        System.out.println("一共有" + hotWords.size() + "个热词:");
+        System.out.println(hotWords.toString());
+
+        System.out.println("**************************通过知乎，爬取知乎问题********************************");
+        QuestionFromZhihu zhihu = new QuestionFromZhihu(hotWords);
+        List<QuestionResultDto> zhihuQuestions = zhihu.getQuestion();
+        StringBuilder zhihuStringBuilder = new StringBuilder();
+        zhihuQuestions.forEach(x->zhihuStringBuilder.append(x.getLink() + "\r\n"));
+
+        System.out.println("知乎，爬取问题链接，共有" + zhihuQuestions.size() + "个：");
+        System.out.println(zhihuStringBuilder.toString());
+        System.out.println();
+        System.out.println("**************************通过知乎，爬取知乎问题********************************");
+
+
+        System.out.println("**************************通过百度，爬取知乎问题********************************");
         QuestionFromBaidu baidu = new QuestionFromBaidu(hotWords, true);
         List<QuestionResultDto> allQuestion = baidu.getQuestion();
         StringBuilder printStringBuilder = new StringBuilder();
         allQuestion.forEach(x -> printStringBuilder.append(x.getLink() + "\r\n"));
-
-        System.out.println("一共有" + hotWords.size() + "个热词:");
-        System.out.println(hotWords.toString());
-        System.out.println("通过热词获取的知乎问题链接，共有" + allQuestion.size() + "个：");
+        System.out.println("百度，爬取问题链接，共有" + allQuestion.size() + "个：");
         System.out.println(printStringBuilder.toString());
+        System.out.println("**************************通过百度，爬取知乎问题********************************");
 
         System.out.println("**********************************结束***************************************");
 

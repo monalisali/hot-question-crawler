@@ -1,0 +1,2515 @@
+{
+    "code": 200,
+    "message": "success",
+    "data": {
+        "unionGoods": [
+            [
+                {
+                    "inOrderComm30Days": 2401.25,
+                    "inOrderCount30Days": 0,
+                    "isZY": 0,
+                    "skuId": 71256049000,
+                    "skuName": "【众缘阿妈妮】辣白菜即食韩国泡菜下饭菜炒饭配菜免切350g/袋 350g*2袋",
+                    "materialUrl": "jfs/t1/52510/23/1155/110847/5cee4189E3ee829e0/2df742a21e179f71.jpg",
+                    "shopName": "众缘阿妈妮生鲜官方旗舰店",
+                    "shopId": 10031051,
+                    "wlPrice": 17.90,
+                    "wlCommission": 1.98,
+                    "wlCommissionRatio": 20.0,
+                    "isPinGou": 0,
+                    "hasCoupon": 1,
+                    "isCommonPlan": 1,
+                    "planId": 1839679482,
+                    "orientationFlag": 0,
+                    "isLock": 0,
+                    "couponLink": "http://coupon.m.jd.com/coupons/show.action?key=5ed4d73e2e2c406e969164481b15b609&roleId=40190809&to=item.jd.com/71256049000.html",
+                    "couponDiscount": 8.0,
+                    "couponQuota": 17.0,
+                    "couponRemainCnt": 19946,
+                    "vid": 10165307,
+                    "finalPrice": 9.90,
+                    "deliveryType": 0,
+                    "goodCommentsShare": 97,
+                    "requestId": "s_b3fbbfcbd034456c9b2d9a4a5b630583",
+                    "abParam": "SVC",
+                    "abVersion": "SVC",
+                    "isCare": 0,
+                    "bonusActivityInfo": {
+                        "isPreOrRunActivity": 1,
+                        "bonus": false
+                    },
+                    "lowerPrice": 17.90,
+                    "goodComments": 663,
+                    "plusCommissionShare": 20.0
+                }
+            ],
+            [
+                {
+                    "inOrderComm30Days": 1623.64,
+                    "inOrderCount30Days": 0,
+                    "isZY": 0,
+                    "skuId": 60291609161,
+                    "skuName": "韩国式风味辣白菜东北朝鲜族韩式金刚山传统韩式泡菜 450*3袋",
+                    "materialUrl": "jfs/t1/135459/9/7284/139260/5f3b3f07E94218fd2/31ec2bad0fa53198.jpg",
+                    "shopName": "中国特产·延吉馆",
+                    "shopId": 685456,
+                    "wlPrice": 26.90,
+                    "wlCommission": 3.78,
+                    "wlCommissionRatio": 20.0,
+                    "isPinGou": 0,
+                    "hasCoupon": 1,
+                    "isCommonPlan": 1,
+                    "planId": 963367259,
+                    "orientationFlag": 0,
+                    "isLock": 0,
+                    "couponLink": "http://coupon.m.jd.com/coupons/show.action?key=d289aa16f81347afba9a6d4ee93df429&roleId=40670966",
+                    "couponDiscount": 8.0,
+                    "couponQuota": 25.0,
+                    "couponRemainCnt": 9990,
+                    "vid": 689216,
+                    "finalPrice": 18.90,
+                    "deliveryType": 0,
+                    "goodCommentsShare": 96,
+                    "requestId": "s_b3fbbfcbd034456c9b2d9a4a5b630583",
+                    "abParam": "SVC",
+                    "abVersion": "SVC",
+                    "isCare": 0,
+                    "bonusActivityInfo": {
+                        "isPreOrRunActivity": 1,
+                        "bonus": false
+                    },
+                    "lowerPrice": 26.90,
+                    "goodComments": 1509,
+                    "plusCommissionShare": 20.0
+                }
+            ],
+            [
+                {
+                    "inOrderComm30Days": 24.31,
+                    "inOrderCount30Days": 0,
+                    "isZY": 0,
+                    "skuId": 48412768589,
+                    "skuName": "众缘阿妈妮东北特产辣白菜韩国风味泡菜120g/袋 免切120g*3袋",
+                    "materialUrl": "jfs/t1/104231/6/13388/124522/5e573b5cE51b88d08/ac79ef6ffa48fc8e.jpg",
+                    "shopName": "众缘阿妈妮生鲜官方旗舰店",
+                    "shopId": 10031051,
+                    "wlPrice": 17.90,
+                    "wlCommission": 2.08,
+                    "wlCommissionRatio": 21.0,
+                    "isPinGou": 0,
+                    "hasCoupon": 1,
+                    "isCommonPlan": 1,
+                    "planId": 2523966719,
+                    "orientationFlag": 1,
+                    "isLock": 1,
+                    "couponLink": "http://coupon.m.jd.com/coupons/show.action?key=30d1367d5ecd4a12a674b981953b6a51&roleId=40789549&to=item.jd.com/48412768589.html",
+                    "couponDiscount": 8.0,
+                    "couponQuota": 17.0,
+                    "couponRemainCnt": 49996,
+                    "vid": 10165307,
+                    "finalPrice": 9.90,
+                    "deliveryType": 0,
+                    "goodCommentsShare": 97,
+                    "requestId": "s_b3fbbfcbd034456c9b2d9a4a5b630583",
+                    "abParam": "SVC",
+                    "abVersion": "SVC",
+                    "isCare": 0,
+                    "bonusActivityInfo": {
+                        "isPreOrRunActivity": 1,
+                        "bonus": false
+                    },
+                    "lowerPrice": 17.90,
+                    "goodComments": 163,
+                    "plusCommissionShare": 21.0
+                }
+            ],
+            [
+                {
+                    "inOrderComm30Days": 2714.84,
+                    "inOrderCount30Days": 0,
+                    "isZY": 0,
+                    "skuId": 70540435379,
+                    "skuName": "延鑫旺韩国泡菜切片辣白菜延边特产 400g*2袋",
+                    "materialUrl": "jfs/t1/131295/22/6806/148292/5f337ec8Ee1352014/9bffd6fcdda1b448.jpg",
+                    "shopName": "延鑫旺旗舰店",
+                    "shopId": 10243686,
+                    "wlPrice": 21.90,
+                    "wlCommission": 2.98,
+                    "wlCommissionRatio": 20.0,
+                    "isPinGou": 0,
+                    "hasCoupon": 1,
+                    "isCommonPlan": 1,
+                    "planId": 2155209988,
+                    "orientationFlag": 0,
+                    "isLock": 0,
+                    "couponLink": "http://coupon.m.jd.com/coupons/show.action?key=6cc07079802849ef9cba25f31ff94ad0&roleId=40471626&to=item.jd.com/70540435379.html",
+                    "couponDiscount": 7.0,
+                    "couponQuota": 21.0,
+                    "couponRemainCnt": 9990,
+                    "vid": 10391131,
+                    "finalPrice": 14.90,
+                    "deliveryType": 0,
+                    "goodCommentsShare": 97,
+                    "requestId": "s_b3fbbfcbd034456c9b2d9a4a5b630583",
+                    "abParam": "SVC",
+                    "abVersion": "SVC",
+                    "isCare": 0,
+                    "bonusActivityInfo": {
+                        "isPreOrRunActivity": 1,
+                        "bonus": false
+                    },
+                    "lowerPrice": 21.90,
+                    "goodComments": 1194,
+                    "plusCommissionShare": 20.0
+                }
+            ],
+            [
+                {
+                    "inOrderComm30Days": 880.44,
+                    "inOrderCount30Days": 0,
+                    "isZY": 0,
+                    "skuId": 62296141828,
+                    "skuName": "众缘阿妈妮辣白菜韩国泡菜延边特产 金香子500g*3",
+                    "materialUrl": "jfs/t1/149513/38/4026/247201/5f2123d3Eee1668d8/56d7c74c0967e916.jpg",
+                    "shopName": "吉乡贝卖场旗舰店",
+                    "shopId": 10073343,
+                    "wlPrice": 29.90,
+                    "wlCommission": 3.98,
+                    "wlCommissionRatio": 20.0,
+                    "isPinGou": 0,
+                    "hasCoupon": 1,
+                    "isCommonPlan": 1,
+                    "planId": 1858452001,
+                    "orientationFlag": 0,
+                    "isLock": 0,
+                    "couponLink": "https://coupon.m.jd.com/coupons/show.action?key=b0afde38f25240d4a48f4cf207ab9954&roleId=40369645&to=item.jd.com/62296141828.html",
+                    "couponDiscount": 10.0,
+                    "couponQuota": 29.0,
+                    "couponRemainCnt": 9988,
+                    "vid": 10209496,
+                    "finalPrice": 19.90,
+                    "deliveryType": 0,
+                    "goodCommentsShare": 99,
+                    "requestId": "s_b3fbbfcbd034456c9b2d9a4a5b630583",
+                    "abParam": "SVC",
+                    "abVersion": "SVC",
+                    "isCare": 0,
+                    "bonusActivityInfo": {
+                        "isPreOrRunActivity": 1,
+                        "bonus": false
+                    },
+                    "lowerPrice": 29.90,
+                    "goodComments": 1296,
+                    "plusCommissionShare": 20.0
+                }
+            ],
+            [
+                {
+                    "inOrderComm30Days": 1782.22,
+                    "inOrderCount30Days": 0,
+                    "isZY": 0,
+                    "skuId": 10020804879219,
+                    "skuName": "【延吉农特产馆】东粮腐竹干货手工原浆头层油豆腐皮豆制品拌凉菜火锅食材东北特产 头层腐竹500g*1袋",
+                    "materialUrl": "jfs/t1/113445/6/16377/333040/5f4723b6Ee088dadd/81868075e3700212.jpg",
+                    "shopName": "中国特产.延吉农特产馆",
+                    "shopId": 10284378,
+                    "wlPrice": 32.90,
+                    "wlCommission": 3.98,
+                    "wlCommissionRatio": 20.0,
+                    "isPinGou": 0,
+                    "hasCoupon": 1,
+                    "isCommonPlan": 1,
+                    "planId": 2397177942,
+                    "orientationFlag": 0,
+                    "isLock": 0,
+                    "couponLink": "https://coupon.m.jd.com/coupons/show.action?key=f797601e523247be8b5863ec1b72ea4a&roleId=40244245&to=item.jd.com/10020804879219.html",
+                    "couponDiscount": 13.0,
+                    "couponQuota": 31.0,
+                    "couponRemainCnt": 99455,
+                    "vid": 10492384,
+                    "finalPrice": 19.90,
+                    "deliveryType": 0,
+                    "goodCommentsShare": 100,
+                    "requestId": "s_b3fbbfcbd034456c9b2d9a4a5b630583",
+                    "abParam": "SVC",
+                    "abVersion": "SVC",
+                    "isCare": 0,
+                    "bonusActivityInfo": {
+                        "isPreOrRunActivity": 1,
+                        "bonus": false
+                    },
+                    "lowerPrice": 32.90,
+                    "goodComments": 42,
+                    "plusCommissionShare": 20.0
+                }
+            ],
+            [
+                {
+                    "inOrderComm30Days": 150.24,
+                    "inOrderCount30Days": 0,
+                    "isZY": 0,
+                    "skuId": 67431011754,
+                    "skuName": "【众缘金香子】即食海藻沙拉裙带菜海白菜酸甜口海带丝 海藻沙拉酸甜口特级细丝350克*2包",
+                    "materialUrl": "jfs/t1/105742/9/17291/142207/5e85a611E111275a8/7b1bc0f33e19aeac.jpg",
+                    "shopName": "众缘阿妈妮生鲜官方旗舰店",
+                    "shopId": 10031051,
+                    "wlPrice": 24.90,
+                    "wlCommission": 2.98,
+                    "wlCommissionRatio": 20.0,
+                    "isPinGou": 0,
+                    "hasCoupon": 1,
+                    "isCommonPlan": 1,
+                    "planId": 1839679482,
+                    "orientationFlag": 0,
+                    "isLock": 0,
+                    "couponLink": "http://coupon.m.jd.com/coupons/show.action?key=3825bec0f71c48b5bca3aee972beb0f5&roleId=40329910&to=item.jd.com/67431011754.html#crumb-wrap",
+                    "couponDiscount": 10.0,
+                    "couponQuota": 24.0,
+                    "couponRemainCnt": 9992,
+                    "vid": 10165307,
+                    "finalPrice": 14.90,
+                    "deliveryType": 0,
+                    "goodCommentsShare": 100,
+                    "requestId": "s_b3fbbfcbd034456c9b2d9a4a5b630583",
+                    "abParam": "SVC",
+                    "abVersion": "SVC",
+                    "isCare": 0,
+                    "bonusActivityInfo": {
+                        "isPreOrRunActivity": 1,
+                        "bonus": false
+                    },
+                    "lowerPrice": 24.90,
+                    "goodComments": 19,
+                    "plusCommissionShare": 20.0
+                }
+            ],
+            [
+                {
+                    "inOrderComm30Days": 100.60,
+                    "inOrderCount30Days": 0,
+                    "isZY": 0,
+                    "skuId": 10023828326360,
+                    "skuName": "三口一品 韩国泡菜 朝鲜族辣白菜 下饭菜 500g*2",
+                    "materialUrl": "jfs/t1/131830/8/14412/188640/5f9d1d88E8eeff60c/1565907080c7591f.jpg",
+                    "shopName": "米西胜卖场旗舰店",
+                    "shopId": 993006,
+                    "wlPrice": 26.80,
+                    "wlCommission": 3.16,
+                    "wlCommissionRatio": 20.0,
+                    "isPinGou": 0,
+                    "hasCoupon": 1,
+                    "isCommonPlan": 1,
+                    "planId": 1800740244,
+                    "orientationFlag": 0,
+                    "isLock": 0,
+                    "couponLink": "http://coupon.m.jd.com/coupons/show.action?key=83dbed6ce8f74b3b8daf98d5acd23086&roleId=40670015&to=item.jd.com/10023828326360.html",
+                    "couponDiscount": 11.0,
+                    "couponQuota": 25.0,
+                    "couponRemainCnt": 9995,
+                    "vid": 10147344,
+                    "finalPrice": 15.80,
+                    "deliveryType": 0,
+                    "goodCommentsShare": 100,
+                    "requestId": "s_b3fbbfcbd034456c9b2d9a4a5b630583",
+                    "abParam": "SVC",
+                    "abVersion": "SVC",
+                    "isCare": 0,
+                    "bonusActivityInfo": {
+                        "isPreOrRunActivity": 1,
+                        "bonus": false
+                    },
+                    "lowerPrice": 26.80,
+                    "goodComments": 0,
+                    "plusCommissionShare": 20.0
+                }
+            ],
+            [
+                {
+                    "inOrderComm30Days": 3279.35,
+                    "inOrderCount30Days": 0,
+                    "isZY": 0,
+                    "skuId": 50559945658,
+                    "skuName": "张生生辣白菜韩式泡菜正宗辣白菜450g/1袋/3袋小咸菜下饭 450克三袋",
+                    "materialUrl": "jfs/t1/83286/5/2486/382725/5d0b40d7E524e51ef/69fb9f35bf576b6b.jpg",
+                    "shopName": "斯哈滋味生鲜拼购店",
+                    "shopId": 990356,
+                    "pingouTmCount": 2,
+                    "wlPrice": 22.90,
+                    "wlCommission": 2.98,
+                    "wlCommissionRatio": 20.0,
+                    "pingouPrice": 19.90,
+                    "isPinGou": 1,
+                    "hasCoupon": 1,
+                    "isCommonPlan": 1,
+                    "planId": 1787560779,
+                    "orientationFlag": 0,
+                    "isLock": 0,
+                    "couponLink": "https://coupon.m.jd.com/coupons/show.action?key=48223c1c5f324db9a87d6f34fe5f956e&roleId=40506339&to=item.jd.com",
+                    "couponDiscount": 5.0,
+                    "couponQuota": 19.0,
+                    "couponRemainCnt": 29952,
+                    "vid": 10144643,
+                    "finalPrice": 14.90,
+                    "deliveryType": 0,
+                    "goodCommentsShare": 98,
+                    "requestId": "s_b3fbbfcbd034456c9b2d9a4a5b630583",
+                    "abParam": "SVC",
+                    "abVersion": "SVC",
+                    "isCare": 0,
+                    "bonusActivityInfo": {
+                        "isPreOrRunActivity": 1,
+                        "bonus": false
+                    },
+                    "lowerPrice": 19.90,
+                    "goodComments": 6554,
+                    "plusCommissionShare": 20.0
+                }
+            ],
+            [
+                {
+                    "inOrderComm30Days": 54.78,
+                    "inOrderCount30Days": 0,
+                    "isZY": 0,
+                    "skuId": 56305418986,
+                    "skuName": "延鑫旺韩国泡菜延边特产辣白菜 400g*3袋装",
+                    "materialUrl": "jfs/t1/112304/18/12656/229380/5f150e72E2f443303/ee243d802369bf0b.jpg",
+                    "shopName": "吉乡贝卖场旗舰店",
+                    "shopId": 10073343,
+                    "wlPrice": 23.90,
+                    "wlCommission": 3.98,
+                    "wlCommissionRatio": 20.0,
+                    "isPinGou": 0,
+                    "hasCoupon": 1,
+                    "isCommonPlan": 1,
+                    "planId": 1858452001,
+                    "orientationFlag": 0,
+                    "isLock": 0,
+                    "couponLink": "http://coupon.m.jd.com/coupons/show.action?key=65e46b2236ed427b8ac33e39d9187bf4&roleId=40293219&to=item.jd.com/56305418986.html",
+                    "couponDiscount": 4.0,
+                    "couponQuota": 23.0,
+                    "couponRemainCnt": 9999,
+                    "vid": 10209496,
+                    "finalPrice": 19.90,
+                    "deliveryType": 0,
+                    "goodCommentsShare": 96,
+                    "requestId": "s_b3fbbfcbd034456c9b2d9a4a5b630583",
+                    "abParam": "SVC",
+                    "abVersion": "SVC",
+                    "isCare": 0,
+                    "bonusActivityInfo": {
+                        "isPreOrRunActivity": 1,
+                        "bonus": false
+                    },
+                    "lowerPrice": 23.90,
+                    "goodComments": 1064,
+                    "plusCommissionShare": 20.0
+                }
+            ],
+            [
+                {
+                    "inOrderComm30Days": 5.00,
+                    "inOrderCount30Days": 0,
+                    "isZY": 0,
+                    "skuId": 55600344312,
+                    "skuName": "特心鲜 鑫莼魔芋丝结 魔芋粉丝 饱腹代餐 涮火锅面条方便速食 2000g",
+                    "materialUrl": "jfs/t1/142760/14/10664/144290/5f8804a0E66fe9466/20b9fb64f6748081.jpg",
+                    "shopName": "特心鲜官方旗舰店",
+                    "shopId": 10083703,
+                    "wlPrice": 28.00,
+                    "wlCommission": 5.00,
+                    "wlCommissionRatio": 20.0,
+                    "isPinGou": 0,
+                    "hasCoupon": 1,
+                    "isCommonPlan": 1,
+                    "planId": 1876364718,
+                    "orientationFlag": 0,
+                    "isLock": 0,
+                    "couponLink": "//coupon.m.jd.com/coupons/show.action?linkKey=AAROH_xIpeffAs_-naABEFoerFKb-gw50p1r0fUtMOUeiDMjIAF1is_bSh2UJVIqW6b2NgkB9hl9biorO5-FJ-6KTHjbGQ",
+                    "couponDiscount": 3.0,
+                    "couponQuota": 28.0,
+                    "couponRemainCnt": 10000,
+                    "vid": 10219971,
+                    "finalPrice": 25.00,
+                    "deliveryType": 0,
+                    "goodCommentsShare": 98,
+                    "requestId": "s_b3fbbfcbd034456c9b2d9a4a5b630583",
+                    "abParam": "SVC",
+                    "abVersion": "SVC",
+                    "isCare": 0,
+                    "bonusActivityInfo": {
+                        "isPreOrRunActivity": 1,
+                        "bonus": false
+                    },
+                    "lowerPrice": 28.00,
+                    "goodComments": 90,
+                    "plusCommissionShare": 20.0
+                }
+            ],
+            [
+                {
+                    "inOrderComm30Days": 471.98,
+                    "inOrderCount30Days": 0,
+                    "isZY": 0,
+                    "skuId": 10023252712758,
+                    "skuName": "【旬阳馆】泡椒宝塔菜 440g*2袋陕西特产草石蚕酸菜凉菜牛螺丝菜泡菜榨菜下饭小菜",
+                    "materialUrl": "jfs/t1/131466/25/12977/115493/5f8cfe2dEd0403dfe/c0c5d4c7a4ee3d34.jpg",
+                    "shopName": "中国特产·旬阳馆",
+                    "shopId": 782508,
+                    "wlPrice": 21.80,
+                    "wlCommission": 2.94,
+                    "wlCommissionRatio": 30.0,
+                    "isPinGou": 0,
+                    "hasCoupon": 1,
+                    "isCommonPlan": 1,
+                    "planId": 2524258418,
+                    "orientationFlag": 1,
+                    "isLock": 1,
+                    "couponLink": "//coupon.m.jd.com/coupons/show.action?linkKey=AAROH_xIpeffAs_-naABEFoeVcpUSxxWUjNqGO4-rIS-RuiPEEilc26U38OKhwWxb7fJ9SBpdFWWH0qd56ashHDcy5qdXg",
+                    "couponDiscount": 12.0,
+                    "couponQuota": 20.0,
+                    "couponRemainCnt": 9998,
+                    "vid": 786554,
+                    "finalPrice": 9.80,
+                    "deliveryType": 0,
+                    "goodCommentsShare": 100,
+                    "requestId": "s_b3fbbfcbd034456c9b2d9a4a5b630583",
+                    "abParam": "SVC",
+                    "abVersion": "SVC",
+                    "isCare": 0,
+                    "bonusActivityInfo": {
+                        "isPreOrRunActivity": 1,
+                        "bonus": false
+                    },
+                    "lowerPrice": 21.80,
+                    "goodComments": 10,
+                    "plusCommissionShare": 30.0
+                }
+            ],
+            [
+                {
+                    "inOrderComm30Days": 36.75,
+                    "inOrderCount30Days": 0,
+                    "isZY": 0,
+                    "skuId": 67637473141,
+                    "skuName": "头层无淀粉 腐竹 优质黄豆腐竹皮段 特价手工土特产 优质腐竹1000g",
+                    "materialUrl": "jfs/t1/103210/6/17779/113605/5e8bd8feE073129c7/a7d958ea3418b82a.jpg",
+                    "shopName": "拾优生鲜拼购店",
+                    "shopId": 10188169,
+                    "pingouTmCount": 2,
+                    "wlPrice": 58.80,
+                    "wlCommission": 0.20,
+                    "wlCommissionRatio": 1.0,
+                    "pingouPrice": 48.80,
+                    "isPinGou": 1,
+                    "hasCoupon": 1,
+                    "isCommonPlan": 1,
+                    "planId": 2056966864,
+                    "orientationFlag": 0,
+                    "isLock": 0,
+                    "couponLink": "http://coupon.jd.com/ilink/couponActiveFront/front_index.action?key=dd8945f90f7b485c8fb6515f4747a69d&roleId=40662921&to=item.jd.com/67637473141.html",
+                    "couponDiscount": 29.0,
+                    "couponQuota": 48.0,
+                    "couponRemainCnt": 980,
+                    "vid": 10334003,
+                    "finalPrice": 19.80,
+                    "deliveryType": 0,
+                    "goodCommentsShare": 95,
+                    "requestId": "s_b3fbbfcbd034456c9b2d9a4a5b630583",
+                    "abParam": "SVC",
+                    "abVersion": "SVC",
+                    "isCare": 0,
+                    "bonusActivityInfo": {
+                        "isPreOrRunActivity": 1,
+                        "bonus": false
+                    },
+                    "lowerPrice": 48.80,
+                    "goodComments": 302,
+                    "plusCommissionShare": 1.0
+                }
+            ],
+            [
+                {
+                    "inOrderComm30Days": 2.39,
+                    "inOrderCount30Days": 0,
+                    "isZY": 0,
+                    "skuId": 13135698963,
+                    "skuName": "郝家记 朝鲜族泡菜辣白菜 切件400g 盒装",
+                    "materialUrl": "jfs/t6718/214/448087248/303887/619c78c2/593f87f9Neeeaba6b.jpg",
+                    "shopName": "郝家记果蔬专营店",
+                    "shopId": 668132,
+                    "wlPrice": 29.90,
+                    "wlCommission": 4.02,
+                    "wlCommissionRatio": 20.2,
+                    "isPinGou": 0,
+                    "hasCoupon": 1,
+                    "isCommonPlan": 1,
+                    "planId": 2516906903,
+                    "orientationFlag": 1,
+                    "isLock": 1,
+                    "couponLink": "//coupon.m.jd.com/coupons/show.action?linkKey=AAROH_xIpeffAs_-naABEFoe0SHHXP8scFRXTn0iV8_x4FBWrDDZWqO4tHwonkdTDFVs1NaQMEzFlBILZyXWBxXHqROMIg",
+                    "couponDiscount": 10.0,
+                    "couponQuota": 29.0,
+                    "couponRemainCnt": 10000,
+                    "vid": 672343,
+                    "finalPrice": 19.90,
+                    "deliveryType": 0,
+                    "goodCommentsShare": 99,
+                    "requestId": "s_b3fbbfcbd034456c9b2d9a4a5b630583",
+                    "abParam": "SVC",
+                    "abVersion": "SVC",
+                    "isCare": 0,
+                    "bonusActivityInfo": {
+                        "isPreOrRunActivity": 1,
+                        "bonus": false
+                    },
+                    "lowerPrice": 29.90,
+                    "goodComments": 342,
+                    "plusCommissionShare": 20.2
+                }
+            ],
+            [
+                {
+                    "inOrderComm30Days": 0.00,
+                    "inOrderCount30Days": 0,
+                    "isZY": 0,
+                    "skuId": 44471927176,
+                    "skuName": "韩花郎 韩式辣白菜 一磅泡菜 454g*1瓶 切件泡菜 蔬菜制品",
+                    "materialUrl": "jfs/t1/19341/14/13750/156376/5ca1dfecE6521a4cd/fa567ba6707d0d47.jpg",
+                    "shopName": "你喜食品专营店",
+                    "shopId": 62413,
+                    "wlPrice": 16.80,
+                    "wlCommission": 0.69,
+                    "wlCommissionRatio": 5.0,
+                    "isPinGou": 0,
+                    "hasCoupon": 1,
+                    "isCommonPlan": 1,
+                    "planId": 980324690,
+                    "orientationFlag": 0,
+                    "isLock": 0,
+                    "couponLink": "//coupon.m.jd.com/coupons/show.action?linkKey=AAROH_xIpeffAs_-naABEFoeMp7XICKqfiwULnj4akleUSNGT1bsQcLG7Md8_YjoyAwRK0TRb3XqtXgp0B2ZVXUFAbJDYQ",
+                    "couponDiscount": 3.0,
+                    "couponQuota": 16.0,
+                    "couponRemainCnt": 1000,
+                    "vid": 66163,
+                    "finalPrice": 13.80,
+                    "deliveryType": 0,
+                    "goodCommentsShare": 92,
+                    "requestId": "s_b3fbbfcbd034456c9b2d9a4a5b630583",
+                    "abParam": "SVC",
+                    "abVersion": "SVC",
+                    "isCare": 0,
+                    "bonusActivityInfo": {
+                        "isPreOrRunActivity": 1,
+                        "bonus": false
+                    },
+                    "lowerPrice": 16.80,
+                    "goodComments": 12,
+                    "plusCommissionShare": 5.0
+                }
+            ],
+            [
+                {
+                    "inOrderComm30Days": 56.29,
+                    "inOrderCount30Days": 0,
+                    "isZY": 0,
+                    "skuId": 67191129657,
+                    "skuName": "朴小样 | 韩式泡菜500g*3袋 韩国风味辣白菜泡菜朝鲜族泡菜下饭菜",
+                    "materialUrl": "jfs/t1/99817/3/16729/145747/5e7ee645E00281609/f94fe037415d9f2d.jpg",
+                    "shopName": "朴小样生鲜专营店",
+                    "shopId": 10194004,
+                    "wlPrice": 39.00,
+                    "wlCommission": 9.75,
+                    "wlCommissionRatio": 25.0,
+                    "isPinGou": 0,
+                    "isCommonPlan": 1,
+                    "planId": 2056038717,
+                    "orientationFlag": 0,
+                    "isLock": 0,
+                    "vid": 10339149,
+                    "finalPrice": 39.00,
+                    "deliveryType": 0,
+                    "goodCommentsShare": 97,
+                    "requestId": "s_b3fbbfcbd034456c9b2d9a4a5b630583",
+                    "abParam": "SVC",
+                    "abVersion": "SVC",
+                    "isCare": 0,
+                    "bonusActivityInfo": {
+                        "isPreOrRunActivity": 1,
+                        "bonus": false
+                    },
+                    "lowerPrice": 39.00,
+                    "goodComments": 44,
+                    "plusCommissionShare": 25.0
+                }
+            ],
+            [
+                {
+                    "inOrderComm30Days": 0.22,
+                    "inOrderCount30Days": 0,
+                    "isZY": 0,
+                    "skuId": 10022933415839,
+                    "skuName": "【东港扶贫馆】贝都黄心碱地土豆荷兰七尤金土豆东港特产洋芋马铃薯约2.5kg火锅食材 超大尤金土豆*5斤",
+                    "materialUrl": "jfs/t1/143501/17/10570/71938/5f854213E0f0852d5/5b9b552139a8cf97.jpg",
+                    "shopName": "中国特产·东港扶贫馆",
+                    "shopId": 10160639,
+                    "pingouTmCount": 2,
+                    "wlPrice": 20.00,
+                    "wlCommission": 1.95,
+                    "wlCommissionRatio": 15.0,
+                    "pingouPrice": 18.00,
+                    "isPinGou": 1,
+                    "hasCoupon": 1,
+                    "isCommonPlan": 1,
+                    "planId": 2515298599,
+                    "orientationFlag": 1,
+                    "isLock": 1,
+                    "couponLink": "//coupon.m.jd.com/coupons/show.action?linkKey=AAROH_xIpeffAs_-naABEFoeIjQpdIMDSkbe7xFZMylqOvlDFgo-smZaR_RX9FRKRk4ai_iQWZTAS68sVeAcLteo-B_IXw",
+                    "couponDiscount": 5.0,
+                    "couponQuota": 15.0,
+                    "couponRemainCnt": 100000,
+                    "vid": 10299111,
+                    "finalPrice": 13.00,
+                    "deliveryType": 0,
+                    "goodCommentsShare": 100,
+                    "requestId": "s_b3fbbfcbd034456c9b2d9a4a5b630583",
+                    "abParam": "SVC",
+                    "abVersion": "SVC",
+                    "isCare": 0,
+                    "bonusActivityInfo": {
+                        "isPreOrRunActivity": 1,
+                        "bonus": false
+                    },
+                    "lowerPrice": 18.00,
+                    "goodComments": 12,
+                    "plusCommissionShare": 15.0
+                }
+            ],
+            [
+                {
+                    "inOrderComm30Days": 0.00,
+                    "inOrderCount30Days": 0,
+                    "isZY": 0,
+                    "skuId": 67838419870,
+                    "skuName": "【顺丰快递】鲜窝窝 福建古田新鲜银耳 6朵 800g 鲜活耳雪耳白木耳银耳莲子粥原料",
+                    "materialUrl": "jfs/t1/135529/7/13174/309050/5f8fe17bE005c5aa0/969e1f2438d2c4f5.jpg",
+                    "shopName": "中国特产·南阳馆",
+                    "shopId": 622649,
+                    "wlPrice": 29.90,
+                    "wlCommission": 5.38,
+                    "wlCommissionRatio": 20.0,
+                    "isPinGou": 0,
+                    "hasCoupon": 1,
+                    "isCommonPlan": 1,
+                    "planId": 2524652927,
+                    "orientationFlag": 1,
+                    "isLock": 1,
+                    "couponLink": "//coupon.m.jd.com/coupons/show.action?linkKey=AAROH_xIpeffAs_-naABEFoeATnUIAI4VjKUckQaKEmUV74StBYewnOsKMrZJbXKLtw1RlJOOGuoY9eax7rd0-3pAyflGA",
+                    "couponDiscount": 3.0,
+                    "couponQuota": 29.0,
+                    "couponRemainCnt": 5000,
+                    "vid": 628088,
+                    "finalPrice": 26.90,
+                    "deliveryType": 0,
+                    "goodCommentsShare": 100,
+                    "requestId": "s_b3fbbfcbd034456c9b2d9a4a5b630583",
+                    "abParam": "SVC",
+                    "abVersion": "SVC",
+                    "isCare": 0,
+                    "bonusActivityInfo": {
+                        "isPreOrRunActivity": 1,
+                        "bonus": false
+                    },
+                    "lowerPrice": 29.90,
+                    "goodComments": 0,
+                    "plusCommissionShare": 20.0
+                }
+            ],
+            [
+                {
+                    "inOrderComm30Days": 631.85,
+                    "inOrderCount30Days": 0,
+                    "isZY": 0,
+                    "skuId": 63129546881,
+                    "skuName": "【大石桥市扶贫馆】喜鸿福 桔梗 狗宝泡菜 东北特产朝鲜族正宗咸菜 下饭菜 手工拌桔梗 248g*5袋",
+                    "materialUrl": "jfs/t1/92262/24/12052/310801/5e44ddffEd9fc8dc6/aaaa07e087c9d623.jpg",
+                    "shopName": "中国特产·大石桥市扶贫馆",
+                    "shopId": 910704,
+                    "wlPrice": 29.90,
+                    "wlCommission": 4.49,
+                    "wlCommissionRatio": 15.0,
+                    "isPinGou": 0,
+                    "isCommonPlan": 1,
+                    "planId": 2524480902,
+                    "orientationFlag": 1,
+                    "isLock": 1,
+                    "vid": 10071213,
+                    "finalPrice": 29.90,
+                    "deliveryType": 0,
+                    "goodCommentsShare": 97,
+                    "requestId": "s_b3fbbfcbd034456c9b2d9a4a5b630583",
+                    "abParam": "SVC",
+                    "abVersion": "SVC",
+                    "isCare": 0,
+                    "bonusActivityInfo": {
+                        "isPreOrRunActivity": 1,
+                        "bonus": false
+                    },
+                    "lowerPrice": 29.90,
+                    "goodComments": 1857,
+                    "plusCommissionShare": 15.0
+                }
+            ],
+            [
+                {
+                    "inOrderComm30Days": 5361.04,
+                    "inOrderCount30Days": 0,
+                    "isZY": 0,
+                    "skuId": 71375006673,
+                    "skuName": "众缘金香子东北特产辣白菜现做现发免切韩国风味泡菜500g/袋 免切泡菜3袋装1500g",
+                    "materialUrl": "jfs/t1/46774/4/5128/178556/5d2d8740E255825ae/80f7a6bf6ae37b56.jpg",
+                    "shopName": "众缘阿妈妮生鲜官方旗舰店",
+                    "shopId": 10031051,
+                    "wlPrice": 25.90,
+                    "wlCommission": 2.58,
+                    "wlCommissionRatio": 20.0,
+                    "isPinGou": 0,
+                    "hasCoupon": 1,
+                    "isCommonPlan": 1,
+                    "planId": 1839679482,
+                    "orientationFlag": 0,
+                    "isLock": 0,
+                    "couponLink": "http://coupon.m.jd.com/coupons/show.action?key=440645e401a642989ca838670c7ffb05&roleId=40793992&to=item.jd.com/71375006673.html",
+                    "couponDiscount": 13.0,
+                    "couponQuota": 25.0,
+                    "couponRemainCnt": 9997,
+                    "vid": 10165307,
+                    "finalPrice": 12.90,
+                    "deliveryType": 0,
+                    "goodCommentsShare": 97,
+                    "requestId": "s_b3fbbfcbd034456c9b2d9a4a5b630583",
+                    "abParam": "SVC",
+                    "abVersion": "SVC",
+                    "isCare": 0,
+                    "bonusActivityInfo": {
+                        "isPreOrRunActivity": 1,
+                        "bonus": false
+                    },
+                    "lowerPrice": 25.90,
+                    "goodComments": 2175,
+                    "plusCommissionShare": 20.0
+                }
+            ],
+            [
+                {
+                    "inOrderComm30Days": 1765.21,
+                    "inOrderCount30Days": 0,
+                    "isZY": 0,
+                    "skuId": 63130338778,
+                    "skuName": "【大石桥市扶贫馆】喜鸿福泡菜韩国正宗辣白菜 朝鲜族韩式泡菜 自制下饭菜开胃小咸菜 500g/袋*3袋",
+                    "materialUrl": "jfs/t1/148958/32/4703/208819/5f2b9593Ea3c39fbd/564bb7ac6d36bdb1.jpg",
+                    "shopName": "中国特产·大石桥市扶贫馆",
+                    "shopId": 910704,
+                    "wlPrice": 26.80,
+                    "wlCommission": 3.96,
+                    "wlCommissionRatio": 20.0,
+                    "isPinGou": 0,
+                    "hasCoupon": 1,
+                    "isCommonPlan": 1,
+                    "planId": 2519242741,
+                    "orientationFlag": 0,
+                    "isLock": 1,
+                    "couponLink": "//coupon.m.jd.com/coupons/show.action?linkKey=AAROH_xIpeffAs_-naABEFoe2PxxDBdXsfyP1T-O-dWAkGrJcE_TMiGwLAWPWXnxWQrMGzjt8YAzrGHVoV0jzUfKbsslwQ",
+                    "couponDiscount": 7.0,
+                    "couponQuota": 26.0,
+                    "couponRemainCnt": 99997,
+                    "vid": 10071213,
+                    "finalPrice": 19.80,
+                    "deliveryType": 0,
+                    "goodCommentsShare": 97,
+                    "requestId": "s_b3fbbfcbd034456c9b2d9a4a5b630583",
+                    "abParam": "SVC",
+                    "abVersion": "SVC",
+                    "isCare": 0,
+                    "bonusActivityInfo": {
+                        "isPreOrRunActivity": 1,
+                        "bonus": false
+                    },
+                    "lowerPrice": 26.80,
+                    "goodComments": 4996,
+                    "plusCommissionShare": 20.0
+                }
+            ],
+            [
+                {
+                    "inOrderComm30Days": 1134.13,
+                    "inOrderCount30Days": 0,
+                    "isZY": 0,
+                    "skuId": 57767624610,
+                    "skuName": "金刚山辣白菜免切韩国泡菜韩式下饭菜 450g*3袋",
+                    "materialUrl": "jfs/t1/143657/9/12735/236796/5f9d8bddE4ea90e7f/be4fa3b6567808ff.jpg",
+                    "shopName": "米西胜卖场旗舰店",
+                    "shopId": 993006,
+                    "wlPrice": 26.80,
+                    "wlCommission": 5.36,
+                    "wlCommissionRatio": 20.0,
+                    "isPinGou": 0,
+                    "isCommonPlan": 1,
+                    "planId": 1800740244,
+                    "orientationFlag": 0,
+                    "isLock": 0,
+                    "vid": 10147344,
+                    "finalPrice": 26.80,
+                    "deliveryType": 0,
+                    "goodCommentsShare": 97,
+                    "requestId": "s_b3fbbfcbd034456c9b2d9a4a5b630583",
+                    "abParam": "SVC",
+                    "abVersion": "SVC",
+                    "isCare": 0,
+                    "bonusActivityInfo": {
+                        "isPreOrRunActivity": 1,
+                        "bonus": false
+                    },
+                    "lowerPrice": 26.80,
+                    "goodComments": 1413,
+                    "plusCommissionShare": 20.0
+                }
+            ],
+            [
+                {
+                    "inOrderComm30Days": 190.32,
+                    "inOrderCount30Days": 0,
+                    "isZY": 0,
+                    "skuId": 24084541180,
+                    "skuName": "【买2送1】湖南特产鸡蛋豆腐铁板火锅麻辣烫日本玉子豆腐 100g/支 10支装",
+                    "materialUrl": "jfs/t14605/215/1573073435/302879/8a0e6aa1/5a51ca8dN3989bf83.jpg",
+                    "shopName": "豫泰生鲜专营店",
+                    "shopId": 616983,
+                    "wlPrice": 19.90,
+                    "wlCommission": 3.98,
+                    "wlCommissionRatio": 20.0,
+                    "isPinGou": 0,
+                    "isCommonPlan": 1,
+                    "planId": 1206601986,
+                    "orientationFlag": 0,
+                    "isLock": 0,
+                    "vid": 623439,
+                    "finalPrice": 19.90,
+                    "deliveryType": 0,
+                    "goodCommentsShare": 96,
+                    "requestId": "s_b3fbbfcbd034456c9b2d9a4a5b630583",
+                    "abParam": "SVC",
+                    "abVersion": "SVC",
+                    "isCare": 0,
+                    "bonusActivityInfo": {
+                        "isPreOrRunActivity": 1,
+                        "bonus": false
+                    },
+                    "lowerPrice": 19.90,
+                    "goodComments": 1102,
+                    "plusCommissionShare": 20.0
+                }
+            ],
+            [
+                {
+                    "inOrderComm30Days": 5.98,
+                    "inOrderCount30Days": 0,
+                    "isZY": 0,
+                    "skuId": 10330582736,
+                    "skuName": "水娃娃 韩国泡菜整棵辣白菜 500克*2袋 大同江韩式高丽咸菜",
+                    "materialUrl": "jfs/t1/110201/17/14405/174034/5ea7f29cE9d24bf42/8d115db33f9c69ad.jpg",
+                    "shopName": "中国特产·旅顺馆",
+                    "shopId": 86734,
+                    "wlPrice": 19.80,
+                    "wlCommission": 3.96,
+                    "wlCommissionRatio": 20.0,
+                    "isPinGou": 0,
+                    "isCommonPlan": 1,
+                    "planId": 997829360,
+                    "orientationFlag": 0,
+                    "isLock": 0,
+                    "vid": 89530,
+                    "finalPrice": 19.80,
+                    "deliveryType": 1,
+                    "goodCommentsShare": 96,
+                    "requestId": "s_b3fbbfcbd034456c9b2d9a4a5b630583",
+                    "abParam": "SVC",
+                    "abVersion": "SVC",
+                    "isCare": 0,
+                    "bonusActivityInfo": {
+                        "isPreOrRunActivity": 1,
+                        "bonus": false
+                    },
+                    "lowerPrice": 19.80,
+                    "goodComments": 1426,
+                    "plusCommissionShare": 20.0
+                }
+            ],
+            [
+                {
+                    "inOrderComm30Days": 6453.68,
+                    "inOrderCount30Days": 0,
+                    "isZY": 1,
+                    "skuId": 4551570,
+                    "skuName": "浦之灵 欧式杂菜 350g 甜玉米粒 进口青豆小豌豆 胡萝卜 冷冻蔬菜",
+                    "materialUrl": "jfs/t3202/237/7877121690/591481/d60f192/58bcd41eN67ca9320.jpg",
+                    "shopName": "浦之灵京东自营专区",
+                    "shopId": 1000082686,
+                    "wlPrice": 16.90,
+                    "wlCommission": 0.68,
+                    "wlCommissionRatio": 4.0,
+                    "isPinGou": 0,
+                    "isCommonPlan": 1,
+                    "planId": 0,
+                    "orientationFlag": 0,
+                    "isLock": 0,
+                    "vid": 1000082686,
+                    "finalPrice": 16.90,
+                    "deliveryType": 1,
+                    "goodCommentsShare": 99,
+                    "requestId": "s_b3fbbfcbd034456c9b2d9a4a5b630583",
+                    "abParam": "SVC",
+                    "abVersion": "SVC",
+                    "isCare": 0,
+                    "bonusActivityInfo": {
+                        "isPreOrRunActivity": 1,
+                        "bonus": false
+                    },
+                    "lowerPrice": 16.90,
+                    "goodComments": 575324,
+                    "plusCommissionShare": 2.0
+                }
+            ],
+            [
+                {
+                    "inOrderComm30Days": 93.66,
+                    "inOrderCount30Days": 0,
+                    "isZY": 0,
+                    "skuId": 17938971302,
+                    "skuName": "【镇安馆】陕西特产魔芋豆腐400g 魔芋丝魔芋素食火锅食材 商洛特产 魔芋条400gX2袋",
+                    "materialUrl": "jfs/t1/94808/14/2770/107724/5ddf1abeEc78983d1/3420bac5a967f080.jpg",
+                    "shopName": "中国特产·镇安馆",
+                    "shopId": 194829,
+                    "wlPrice": 16.80,
+                    "wlCommission": 3.36,
+                    "wlCommissionRatio": 20.0,
+                    "isPinGou": 0,
+                    "isCommonPlan": 1,
+                    "planId": 998324583,
+                    "orientationFlag": 0,
+                    "isLock": 0,
+                    "vid": 203617,
+                    "finalPrice": 16.80,
+                    "deliveryType": 0,
+                    "goodCommentsShare": 98,
+                    "requestId": "s_b3fbbfcbd034456c9b2d9a4a5b630583",
+                    "abParam": "SVC",
+                    "abVersion": "SVC",
+                    "isCare": 0,
+                    "bonusActivityInfo": {
+                        "isPreOrRunActivity": 1,
+                        "bonus": false
+                    },
+                    "lowerPrice": 16.80,
+                    "goodComments": 2058,
+                    "plusCommissionShare": 20.0
+                }
+            ],
+            [
+                {
+                    "inOrderComm30Days": 119.95,
+                    "inOrderCount30Days": 0,
+                    "isZY": 0,
+                    "skuId": 66497296120,
+                    "skuName": "【大石桥市扶贫馆】吕氏鑫和 老缸酸菜500g/袋 东北酸菜饺子 火锅辅料 酸菜500g*5袋",
+                    "materialUrl": "jfs/t1/124139/16/783/305910/5eb7a05cEc7caae30/3684d96320d94b47.jpg",
+                    "shopName": "中国特产·大石桥市扶贫馆",
+                    "shopId": 910704,
+                    "wlPrice": 26.80,
+                    "wlCommission": 5.36,
+                    "wlCommissionRatio": 20.0,
+                    "isPinGou": 0,
+                    "isCommonPlan": 1,
+                    "planId": 1802523146,
+                    "orientationFlag": 0,
+                    "isLock": 0,
+                    "vid": 10071213,
+                    "finalPrice": 26.80,
+                    "deliveryType": 0,
+                    "goodCommentsShare": 98,
+                    "requestId": "s_b3fbbfcbd034456c9b2d9a4a5b630583",
+                    "abParam": "SVC",
+                    "abVersion": "SVC",
+                    "isCare": 0,
+                    "bonusActivityInfo": {
+                        "isPreOrRunActivity": 1,
+                        "bonus": false
+                    },
+                    "lowerPrice": 26.80,
+                    "goodComments": 436,
+                    "plusCommissionShare": 20.0
+                }
+            ],
+            [
+                {
+                    "inOrderComm30Days": 1.40,
+                    "inOrderCount30Days": 0,
+                    "isZY": 0,
+                    "skuId": 66490759171,
+                    "skuName": "韩花郎 韩式风味辣白菜泡菜朝鲜族酸菜咸菜酱菜下饭菜韩国白菜泡菜454g*2瓶",
+                    "materialUrl": "jfs/t1/152455/28/4026/136254/5f9b88d9E6e2f81ab/43c18932f5ed4dae.jpg",
+                    "shopName": "你喜食品专营店",
+                    "shopId": 62413,
+                    "wlPrice": 29.90,
+                    "wlCommission": 1.35,
+                    "wlCommissionRatio": 5.0,
+                    "isPinGou": 0,
+                    "hasCoupon": 1,
+                    "isCommonPlan": 1,
+                    "planId": 980324690,
+                    "orientationFlag": 0,
+                    "isLock": 0,
+                    "couponLink": "//coupon.m.jd.com/coupons/show.action?linkKey=AAROH_xIpeffAs_-naABEFoeN1vbJJIli8U8fqMqettIo7xlaE3rkHSTAgktDoT51UGIJDHyxIqdgB-hMPJMOMnmS3IjQw",
+                    "couponDiscount": 3.0,
+                    "couponQuota": 20.0,
+                    "couponRemainCnt": 1000,
+                    "vid": 66163,
+                    "finalPrice": 26.90,
+                    "deliveryType": 0,
+                    "goodCommentsShare": 66,
+                    "requestId": "s_b3fbbfcbd034456c9b2d9a4a5b630583",
+                    "abParam": "SVC",
+                    "abVersion": "SVC",
+                    "isCare": 0,
+                    "bonusActivityInfo": {
+                        "isPreOrRunActivity": 1,
+                        "bonus": false
+                    },
+                    "lowerPrice": 29.90,
+                    "goodComments": 2,
+                    "plusCommissionShare": 5.0
+                }
+            ],
+            [
+                {
+                    "inOrderComm30Days": 10788.10,
+                    "inOrderCount30Days": 0,
+                    "isZY": 1,
+                    "skuId": 3041089,
+                    "skuName": "富爸爸 韩国风味辣白菜泡菜 瓶装切件泡菜 750g 切好的泡菜 酸辣下饭菜方便菜 酱菜咸菜",
+                    "materialUrl": "jfs/t1/33722/33/15196/300212/5d1c17b4E186c86a7/720fdd54f74ef73a.jpg",
+                    "shopName": "富爸爸京东自营旗舰店",
+                    "shopId": 1000079101,
+                    "wlPrice": 29.90,
+                    "wlCommission": 1.20,
+                    "wlCommissionRatio": 4.0,
+                    "isPinGou": 0,
+                    "isCommonPlan": 1,
+                    "planId": 0,
+                    "orientationFlag": 0,
+                    "isLock": 0,
+                    "vid": 1000079101,
+                    "finalPrice": 29.90,
+                    "deliveryType": 1,
+                    "goodCommentsShare": 98,
+                    "requestId": "s_b3fbbfcbd034456c9b2d9a4a5b630583",
+                    "abParam": "SVC",
+                    "abVersion": "SVC",
+                    "isCare": 0,
+                    "bonusActivityInfo": {
+                        "isPreOrRunActivity": 1,
+                        "bonus": false
+                    },
+                    "lowerPrice": 29.90,
+                    "goodComments": 427407,
+                    "plusCommissionShare": 2.0
+                }
+            ],
+            [
+                {
+                    "inOrderComm30Days": 751.27,
+                    "inOrderCount30Days": 0,
+                    "isZY": 0,
+                    "skuId": 69350726635,
+                    "skuName": "【大石桥市扶贫馆】吕氏鑫和 芥菜丝500g/袋 非即食 新鲜芥菜疙瘩腌制 500g*5袋",
+                    "materialUrl": "jfs/t1/115086/11/6719/225698/5ebd31c8E9ef8fbbb/5ecdcf6eaa7ef3ae.jpg",
+                    "shopName": "中国特产·大石桥市扶贫馆",
+                    "shopId": 910704,
+                    "wlPrice": 39.80,
+                    "wlCommission": 7.96,
+                    "wlCommissionRatio": 20.0,
+                    "isPinGou": 0,
+                    "isCommonPlan": 1,
+                    "planId": 1802523146,
+                    "orientationFlag": 0,
+                    "isLock": 0,
+                    "vid": 10071213,
+                    "finalPrice": 39.80,
+                    "deliveryType": 0,
+                    "goodCommentsShare": 97,
+                    "requestId": "s_b3fbbfcbd034456c9b2d9a4a5b630583",
+                    "abParam": "SVC",
+                    "abVersion": "SVC",
+                    "isCare": 0,
+                    "bonusActivityInfo": {
+                        "isPreOrRunActivity": 1,
+                        "bonus": false
+                    },
+                    "lowerPrice": 39.80,
+                    "goodComments": 583,
+                    "plusCommissionShare": 20.0
+                }
+            ],
+            [
+                {
+                    "inOrderComm30Days": 3.70,
+                    "inOrderCount30Days": 0,
+                    "isZY": 0,
+                    "skuId": 55598635813,
+                    "skuName": "特心鲜 冷冻速冻玉米粒 甜豌豆青豆毛豆青豆胡萝卜粒 混合蔬菜 冷冻杂菜青豆玉米胡萝卜2KG",
+                    "materialUrl": "jfs/t19771/311/532722798/197214/7996c48b/5a9185e4N92f9d6de.jpg",
+                    "shopName": "特心鲜官方旗舰店",
+                    "shopId": 10083703,
+                    "wlPrice": 42.00,
+                    "wlCommission": 0.37,
+                    "wlCommissionRatio": 1.0,
+                    "isPinGou": 0,
+                    "hasCoupon": 1,
+                    "isCommonPlan": 1,
+                    "planId": 1876364718,
+                    "orientationFlag": 0,
+                    "isLock": 0,
+                    "couponLink": "//coupon.m.jd.com/coupons/show.action?linkKey=AAROH_xIpeffAs_-naABEFoeXRGxqu2jOac529ZXoJK9SC5u0Nsfm5oF5iSyH1sWEwPEkXDsZqrr_vAaI2MEKW7KE-UFmg",
+                    "couponDiscount": 5.0,
+                    "couponQuota": 42.0,
+                    "couponRemainCnt": 9998,
+                    "vid": 10219971,
+                    "finalPrice": 37.00,
+                    "deliveryType": 0,
+                    "goodCommentsShare": 95,
+                    "requestId": "s_b3fbbfcbd034456c9b2d9a4a5b630583",
+                    "abParam": "SVC",
+                    "abVersion": "SVC",
+                    "isCare": 0,
+                    "bonusActivityInfo": {
+                        "isPreOrRunActivity": 1,
+                        "bonus": false
+                    },
+                    "lowerPrice": 42.00,
+                    "goodComments": 88,
+                    "plusCommissionShare": 1.0
+                }
+            ],
+            [
+                {
+                    "inOrderComm30Days": 589.38,
+                    "inOrderCount30Days": 0,
+                    "isZY": 0,
+                    "skuId": 10022321824145,
+                    "skuName": "元池 辣白菜延边朝鲜泡菜下饭菜韩国泡菜 辣白菜泡菜 400g*3 红色",
+                    "materialUrl": "jfs/t1/150422/11/2396/263419/5f72d837Ea04069f3/3f2dfa691477c16b.jpg",
+                    "shopName": "中国特产·珲春馆",
+                    "shopId": 10324569,
+                    "wlPrice": 39.80,
+                    "wlCommission": 7.96,
+                    "wlCommissionRatio": 20.0,
+                    "isPinGou": 0,
+                    "isCommonPlan": 1,
+                    "planId": 2493489149,
+                    "orientationFlag": 0,
+                    "isLock": 0,
+                    "vid": 10536170,
+                    "finalPrice": 39.80,
+                    "deliveryType": 0,
+                    "goodCommentsShare": 100,
+                    "requestId": "s_b3fbbfcbd034456c9b2d9a4a5b630583",
+                    "abParam": "SVC",
+                    "abVersion": "SVC",
+                    "isCare": 0,
+                    "bonusActivityInfo": {
+                        "isPreOrRunActivity": 1,
+                        "bonus": false
+                    },
+                    "lowerPrice": 39.80,
+                    "goodComments": 64,
+                    "plusCommissionShare": 20.0
+                }
+            ],
+            [
+                {
+                    "inOrderComm30Days": 10.36,
+                    "inOrderCount30Days": 0,
+                    "isZY": 0,
+                    "skuId": 62009171618,
+                    "skuName": "【竹溪馆】子鑫泡椒酸辣子酸辣椒腌辣椒老坛酸菜泡菜 5袋装",
+                    "materialUrl": "jfs/t1/43021/14/12699/85718/5d5e55d7E4f8e04c0/6dd2e2ad04fe3933.jpg",
+                    "shopName": "中国特产·竹溪馆 ",
+                    "shopId": 182150,
+                    "wlPrice": 29.90,
+                    "wlCommission": 5.98,
+                    "wlCommissionRatio": 20.0,
+                    "isPinGou": 0,
+                    "isCommonPlan": 1,
+                    "planId": 931793700,
+                    "orientationFlag": 0,
+                    "isLock": 0,
+                    "vid": 189646,
+                    "finalPrice": 29.90,
+                    "deliveryType": 0,
+                    "goodCommentsShare": 96,
+                    "requestId": "s_b3fbbfcbd034456c9b2d9a4a5b630583",
+                    "abParam": "SVC",
+                    "abVersion": "SVC",
+                    "isCare": 0,
+                    "bonusActivityInfo": {
+                        "isPreOrRunActivity": 1,
+                        "bonus": false
+                    },
+                    "lowerPrice": 29.90,
+                    "goodComments": 597,
+                    "plusCommissionShare": 20.0
+                }
+            ],
+            [
+                {
+                    "inOrderComm30Days": 209.11,
+                    "inOrderCount30Days": 0,
+                    "isZY": 0,
+                    "skuId": 10022413496633,
+                    "skuName": "【辽阳县馆】东北酸菜丝 东北特产 农家大缸自制酸白菜细丝 500g*5",
+                    "materialUrl": "jfs/t1/126902/1/17407/257722/5fa2ec46E13af9cfc/368dde74a383dc9d.jpg",
+                    "shopName": "中国特产·辽阳县馆",
+                    "shopId": 10287817,
+                    "wlPrice": 21.80,
+                    "wlCommission": 4.36,
+                    "wlCommissionRatio": 20.0,
+                    "isPinGou": 0,
+                    "isCommonPlan": 1,
+                    "planId": 2487201144,
+                    "orientationFlag": 0,
+                    "isLock": 0,
+                    "vid": 10498191,
+                    "finalPrice": 21.80,
+                    "deliveryType": 0,
+                    "goodCommentsShare": 90,
+                    "requestId": "s_b3fbbfcbd034456c9b2d9a4a5b630583",
+                    "abParam": "SVC",
+                    "abVersion": "SVC",
+                    "isCare": 0,
+                    "bonusActivityInfo": {
+                        "isPreOrRunActivity": 1,
+                        "bonus": false
+                    },
+                    "lowerPrice": 21.80,
+                    "goodComments": 20,
+                    "plusCommissionShare": 20.0
+                }
+            ],
+            [
+                {
+                    "inOrderComm30Days": 229.61,
+                    "inOrderCount30Days": 0,
+                    "isZY": 0,
+                    "skuId": 10020926802787,
+                    "skuName": "【延吉农特产馆】酸菜正宗东北酸白菜丝农家大缸腌制泡菜农家特产真空包装 500g*3袋",
+                    "materialUrl": "jfs/t1/144710/30/12752/279362/5f9e0d56E8ad6a1a9/e8f9888abf6b95aa.jpg",
+                    "shopName": "中国特产.延吉农特产馆",
+                    "shopId": 10284378,
+                    "wlPrice": 23.90,
+                    "wlCommission": 4.78,
+                    "wlCommissionRatio": 20.0,
+                    "isPinGou": 0,
+                    "isCommonPlan": 1,
+                    "planId": 2397177942,
+                    "orientationFlag": 0,
+                    "isLock": 0,
+                    "vid": 10492384,
+                    "finalPrice": 23.90,
+                    "deliveryType": 0,
+                    "goodCommentsShare": 100,
+                    "requestId": "s_b3fbbfcbd034456c9b2d9a4a5b630583",
+                    "abParam": "SVC",
+                    "abVersion": "SVC",
+                    "isCare": 0,
+                    "bonusActivityInfo": {
+                        "isPreOrRunActivity": 1,
+                        "bonus": false
+                    },
+                    "lowerPrice": 23.90,
+                    "goodComments": 59,
+                    "plusCommissionShare": 20.0
+                }
+            ],
+            [
+                {
+                    "inOrderComm30Days": 80.70,
+                    "inOrderCount30Days": 0,
+                    "isZY": 0,
+                    "skuId": 48821550346,
+                    "skuName": "【众缘金香子】辣白菜韩国泡菜下饭菜大包装饭店适用装2斤/5斤/10斤整颗散装辣白菜 10斤整颗散装（不切）",
+                    "materialUrl": "jfs/t1/34733/3/11077/158887/5cee1df6E802bc786/059a69b050f21e4c.jpg",
+                    "shopName": "众缘阿妈妮生鲜官方旗舰店",
+                    "shopId": 10031051,
+                    "wlPrice": 42.90,
+                    "wlCommission": 8.58,
+                    "wlCommissionRatio": 20.0,
+                    "isPinGou": 0,
+                    "isCommonPlan": 1,
+                    "planId": 1839679482,
+                    "orientationFlag": 0,
+                    "isLock": 0,
+                    "vid": 10165307,
+                    "finalPrice": 42.90,
+                    "deliveryType": 0,
+                    "goodCommentsShare": 97,
+                    "requestId": "s_b3fbbfcbd034456c9b2d9a4a5b630583",
+                    "abParam": "SVC",
+                    "abVersion": "SVC",
+                    "isCare": 0,
+                    "bonusActivityInfo": {
+                        "isPreOrRunActivity": 1,
+                        "bonus": false
+                    },
+                    "lowerPrice": 42.90,
+                    "goodComments": 46,
+                    "plusCommissionShare": 20.0
+                }
+            ],
+            [
+                {
+                    "inOrderComm30Days": 45.08,
+                    "inOrderCount30Days": 0,
+                    "isZY": 0,
+                    "skuId": 67816910980,
+                    "skuName": "【辽宁馆】辽锦周氏 锦州散装干豆腐 东北干豆腐千张豆皮 现定现做卤水师傅手工制作 散装2斤",
+                    "materialUrl": "jfs/t1/130234/34/14567/211663/5f9f9f11E40bd5091/f3b56087fa8c81b1.jpg",
+                    "shopName": "中国特产·辽宁馆",
+                    "shopId": 10052463,
+                    "wlPrice": 18.90,
+                    "wlCommission": 3.78,
+                    "wlCommissionRatio": 20.0,
+                    "isPinGou": 0,
+                    "isCommonPlan": 1,
+                    "planId": 1845789086,
+                    "orientationFlag": 0,
+                    "isLock": 0,
+                    "vid": 10187520,
+                    "finalPrice": 18.90,
+                    "deliveryType": 0,
+                    "goodCommentsShare": 96,
+                    "requestId": "s_b3fbbfcbd034456c9b2d9a4a5b630583",
+                    "abParam": "SVC",
+                    "abVersion": "SVC",
+                    "isCare": 0,
+                    "bonusActivityInfo": {
+                        "isPreOrRunActivity": 1,
+                        "bonus": false
+                    },
+                    "lowerPrice": 18.90,
+                    "goodComments": 157,
+                    "plusCommissionShare": 20.0
+                }
+            ],
+            [
+                {
+                    "inOrderComm30Days": 0.00,
+                    "inOrderCount30Days": 0,
+                    "isZY": 0,
+                    "skuId": 69489959142,
+                    "skuName": "正宗辣白菜韩式泡菜 500g*5袋",
+                    "materialUrl": "jfs/t1/113453/20/7318/159222/5ec1fcdaE7260b51b/48a076f7c4a5d0db.jpg",
+                    "shopName": "京采泷庆食品专营店",
+                    "shopId": 10081379,
+                    "wlPrice": 26.00,
+                    "wlCommission": 7.80,
+                    "wlCommissionRatio": 30.0,
+                    "isPinGou": 0,
+                    "isCommonPlan": 1,
+                    "planId": 1977936090,
+                    "orientationFlag": 0,
+                    "isLock": 0,
+                    "vid": 10217879,
+                    "finalPrice": 26.00,
+                    "deliveryType": 0,
+                    "goodCommentsShare": 100,
+                    "requestId": "s_b3fbbfcbd034456c9b2d9a4a5b630583",
+                    "abParam": "SVC",
+                    "abVersion": "SVC",
+                    "isCare": 0,
+                    "bonusActivityInfo": {
+                        "isPreOrRunActivity": 1,
+                        "bonus": false
+                    },
+                    "lowerPrice": 26.00,
+                    "goodComments": 2,
+                    "plusCommissionShare": 30.0
+                }
+            ],
+            [
+                {
+                    "inOrderComm30Days": 8.40,
+                    "inOrderCount30Days": 0,
+                    "isZY": 0,
+                    "skuId": 62558967876,
+                    "skuName": "正宗东北特产山洞酸菜大缸腌制酸白菜500g/袋",
+                    "materialUrl": "jfs/t1/100201/15/2996/133970/5ddb8109E0b73d7e0/3c488e73f556aea8.jpg",
+                    "shopName": "京采泷庆食品专营店",
+                    "shopId": 10081379,
+                    "wlPrice": 2.80,
+                    "wlCommission": 0.84,
+                    "wlCommissionRatio": 30.0,
+                    "isPinGou": 0,
+                    "isCommonPlan": 1,
+                    "planId": 1977936090,
+                    "orientationFlag": 0,
+                    "isLock": 0,
+                    "vid": 10217879,
+                    "finalPrice": 2.80,
+                    "deliveryType": 0,
+                    "goodCommentsShare": 100,
+                    "requestId": "s_b3fbbfcbd034456c9b2d9a4a5b630583",
+                    "abParam": "SVC",
+                    "abVersion": "SVC",
+                    "isCare": 0,
+                    "bonusActivityInfo": {
+                        "isPreOrRunActivity": 1,
+                        "bonus": false
+                    },
+                    "lowerPrice": 2.80,
+                    "goodComments": 1,
+                    "plusCommissionShare": 30.0
+                }
+            ],
+            [
+                {
+                    "inOrderComm30Days": 16.73,
+                    "inOrderCount30Days": 0,
+                    "isZY": 0,
+                    "skuId": 72018714092,
+                    "skuName": "洪湖农家 洪湖粉藕汤单包600g 莲藕 特产家乡方便菜莲藕汤半成品菜 洪湖莲藕",
+                    "materialUrl": "jfs/t1/153293/5/1496/138381/5f7c05b3E12c97e42/f26810ee446bf77d.jpg",
+                    "shopName": "洪湖农家官方旗舰店",
+                    "shopId": 769252,
+                    "wlPrice": 29.90,
+                    "wlCommission": 6.73,
+                    "wlCommissionRatio": 25.0,
+                    "isPinGou": 0,
+                    "hasCoupon": 1,
+                    "isCommonPlan": 1,
+                    "planId": 2508726389,
+                    "orientationFlag": 1,
+                    "isLock": 1,
+                    "couponLink": "//coupon.m.jd.com/coupons/show.action?linkKey=AAROH_xIpeffAs_-naABEFoeMswD06Z4uQgzE1RObeoyAH3mB0-0lQb_TBoxEjKgkIwKJw1jG8XD5F7ICvaPJ4Mdvh0Byw",
+                    "couponDiscount": 3.0,
+                    "couponQuota": 29.0,
+                    "couponRemainCnt": 997,
+                    "vid": 773458,
+                    "finalPrice": 26.90,
+                    "deliveryType": 0,
+                    "goodCommentsShare": 100,
+                    "requestId": "s_b3fbbfcbd034456c9b2d9a4a5b630583",
+                    "abParam": "SVC",
+                    "abVersion": "SVC",
+                    "isCare": 0,
+                    "bonusActivityInfo": {
+                        "isPreOrRunActivity": 1,
+                        "bonus": false
+                    },
+                    "lowerPrice": 29.90,
+                    "goodComments": 1,
+                    "plusCommissionShare": 25.0
+                }
+            ],
+            [
+                {
+                    "inOrderComm30Days": 5.78,
+                    "inOrderCount30Days": 0,
+                    "isZY": 0,
+                    "skuId": 22296937323,
+                    "skuName": "蔡家洼 原浆油豆皮 手工工艺 豆制品素食 火锅食材 1张装 约120g",
+                    "materialUrl": "jfs/t13501/114/2048247111/89979/f633c4a3/5a320c25N3d832515.jpg",
+                    "shopName": "新农部落生鲜专营店",
+                    "shopId": 721670,
+                    "wlPrice": 15.00,
+                    "wlCommission": 3.00,
+                    "wlCommissionRatio": 20.0,
+                    "isPinGou": 0,
+                    "isCommonPlan": 1,
+                    "planId": 1223512382,
+                    "orientationFlag": 0,
+                    "isLock": 0,
+                    "vid": 726651,
+                    "finalPrice": 15.00,
+                    "deliveryType": 0,
+                    "goodCommentsShare": 100,
+                    "requestId": "s_b3fbbfcbd034456c9b2d9a4a5b630583",
+                    "abParam": "SVC",
+                    "abVersion": "SVC",
+                    "isCare": 0,
+                    "bonusActivityInfo": {
+                        "isPreOrRunActivity": 1,
+                        "bonus": false
+                    },
+                    "lowerPrice": 15.00,
+                    "goodComments": 78,
+                    "plusCommissionShare": 20.0
+                }
+            ],
+            [
+                {
+                    "inOrderComm30Days": 163.11,
+                    "inOrderCount30Days": 0,
+                    "isZY": 0,
+                    "skuId": 38781042697,
+                    "skuName": "乐老板 韩国风味泡菜 韩式切件泡菜 辣白菜280g*3袋",
+                    "materialUrl": "jfs/t1/150505/34/5124/294908/5f9e21a3E54dabf79/e190e9485e979d6a.jpg",
+                    "shopName": "乐老板官方旗舰店",
+                    "shopId": 762101,
+                    "wlPrice": 29.90,
+                    "wlCommission": 8.37,
+                    "wlCommissionRatio": 28.0,
+                    "isPinGou": 0,
+                    "isCommonPlan": 1,
+                    "planId": 1553210785,
+                    "orientationFlag": 0,
+                    "isLock": 0,
+                    "vid": 766419,
+                    "finalPrice": 29.90,
+                    "deliveryType": 0,
+                    "goodCommentsShare": 98,
+                    "requestId": "s_b3fbbfcbd034456c9b2d9a4a5b630583",
+                    "abParam": "SVC",
+                    "abVersion": "SVC",
+                    "isCare": 0,
+                    "bonusActivityInfo": {
+                        "isPreOrRunActivity": 1,
+                        "bonus": false
+                    },
+                    "lowerPrice": 29.90,
+                    "goodComments": 2043,
+                    "plusCommissionShare": 28.0
+                }
+            ],
+            [
+                {
+                    "inOrderComm30Days": 0.00,
+                    "inOrderCount30Days": 0,
+                    "isZY": 0,
+                    "skuId": 66367871842,
+                    "skuName": "【庄河扶贫馆】泡菜韩国正宗辣白菜 朝鲜族韩式泡菜 自制下饭菜开胃小咸菜 500g/袋*3",
+                    "materialUrl": "jfs/t1/146038/9/4763/403277/5f2bbf53Eebb3c311/2c1af35dc80c65dd.jpg",
+                    "shopName": "中国特产·庄河扶贫馆",
+                    "shopId": 901986,
+                    "wlPrice": 26.90,
+                    "wlCommission": 5.38,
+                    "wlCommissionRatio": 20.0,
+                    "isPinGou": 0,
+                    "isCommonPlan": 1,
+                    "planId": 1589677744,
+                    "orientationFlag": 0,
+                    "isLock": 0,
+                    "vid": 10062501,
+                    "finalPrice": 26.90,
+                    "deliveryType": 0,
+                    "goodCommentsShare": 98,
+                    "requestId": "s_b3fbbfcbd034456c9b2d9a4a5b630583",
+                    "abParam": "SVC",
+                    "abVersion": "SVC",
+                    "isCare": 0,
+                    "bonusActivityInfo": {
+                        "isPreOrRunActivity": 1,
+                        "bonus": false
+                    },
+                    "lowerPrice": 26.90,
+                    "goodComments": 280,
+                    "plusCommissionShare": 20.0
+                }
+            ],
+            [
+                {
+                    "inOrderComm30Days": 3320.35,
+                    "inOrderCount30Days": 0,
+                    "isZY": 1,
+                    "skuId": 4580434,
+                    "skuName": "白玉 魔芋丝结 220g(2件 起售）",
+                    "materialUrl": "jfs/t29500/53/825981584/260511/dcef5052/5bff97baN734522e9.jpg",
+                    "shopName": "白玉自营旗舰店",
+                    "shopId": 1000084067,
+                    "wlPrice": 6.90,
+                    "wlCommission": 0.28,
+                    "wlCommissionRatio": 4.0,
+                    "isPinGou": 0,
+                    "isCommonPlan": 1,
+                    "planId": 0,
+                    "orientationFlag": 0,
+                    "isLock": 0,
+                    "vid": 1000084067,
+                    "finalPrice": 6.90,
+                    "deliveryType": 1,
+                    "goodCommentsShare": 99,
+                    "requestId": "s_b3fbbfcbd034456c9b2d9a4a5b630583",
+                    "abParam": "SVC",
+                    "abVersion": "SVC",
+                    "isCare": 0,
+                    "bonusActivityInfo": {
+                        "isPreOrRunActivity": 1,
+                        "bonus": false
+                    },
+                    "lowerPrice": 6.90,
+                    "goodComments": 88567,
+                    "plusCommissionShare": 2.0
+                }
+            ],
+            [
+                {
+                    "inOrderComm30Days": 6.93,
+                    "inOrderCount30Days": 0,
+                    "isZY": 0,
+                    "skuId": 22141249383,
+                    "skuName": "蔡家洼大货栈 豆腐 卤水豆腐 手工老豆腐 新鲜自制老豆腐豆制品素食（精选大豆 火锅食材） 1000g",
+                    "materialUrl": "jfs/t1/137512/18/12428/100387/5f893230Ea8869f32/ce6861ba03e98b0b.jpg",
+                    "shopName": "新农部落生鲜专营店",
+                    "shopId": 721670,
+                    "wlPrice": 23.50,
+                    "wlCommission": 4.70,
+                    "wlCommissionRatio": 20.0,
+                    "isPinGou": 0,
+                    "isCommonPlan": 1,
+                    "planId": 1223512382,
+                    "orientationFlag": 0,
+                    "isLock": 0,
+                    "vid": 726651,
+                    "finalPrice": 23.50,
+                    "deliveryType": 0,
+                    "goodCommentsShare": 100,
+                    "requestId": "s_b3fbbfcbd034456c9b2d9a4a5b630583",
+                    "abParam": "SVC",
+                    "abVersion": "SVC",
+                    "isCare": 0,
+                    "bonusActivityInfo": {
+                        "isPreOrRunActivity": 1,
+                        "bonus": false
+                    },
+                    "lowerPrice": 23.50,
+                    "goodComments": 665,
+                    "plusCommissionShare": 20.0
+                }
+            ],
+            [
+                {
+                    "inOrderComm30Days": 233.08,
+                    "inOrderCount30Days": 0,
+                    "isZY": 0,
+                    "skuId": 72031324841,
+                    "skuName": "众缘金香子小咸菜开袋即食酸辣黄瓜下饭菜 酱香金丝+酸辣黄瓜",
+                    "materialUrl": "jfs/t1/146052/26/4057/151626/5f20e252Ebab3ce12/1d1eb44cb3ac9f40.jpg",
+                    "shopName": "众缘阿妈妮生鲜官方旗舰店",
+                    "shopId": 10031051,
+                    "wlPrice": 14.90,
+                    "wlCommission": 2.98,
+                    "wlCommissionRatio": 20.0,
+                    "isPinGou": 0,
+                    "isCommonPlan": 1,
+                    "planId": 1839679482,
+                    "orientationFlag": 0,
+                    "isLock": 0,
+                    "vid": 10165307,
+                    "finalPrice": 14.90,
+                    "deliveryType": 0,
+                    "goodCommentsShare": 96,
+                    "requestId": "s_b3fbbfcbd034456c9b2d9a4a5b630583",
+                    "abParam": "SVC",
+                    "abVersion": "SVC",
+                    "isCare": 0,
+                    "bonusActivityInfo": {
+                        "isPreOrRunActivity": 1,
+                        "bonus": false
+                    },
+                    "lowerPrice": 14.90,
+                    "goodComments": 209,
+                    "plusCommissionShare": 20.0
+                }
+            ],
+            [
+                {
+                    "inOrderComm30Days": 16442.86,
+                    "inOrderCount30Days": 0,
+                    "isZY": 1,
+                    "skuId": 3339505,
+                    "skuName": "清净园 宗家府 切件泡菜 1200g（韩国泡菜 辣白菜 咸菜 方便面伴侣 下饭菜）",
+                    "materialUrl": "jfs/t17239/305/1439591838/462873/16b42659/5ac9b5f3Naec39fc7.jpg",
+                    "shopName": "清净园京东自营旗舰店",
+                    "shopId": 1000086185,
+                    "wlPrice": 36.80,
+                    "wlCommission": 0.37,
+                    "wlCommissionRatio": 1.0,
+                    "isPinGou": 0,
+                    "isCommonPlan": 1,
+                    "planId": 2325816658,
+                    "orientationFlag": 0,
+                    "isLock": 0,
+                    "vid": 1000086185,
+                    "finalPrice": 36.80,
+                    "deliveryType": 1,
+                    "goodCommentsShare": 98,
+                    "requestId": "s_b3fbbfcbd034456c9b2d9a4a5b630583",
+                    "abParam": "SVC",
+                    "abVersion": "SVC",
+                    "isCare": 0,
+                    "bonusActivityInfo": {
+                        "isPreOrRunActivity": 1,
+                        "bonus": false
+                    },
+                    "lowerPrice": 36.80,
+                    "goodComments": 91346,
+                    "plusCommissionShare": 1.0
+                }
+            ],
+            [
+                {
+                    "inOrderComm30Days": 0.00,
+                    "inOrderCount30Days": 0,
+                    "isZY": 0,
+                    "skuId": 64403849237,
+                    "skuName": "【众缘金香子】水果辣白菜韩国风味水果泡菜泡菜5斤/2斤 水果辣白菜2斤（整颗散装不切）",
+                    "materialUrl": "jfs/t1/109140/25/1610/123567/5dff6847E7e885c74/43e9063fd6ffe9c0.jpg",
+                    "shopName": "众缘阿妈妮生鲜官方旗舰店",
+                    "shopId": 10031051,
+                    "wlPrice": 18.90,
+                    "wlCommission": 3.78,
+                    "wlCommissionRatio": 20.0,
+                    "isPinGou": 0,
+                    "isCommonPlan": 1,
+                    "planId": 1839679482,
+                    "orientationFlag": 0,
+                    "isLock": 0,
+                    "vid": 10165307,
+                    "finalPrice": 18.90,
+                    "deliveryType": 0,
+                    "goodCommentsShare": 100,
+                    "requestId": "s_b3fbbfcbd034456c9b2d9a4a5b630583",
+                    "abParam": "SVC",
+                    "abVersion": "SVC",
+                    "isCare": 0,
+                    "bonusActivityInfo": {
+                        "isPreOrRunActivity": 1,
+                        "bonus": false
+                    },
+                    "lowerPrice": 18.90,
+                    "goodComments": 5,
+                    "plusCommissionShare": 20.0
+                }
+            ],
+            [
+                {
+                    "inOrderComm30Days": 237.30,
+                    "inOrderCount30Days": 0,
+                    "isZY": 0,
+                    "skuId": 10022983907596,
+                    "skuName": "食客族韩式泡菜500g*3 辣白菜500g*3",
+                    "materialUrl": "jfs/t1/118023/39/14117/402710/5f2bbe35E208fa34a/114b3691fef73df1.jpg",
+                    "shopName": "中国特产·庄河馆",
+                    "shopId": 801748,
+                    "wlPrice": 26.80,
+                    "wlCommission": 4.02,
+                    "wlCommissionRatio": 15.0,
+                    "isPinGou": 0,
+                    "isCommonPlan": 1,
+                    "planId": 1336926675,
+                    "orientationFlag": 0,
+                    "isLock": 0,
+                    "vid": 804269,
+                    "finalPrice": 26.80,
+                    "deliveryType": 0,
+                    "goodCommentsShare": 100,
+                    "requestId": "s_b3fbbfcbd034456c9b2d9a4a5b630583",
+                    "abParam": "SVC",
+                    "abVersion": "SVC",
+                    "isCare": 0,
+                    "bonusActivityInfo": {
+                        "isPreOrRunActivity": 1,
+                        "bonus": false
+                    },
+                    "lowerPrice": 26.80,
+                    "goodComments": 7,
+                    "plusCommissionShare": 15.0
+                }
+            ],
+            [
+                {
+                    "inOrderComm30Days": 12.89,
+                    "inOrderCount30Days": 0,
+                    "isZY": 0,
+                    "skuId": 25903797082,
+                    "skuName": "蔡家洼大货栈 手工五香豆干 豆片 豆丝 豆制品 新鲜素食凉拌菜 火锅食材 五香豆腐丝 200g 1袋",
+                    "materialUrl": "jfs/t1/128176/36/15206/134333/5f8931a7Ee2c85bb0/4da918edd084a10b.jpg",
+                    "shopName": "新农部落生鲜专营店",
+                    "shopId": 721670,
+                    "wlPrice": 18.80,
+                    "wlCommission": 3.76,
+                    "wlCommissionRatio": 20.0,
+                    "isPinGou": 0,
+                    "isCommonPlan": 1,
+                    "planId": 1223512382,
+                    "orientationFlag": 0,
+                    "isLock": 0,
+                    "vid": 726651,
+                    "finalPrice": 18.80,
+                    "deliveryType": 0,
+                    "goodCommentsShare": 99,
+                    "requestId": "s_b3fbbfcbd034456c9b2d9a4a5b630583",
+                    "abParam": "SVC",
+                    "abVersion": "SVC",
+                    "isCare": 0,
+                    "bonusActivityInfo": {
+                        "isPreOrRunActivity": 1,
+                        "bonus": false
+                    },
+                    "lowerPrice": 18.80,
+                    "goodComments": 420,
+                    "plusCommissionShare": 20.0
+                }
+            ],
+            [
+                {
+                    "inOrderComm30Days": 0.00,
+                    "inOrderCount30Days": 0,
+                    "isZY": 0,
+                    "skuId": 10021386272123,
+                    "skuName": "桃李村 猪筒骨筒子骨家庭装骨猪肉大骨头带骨髓食堂熬汤煲汤食材顺丰 切断前筒骨4斤少肉",
+                    "materialUrl": "jfs/t1/133620/40/9457/99751/5f573c21E4af37ca1/29dacbabc86666eb.jpg",
+                    "shopName": "拾优生鲜拼购店",
+                    "shopId": 10188169,
+                    "pingouTmCount": 2,
+                    "wlPrice": 249.00,
+                    "wlCommission": 0.69,
+                    "wlCommissionRatio": 1.0,
+                    "pingouPrice": 219.00,
+                    "isPinGou": 1,
+                    "hasCoupon": 1,
+                    "isCommonPlan": 1,
+                    "planId": 2056966864,
+                    "orientationFlag": 0,
+                    "isLock": 0,
+                    "couponLink": "http://coupon.m.jd.com/coupons/show.action?key=c7390fe8d2c046f487af345ec3884489&roleId=40735287&to=item.jd.com/10021386272123.html",
+                    "couponDiscount": 150.0,
+                    "couponQuota": 200.0,
+                    "couponRemainCnt": 99,
+                    "vid": 10334003,
+                    "finalPrice": 69.00,
+                    "deliveryType": 0,
+                    "goodCommentsShare": 100,
+                    "requestId": "s_b3fbbfcbd034456c9b2d9a4a5b630583",
+                    "abParam": "SVC",
+                    "abVersion": "SVC",
+                    "isCare": 0,
+                    "bonusActivityInfo": {
+                        "isPreOrRunActivity": 1,
+                        "bonus": false
+                    },
+                    "lowerPrice": 219.00,
+                    "goodComments": 2,
+                    "plusCommissionShare": 1.0
+                }
+            ],
+            [
+                {
+                    "inOrderComm30Days": 206.16,
+                    "inOrderCount30Days": 0,
+                    "isZY": 0,
+                    "skuId": 69731917037,
+                    "skuName": "众缘阿妈妮辣白菜韩国泡菜延边特产 辣白菜蓝袋350g*2",
+                    "materialUrl": "jfs/t1/121818/35/2786/208047/5ec9f19dE03849c68/e513bd0522aad264.jpg",
+                    "shopName": "延鑫旺旗舰店",
+                    "shopId": 10243686,
+                    "wlPrice": 19.90,
+                    "wlCommission": 2.98,
+                    "wlCommissionRatio": 20.0,
+                    "isPinGou": 0,
+                    "hasCoupon": 1,
+                    "isCommonPlan": 1,
+                    "planId": 2155209988,
+                    "orientationFlag": 0,
+                    "isLock": 0,
+                    "couponLink": "https://coupon.m.jd.com/coupons/show.action?key=62ac8f486e30472b97c223cb1fefe000&roleId=40735481&to=item.jd.com/69731917037.html",
+                    "couponDiscount": 5.0,
+                    "couponQuota": 19.0,
+                    "couponRemainCnt": 9996,
+                    "vid": 10391131,
+                    "finalPrice": 14.90,
+                    "deliveryType": 0,
+                    "goodCommentsShare": 98,
+                    "requestId": "s_b3fbbfcbd034456c9b2d9a4a5b630583",
+                    "abParam": "SVC",
+                    "abVersion": "SVC",
+                    "isCare": 0,
+                    "bonusActivityInfo": {
+                        "isPreOrRunActivity": 1,
+                        "bonus": false
+                    },
+                    "lowerPrice": 19.90,
+                    "goodComments": 542,
+                    "plusCommissionShare": 20.0
+                }
+            ],
+            [
+                {
+                    "inOrderComm30Days": 0.00,
+                    "inOrderCount30Days": 0,
+                    "isZY": 0,
+                    "skuId": 69585986573,
+                    "skuName": "【庄河特产馆】食客族辣花萝卜东北特色酸甜辣开胃小吃泡菜咸菜下饭小菜 辣花萝卜-1袋",
+                    "materialUrl": "jfs/t1/129351/13/2405/245338/5ec4e993Ec6abcad8/541f24d10b31a1bb.jpg",
+                    "shopName": "中国特产·庄河馆",
+                    "shopId": 801748,
+                    "wlPrice": 9.80,
+                    "wlCommission": 1.96,
+                    "wlCommissionRatio": 20.0,
+                    "isPinGou": 0,
+                    "isCommonPlan": 1,
+                    "planId": 1336926675,
+                    "orientationFlag": 0,
+                    "isLock": 0,
+                    "vid": 804269,
+                    "finalPrice": 9.80,
+                    "deliveryType": 0,
+                    "goodCommentsShare": 100,
+                    "requestId": "s_b3fbbfcbd034456c9b2d9a4a5b630583",
+                    "abParam": "SVC",
+                    "abVersion": "SVC",
+                    "isCare": 0,
+                    "bonusActivityInfo": {
+                        "isPreOrRunActivity": 1,
+                        "bonus": false
+                    },
+                    "lowerPrice": 9.80,
+                    "goodComments": 4,
+                    "plusCommissionShare": 20.0
+                }
+            ],
+            [
+                {
+                    "inOrderComm30Days": 8798.05,
+                    "inOrderCount30Days": 0,
+                    "isZY": 1,
+                    "skuId": 3927957,
+                    "skuName": "浦之灵 协东盛 欧式杂菜900g 甜玉米粒 甜青豆豌豆 餐饮冷冻蔬菜",
+                    "materialUrl": "jfs/t3208/251/7896628734/591481/d60f192/58bcd4f3N3a06cb58.jpg",
+                    "shopName": "浦之灵京东自营专区",
+                    "shopId": 1000082686,
+                    "wlPrice": 28.80,
+                    "wlCommission": 1.15,
+                    "wlCommissionRatio": 4.0,
+                    "isPinGou": 0,
+                    "isCommonPlan": 1,
+                    "planId": 0,
+                    "orientationFlag": 0,
+                    "isLock": 0,
+                    "vid": 1000082686,
+                    "finalPrice": 28.80,
+                    "deliveryType": 1,
+                    "goodCommentsShare": 99,
+                    "requestId": "s_b3fbbfcbd034456c9b2d9a4a5b630583",
+                    "abParam": "SVC",
+                    "abVersion": "SVC",
+                    "isCare": 0,
+                    "bonusActivityInfo": {
+                        "isPreOrRunActivity": 1,
+                        "bonus": false
+                    },
+                    "lowerPrice": 28.80,
+                    "goodComments": 419012,
+                    "plusCommissionShare": 2.0
+                }
+            ],
+            [
+                {
+                    "inOrderComm30Days": 6121.68,
+                    "inOrderCount30Days": 0,
+                    "isZY": 1,
+                    "skuId": 3901364,
+                    "skuName": "安维（Anwell）美国进口 甜玉米粒 300g 玉米粒 速冻 冷冻沙拉蔬菜 方便菜 生鲜 速冻食品半成品菜",
+                    "materialUrl": "jfs/t15877/355/960519496/414938/4f161537/5a449d66N73925bbf.jpg",
+                    "shopName": "安维（Anwell）京东自营旗舰店",
+                    "shopId": 1000082161,
+                    "wlPrice": 16.90,
+                    "wlCommission": 0.68,
+                    "wlCommissionRatio": 4.0,
+                    "isPinGou": 0,
+                    "isCommonPlan": 1,
+                    "planId": 0,
+                    "orientationFlag": 0,
+                    "isLock": 0,
+                    "vid": 1000082161,
+                    "finalPrice": 16.90,
+                    "deliveryType": 1,
+                    "goodCommentsShare": 99,
+                    "requestId": "s_b3fbbfcbd034456c9b2d9a4a5b630583",
+                    "abParam": "SVC",
+                    "abVersion": "SVC",
+                    "isCare": 0,
+                    "bonusActivityInfo": {
+                        "isPreOrRunActivity": 1,
+                        "bonus": false
+                    },
+                    "lowerPrice": 16.90,
+                    "goodComments": 143874,
+                    "plusCommissionShare": 2.0
+                }
+            ],
+            [
+                {
+                    "inOrderComm30Days": 835.46,
+                    "inOrderCount30Days": 0,
+                    "isZY": 0,
+                    "skuId": 10021551668710,
+                    "skuName": "延鑫旺辣白菜延边特产韩国泡菜 450g*3袋",
+                    "materialUrl": "jfs/t1/136661/23/9627/151873/5f5c5d91E4ab7f0dc/99e05b07766bbd29.jpg",
+                    "shopName": "延鑫旺旗舰店",
+                    "shopId": 10243686,
+                    "wlPrice": 24.90,
+                    "wlCommission": 2.58,
+                    "wlCommissionRatio": 20.0,
+                    "isPinGou": 0,
+                    "hasCoupon": 1,
+                    "isCommonPlan": 1,
+                    "planId": 2155209988,
+                    "orientationFlag": 0,
+                    "isLock": 0,
+                    "couponLink": "http://coupon.m.jd.com/coupons/show.action?key=36c713bd74004003a402a43bc462609e&roleId=40312835",
+                    "couponDiscount": 12.0,
+                    "couponQuota": 24.0,
+                    "couponRemainCnt": 9943,
+                    "vid": 10391131,
+                    "finalPrice": 12.90,
+                    "deliveryType": 0,
+                    "goodCommentsShare": 93,
+                    "requestId": "s_b3fbbfcbd034456c9b2d9a4a5b630583",
+                    "abParam": "SVC",
+                    "abVersion": "SVC",
+                    "isCare": 0,
+                    "bonusActivityInfo": {
+                        "isPreOrRunActivity": 1,
+                        "bonus": false
+                    },
+                    "lowerPrice": 24.90,
+                    "goodComments": 28,
+                    "plusCommissionShare": 20.0
+                }
+            ],
+            [
+                {
+                    "inOrderComm30Days": 11.82,
+                    "inOrderCount30Days": 0,
+                    "isZY": 0,
+                    "skuId": 72498842638,
+                    "skuName": "【顺丰配送】林荫山下 辣白菜 韩式泡菜 朝族辣白菜 120g×5袋",
+                    "materialUrl": "jfs/t1/131861/40/6701/171398/5f324618E368a3469/09c246ff8aa14f52.jpg",
+                    "shopName": "中国特产·抚松扶贫馆",
+                    "shopId": 766038,
+                    "wlPrice": 14.90,
+                    "wlCommission": 2.98,
+                    "wlCommissionRatio": 20.0,
+                    "isPinGou": 0,
+                    "isCommonPlan": 1,
+                    "planId": 1235011263,
+                    "orientationFlag": 0,
+                    "isLock": 0,
+                    "vid": 770202,
+                    "finalPrice": 14.90,
+                    "deliveryType": 0,
+                    "goodCommentsShare": 100,
+                    "requestId": "s_b3fbbfcbd034456c9b2d9a4a5b630583",
+                    "abParam": "SVC",
+                    "abVersion": "SVC",
+                    "isCare": 0,
+                    "bonusActivityInfo": {
+                        "isPreOrRunActivity": 1,
+                        "bonus": false
+                    },
+                    "lowerPrice": 14.90,
+                    "goodComments": 4,
+                    "plusCommissionShare": 20.0
+                }
+            ],
+            [
+                {
+                    "inOrderComm30Days": 0.00,
+                    "inOrderCount30Days": 0,
+                    "isZY": 0,
+                    "skuId": 67434933170,
+                    "skuName": "朴小样 | 韩式小萝卜泡菜500g*2袋 韩国风味青年萝卜小菜腌制朝鲜族特产",
+                    "materialUrl": "jfs/t1/117140/27/1/149270/5e85b1b0Eae256a05/02615c5582c717bd.jpg",
+                    "shopName": "朴小样生鲜专营店",
+                    "shopId": 10194004,
+                    "wlPrice": 39.00,
+                    "wlCommission": 9.75,
+                    "wlCommissionRatio": 25.0,
+                    "isPinGou": 0,
+                    "isCommonPlan": 1,
+                    "planId": 2056038717,
+                    "orientationFlag": 0,
+                    "isLock": 0,
+                    "vid": 10339149,
+                    "finalPrice": 39.00,
+                    "deliveryType": 0,
+                    "goodCommentsShare": 66,
+                    "requestId": "s_b3fbbfcbd034456c9b2d9a4a5b630583",
+                    "abParam": "SVC",
+                    "abVersion": "SVC",
+                    "isCare": 0,
+                    "bonusActivityInfo": {
+                        "isPreOrRunActivity": 1,
+                        "bonus": false
+                    },
+                    "lowerPrice": 39.00,
+                    "goodComments": 2,
+                    "plusCommissionShare": 25.0
+                }
+            ],
+            [
+                {
+                    "inOrderComm30Days": 5972.82,
+                    "inOrderCount30Days": 0,
+                    "isZY": 1,
+                    "skuId": 4552774,
+                    "skuName": "安格瑞 比利时进口 冷冻粗薯条1000g 牛排薯制品方便速食浦之灵",
+                    "materialUrl": "jfs/t1/96783/29/9927/386333/5e130926Eb581d99d/4b818cfbcecd3c6e.jpg",
+                    "shopName": "浦之灵京东自营专区",
+                    "shopId": 1000082686,
+                    "wlPrice": 29.90,
+                    "wlCommission": 1.20,
+                    "wlCommissionRatio": 4.0,
+                    "isPinGou": 0,
+                    "isCommonPlan": 1,
+                    "planId": 0,
+                    "orientationFlag": 0,
+                    "isLock": 0,
+                    "vid": 1000082686,
+                    "finalPrice": 29.90,
+                    "deliveryType": 1,
+                    "goodCommentsShare": 99,
+                    "requestId": "s_b3fbbfcbd034456c9b2d9a4a5b630583",
+                    "abParam": "SVC",
+                    "abVersion": "SVC",
+                    "isCare": 0,
+                    "bonusActivityInfo": {
+                        "isPreOrRunActivity": 1,
+                        "bonus": false
+                    },
+                    "lowerPrice": 29.90,
+                    "goodComments": 239291,
+                    "plusCommissionShare": 2.0
+                }
+            ],
+            [
+                {
+                    "inOrderComm30Days": 8.05,
+                    "inOrderCount30Days": 0,
+                    "isZY": 0,
+                    "skuId": 27591399304,
+                    "skuName": "闲居人 辣白菜泡菜148g  韩国白菜泡菜 京东生鲜 148g*3",
+                    "materialUrl": "jfs/t19633/20/2501162272/76128/43b9b32e/5af9755dNfcf05679.jpg",
+                    "shopName": "闲居人生鲜旗舰店",
+                    "shopId": 776890,
+                    "wlPrice": 24.90,
+                    "wlCommission": 4.98,
+                    "wlCommissionRatio": 20.0,
+                    "isPinGou": 0,
+                    "isCommonPlan": 1,
+                    "planId": 1266765336,
+                    "orientationFlag": 0,
+                    "isLock": 0,
+                    "vid": 781210,
+                    "finalPrice": 24.90,
+                    "deliveryType": 0,
+                    "goodCommentsShare": 99,
+                    "requestId": "s_b3fbbfcbd034456c9b2d9a4a5b630583",
+                    "abParam": "SVC",
+                    "abVersion": "SVC",
+                    "isCare": 0,
+                    "bonusActivityInfo": {
+                        "isPreOrRunActivity": 1,
+                        "bonus": false
+                    },
+                    "lowerPrice": 24.90,
+                    "goodComments": 13359,
+                    "plusCommissionShare": 20.0
+                }
+            ]
+        ],
+        "catList1": [
+            {
+                "id": 1315,
+                "categoryName": "服饰内衣"
+            },
+            {
+                "id": 1320,
+                "categoryName": "食品饮料"
+            },
+            {
+                "id": 737,
+                "categoryName": "家用电器"
+            },
+            {
+                "id": 1319,
+                "categoryName": "母婴"
+            },
+            {
+                "id": 12218,
+                "categoryName": "生鲜"
+            },
+            {
+                "id": 670,
+                "categoryName": "电脑、办公"
+            },
+            {
+                "id": 9987,
+                "categoryName": "手机通讯"
+            },
+            {
+                "id": 16750,
+                "categoryName": "个人护理"
+            },
+            {
+                "id": 15901,
+                "categoryName": "家庭清洁/纸品"
+            },
+            {
+                "id": 1316,
+                "categoryName": "美妆护肤"
+            },
+            {
+                "id": 1318,
+                "categoryName": "运动户外"
+            },
+            {
+                "id": 9192,
+                "categoryName": "医疗保健"
+            },
+            {
+                "id": 4938,
+                "categoryName": "本地生活/旅游出行"
+            },
+            {
+                "id": 1713,
+                "categoryName": "图书"
+            },
+            {
+                "id": 11729,
+                "categoryName": "鞋靴"
+            },
+            {
+                "id": 1620,
+                "categoryName": "家居日用"
+            },
+            {
+                "id": 6728,
+                "categoryName": "汽车用品"
+            },
+            {
+                "id": 6196,
+                "categoryName": "厨具"
+            },
+            {
+                "id": 9855,
+                "categoryName": "家装建材"
+            },
+            {
+                "id": 652,
+                "categoryName": "数码"
+            },
+            {
+                "id": 15248,
+                "categoryName": "家纺"
+            },
+            {
+                "id": 1672,
+                "categoryName": "礼品"
+            },
+            {
+                "id": 9847,
+                "categoryName": "家具"
+            },
+            {
+                "id": 12259,
+                "categoryName": "酒类"
+            },
+            {
+                "id": 6233,
+                "categoryName": "玩具乐器"
+            },
+            {
+                "id": 17329,
+                "categoryName": "箱包皮具"
+            },
+            {
+                "id": 6994,
+                "categoryName": "宠物生活"
+            },
+            {
+                "id": 6144,
+                "categoryName": "珠宝首饰"
+            },
+            {
+                "id": 12473,
+                "categoryName": "农资园艺"
+            },
+            {
+                "id": 5025,
+                "categoryName": "钟表"
+            },
+            {
+                "id": 13314,
+                "categoryName": "医药"
+            },
+            {
+                "id": 13765,
+                "categoryName": "二手商品"
+            },
+            {
+                "id": 13887,
+                "categoryName": "邮币"
+            },
+            {
+                "id": 12650,
+                "categoryName": "拍卖"
+            },
+            {
+                "id": 4053,
+                "categoryName": "文娱"
+            },
+            {
+                "id": 14065,
+                "categoryName": "工业品"
+            },
+            {
+                "id": 5272,
+                "categoryName": "数字内容"
+            },
+            {
+                "id": 9669,
+                "categoryName": "卖家服务 "
+            },
+            {
+                "id": 13678,
+                "categoryName": "教育培训"
+            },
+            {
+                "id": 12379,
+                "categoryName": "汽车"
+            },
+            {
+                "id": 15980,
+                "categoryName": "京东服务"
+            },
+            {
+                "id": 4052,
+                "categoryName": "影视"
+            },
+            {
+                "id": 4051,
+                "categoryName": "音乐"
+            },
+            {
+                "id": 15083,
+                "categoryName": "房地产"
+            },
+            {
+                "id": 15126,
+                "categoryName": "艺术品"
+            },
+            {
+                "id": 18528,
+                "categoryName": "非遗"
+            },
+            {
+                "id": 15298,
+                "categoryName": "京东金融"
+            },
+            {
+                "id": 17979,
+                "categoryName": "新通路-酒类"
+            },
+            {
+                "id": 19882,
+                "categoryName": "二手回收"
+            },
+            {
+                "id": 18054,
+                "categoryName": "新通路-母婴"
+            },
+            {
+                "id": 18008,
+                "categoryName": "新通路-个护美妆"
+            }
+        ],
+        "catList2": [
+            {
+                "id": 12221,
+                "categoryName": "水果"
+            },
+            {
+                "id": 13591,
+                "categoryName": "面点烘焙"
+            },
+            {
+                "id": 13581,
+                "categoryName": "猪牛羊肉"
+            },
+            {
+                "id": 12222,
+                "categoryName": "海鲜水产"
+            },
+            {
+                "id": 13553,
+                "categoryName": "蔬菜"
+            },
+            {
+                "id": 13586,
+                "categoryName": "禽肉蛋品"
+            },
+            {
+                "id": 13598,
+                "categoryName": "乳品冷饮"
+            },
+            {
+                "id": 21455,
+                "categoryName": "速食熟食"
+            }
+        ],
+        "catList3": [
+            {
+                "id": 13575,
+                "categoryName": "根茎类"
+            },
+            {
+                "id": 13578,
+                "categoryName": "半加工蔬菜"
+            },
+            {
+                "id": 13574,
+                "categoryName": "茄果瓜类"
+            },
+            {
+                "id": 13577,
+                "categoryName": "葱姜蒜椒"
+            },
+            {
+                "id": 13573,
+                "categoryName": "叶菜类"
+            },
+            {
+                "id": 13576,
+                "categoryName": "鲜菌菇"
+            }
+        ],
+        "requestId": null,
+        "page": {
+            "totalCount": 4185,
+            "pageNo": 1,
+            "pageSize": 60
+        },
+        "unionRecommendGoods": null,
+        "cache": false
+    }
+}

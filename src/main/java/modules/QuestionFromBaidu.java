@@ -84,7 +84,7 @@ public class QuestionFromBaidu extends QuestionBase implements IQuestion {
                         , "GET"
                         , properties.getProperty("accept1")
                         , properties.getProperty("contentType1")
-                        , properties.getProperty("userAgent"));
+                        , "","","");
                 HttpsURLConnection conn = NetworkConnect.createHttpConnection(connectDto);
                 if (conn != null) {
                     String sbResp = Helper.getHttpsURLConnectionResponse(conn);

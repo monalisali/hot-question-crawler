@@ -43,6 +43,13 @@ public class NetworkConnect {
             conn.setRequestProperty("Accept", connectDto.getAccept());
             conn.setRequestProperty("User-Agent", connectDto.getUserAgent());
 
+            if(connectDto.getSource() == ConstantsHelper.NetworkConnectConstant.CONNTSOURCE_ZHIHU){
+                conn.setRequestProperty("x-zse-83",connectDto.getxZse83());
+                conn.setRequestProperty("x-zse-86",connectDto.getxZse86());
+                conn.setRequestProperty("referer",connectDto.getRefer());
+                conn.setRequestProperty("cookie",connectDto.getCookie());
+            }
+
         } catch (IOException e) {
             e.printStackTrace();
         }
