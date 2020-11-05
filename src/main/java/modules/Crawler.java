@@ -1,9 +1,10 @@
 package modules;
 
+import dto.ConnectDto;
 import dto.QuestionResultDto;
 import utils.FileHelper;
 import utils.Helper;
-import utils.SendRequest;
+import utils.NetworkConnect;
 
 import javax.net.ssl.HttpsURLConnection;
 import java.io.IOException;
@@ -11,6 +12,8 @@ import java.util.List;
 import java.util.Properties;
 
 public class Crawler {
+    private static Properties properties = Helper.GetAppProperties();
+
     public static void main(String[] args) {
         System.out.println("网络测试开始");
         System.out.println("为了避免被百度屏蔽IP，需要使用代理，请确认做了已下操作：");
@@ -24,20 +27,25 @@ public class Crawler {
         //翻墙才可以访问： https://www.google.com
         try {
             Properties p = Helper.GetAppProperties();
-            if(p != null){
-              boolean isCnnByProxy = Boolean.parseBoolean(p.getProperty("isConnectedByProxy"));
-              HttpsURLConnection resp = SendRequest.createHttpConnection("https://readhub.cn/topic/5bMmlAm75lD", isCnnByProxy,"GET");
-              System.out.println("是否使用代理: " + isCnnByProxy);
-              System.out.println("请求返回代码： " + resp.getResponseCode());
-              if(resp.getResponseCode() == 200){
-                  cnnTest = true;
-              }
+            if (p != null) {
+                boolean isCnnByProxy = Boolean.parseBoolean(p.getProperty("isConnectedByProxy"));
+                ConnectDto connectDto = new ConnectDto("https://readhub.cn/topic/5bMmlAm75lD"
+                        , "GET"
+                        , properties.getProperty("accept1")
+                        , properties.getProperty("contentType1")
+                        , properties.getProperty("userAgent"));
+                HttpsURLConnection resp = NetworkConnect.createHttpConnection(connectDto);
+                System.out.println("是否使用代理: " + isCnnByProxy);
+                System.out.println("请求返回代码： " + resp.getResponseCode());
+                if (resp.getResponseCode() == 200) {
+                    cnnTest = true;
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        if(!cnnTest){
+        if (!cnnTest) {
             System.out.println("网络测试不通过");
             return;
         }

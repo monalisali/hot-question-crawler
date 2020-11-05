@@ -1,5 +1,6 @@
 package utils;
 
+import dto.ConnectDto;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -8,8 +9,10 @@ import org.apache.http.impl.client.HttpClients;
 import javax.net.ssl.HttpsURLConnection;
 import java.io.IOException;
 import java.net.*;
+import java.util.Properties;
 
-public class SendRequest {
+public class NetworkConnect {
+    private static Properties properties = Helper.GetAppProperties();
     public static CloseableHttpResponse sendHttpGet(String url, boolean isToEncode){
         CloseableHttpResponse httpResponse = null;
         try {
@@ -23,23 +26,22 @@ public class SendRequest {
         return httpResponse;
     }
 
-
-    public static HttpsURLConnection createHttpConnection(String requestUrl, boolean isConnectedByProxy, String method){
+    public static HttpsURLConnection createHttpConnection(ConnectDto connectDto){
         HttpsURLConnection conn = null;
         try {
-            URL url = new URL(requestUrl);
-            if(isConnectedByProxy){
+            URL url = new URL(connectDto.getRequestUrl());
+            if(connectDto.isConnectedByProxy()){
                 Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("127.0.0.1", 58591));
                 conn = (HttpsURLConnection) url.openConnection(proxy);
             }
             else{
                 conn = (HttpsURLConnection) url.openConnection();
             }
-            conn.setRequestMethod(method);
+            conn.setRequestMethod(connectDto.getMethod());
             conn.setDoOutput(true);
-            conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-            conn.setRequestProperty("Accept","text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,/;q=0.8,application/signed-exchange;v=b3;q=0.9");
-            conn.setRequestProperty("User-Agent","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.111 Safari/537.36");
+            conn.setRequestProperty("Content-Type", connectDto.getContentType());
+            conn.setRequestProperty("Accept", connectDto.getAccept());
+            conn.setRequestProperty("User-Agent", connectDto.getUserAgent());
 
         } catch (IOException e) {
             e.printStackTrace();

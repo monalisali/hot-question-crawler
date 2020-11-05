@@ -1,5 +1,6 @@
 package modules;
 
+import dto.ConnectDto;
 import dto.QuestionResultDto;
 import org.apache.commons.codec.Charsets;
 import org.jsoup.Jsoup;
@@ -8,7 +9,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import utils.ConstantsHelper;
 import utils.Helper;
-import utils.SendRequest;
+import utils.NetworkConnect;
 
 import javax.net.ssl.HttpsURLConnection;
 import java.io.IOException;
@@ -52,7 +53,7 @@ public class QuestionFromBaidu extends QuestionBase implements IQuestion {
             }
             List<QuestionResultDto> links = parsePagedHtml(pagedHtmlList);
             //解析百度加密过的知乎链接，并赋值给属性
-            links.forEach(x -> x.setLink(SendRequest.getHttpResponseLocation(x.getDeCodeLink())));
+            links.forEach(x -> x.setLink(NetworkConnect.getHttpResponseLocation(x.getDeCodeLink())));
             //只保留链接中有question的链接
             zhiHuQuestions = links.stream().filter(x -> x.getLink().contains("/question/")).collect(Collectors.toList());
             cleanLink(zhiHuQuestions);
@@ -79,7 +80,12 @@ public class QuestionFromBaidu extends QuestionBase implements IQuestion {
                 sb.append("&bs=");
                 sb.append(keyEncode);
 
-                HttpsURLConnection conn = SendRequest.createHttpConnection(sb.toString(), isConnectedByProxy, "GET");
+                ConnectDto connectDto = new ConnectDto(sb.toString()
+                        , "GET"
+                        , properties.getProperty("accept1")
+                        , properties.getProperty("contentType1")
+                        , properties.getProperty("userAgent"));
+                HttpsURLConnection conn = NetworkConnect.createHttpConnection(connectDto);
                 if (conn != null) {
                     String sbResp = Helper.getHttpsURLConnectionResponse(conn);
                     pagedResult.setPageIndex(i + 1);
