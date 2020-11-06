@@ -23,7 +23,6 @@ public class ConnectDto {
         this.userAgent = properties.getProperty("userAgent");
         this.connectedByProxy = Boolean.parseBoolean(properties.getProperty("isConnectedByProxy"));
         this.xZse83 = properties.getProperty("xZse83");
-        this.xZse86 = changeProperties.getProperty("xZse86");
 
         this.method = method;
         this.accept = accept;

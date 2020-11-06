@@ -38,14 +38,24 @@ import java.util.Properties;
 import java.util.stream.Collectors;
 
 
-public class QuestionFromZhihu extends QuestionBase implements IQuestion {
+public class QuestionFromZhihu implements IQuestion {
     private Properties properties = Helper.GetAppProperties();
     private Properties changeProperties = Helper.getAppPropertiesByName("change.properties");
     private ZhihuLoginDto zhihuLoginDto = new ZhihuLoginDto();
+    private List<XZSE86Dto> hotWordList;
 
-    public QuestionFromZhihu(List<String> hotWords) {
-        super(hotWords);
+    public QuestionFromZhihu(List<XZSE86Dto> hotWords) {
+        this.hotWordList = hotWords;
     }
+
+    public List<XZSE86Dto> getHotWordList() {
+        return hotWordList;
+    }
+
+    public void setHotWordList(List<XZSE86Dto> hotWordList) {
+        this.hotWordList = hotWordList;
+    }
+
 
     //目前只能获取第一页的数据，翻页的话又加密参数（猜测是：search_hash_id）还未破解
     @Override
@@ -58,11 +68,11 @@ public class QuestionFromZhihu extends QuestionBase implements IQuestion {
         connectDto.setAccept("*/*");
         connectDto.setContentType("");
         connectDto.setxZse83(properties.getProperty("xZse83"));
-        connectDto.setxZse86(changeProperties.getProperty("xZse86"));
 
-        for (String h : this.getHotWordList()
+        for (XZSE86Dto h : this.getHotWordList()
         ) {
-            QuestionResultDto resp = sendQuestionRequest(h,connectDto);
+            connectDto.setxZse86(h.getxZse86Val());
+            QuestionResultDto resp = sendQuestionRequest(h.getHotword(),connectDto);
             ZhihuResponseDto responseDto = convertQuestionResponseToDto(resp.getPagedHtmlResponse());
             //ZhihuResponseDto responseDto = mockSendQuestionRequestion();
             List<ZhihuResponseQuestionDto> questionDtos =  getQuesitionResult(responseDto);

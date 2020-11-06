@@ -2,6 +2,7 @@ package modules;
 
 import dto.ConnectDto;
 import dto.QuestionResultDto;
+import dto.XZSE86Dto;
 import org.apache.commons.codec.Charsets;
 import utils.FileHelper;
 import utils.Helper;
@@ -62,7 +63,8 @@ public class Crawler {
         System.out.println(hotWords.toString());
 
         System.out.println("**************************通过知乎，爬取知乎问题********************************");
-        QuestionFromZhihu zhihu = new QuestionFromZhihu(hotWords);
+        List<XZSE86Dto> zhihuHotwords = FileHelper.ReadZhiHuHotWords();
+        QuestionFromZhihu zhihu = new QuestionFromZhihu(zhihuHotwords);
         List<QuestionResultDto> zhihuQuestions = zhihu.getQuestion();
         StringBuilder zhihuStringBuilder = new StringBuilder();
         zhihuQuestions.forEach(x->zhihuStringBuilder.append(x.getLink() + "\r\n"));
@@ -81,6 +83,8 @@ public class Crawler {
         System.out.println("百度，爬取问题链接，共有" + allQuestion.size() + "个：");
         System.out.println(printStringBuilder.toString());
         System.out.println("**************************通过百度，爬取知乎问题********************************");
+
+
 
         System.out.println("**********************************结束***************************************");
 

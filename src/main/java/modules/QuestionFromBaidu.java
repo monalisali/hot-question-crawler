@@ -20,20 +20,27 @@ import java.util.Properties;
 import java.util.stream.Collectors;
 
 
-public class QuestionFromBaidu extends QuestionBase implements IQuestion {
+public class QuestionFromBaidu implements IQuestion {
     private static Properties properties = Helper.GetAppProperties();
     private static String _baiduUrlPrefix = properties.getProperty("baiduUrlPrefix");
     private static String _zhihuSpecificSite = properties.getProperty("zhihuSpecificSite");
 
     //搜索时，是否加上site:www.zhihu.com
     private Boolean isSearchFromZhihuOnly;
+    private List<String> hotWordList;
 
     public QuestionFromBaidu(List<String> hotWords, Boolean isSearchFromZhihuOnly) {
-        super(hotWords);
-        //hotWordList = hotWords;
+        this.hotWordList = hotWords;
         this.isSearchFromZhihuOnly = isSearchFromZhihuOnly;
     }
 
+    public List<String> getHotWordList() {
+        return hotWordList;
+    }
+
+    public void setHotWordList(List<String> hotWordList) {
+        this.hotWordList = hotWordList;
+    }
 
     public Boolean getSearchFromZhihuOnly() {
         return isSearchFromZhihuOnly;
