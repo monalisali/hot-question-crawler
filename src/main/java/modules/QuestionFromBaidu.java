@@ -55,7 +55,12 @@ public class QuestionFromBaidu implements IQuestion {
         if (pro != null) {
             for (String q : this.getHotWordList()
             ) {
-                pagedHtmlList.addAll(sendHttpGetRequest(q, Boolean.parseBoolean(pro.getProperty("isConnectedByProxy"))));
+                pagedHtmlList.addAll(sendHttpGetRequest(q));
+                try {
+                    Thread.currentThread().sleep(30000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
             List<QuestionResultDto> links = parsePagedHtml(pagedHtmlList);
             //解析百度加密过的知乎链接，并赋值给属性
@@ -70,7 +75,7 @@ public class QuestionFromBaidu implements IQuestion {
         return result;
     }
 
-    private List<QuestionResultDto> sendHttpGetRequest(String keyword, boolean isConnectedByProxy) {
+    private List<QuestionResultDto> sendHttpGetRequest(String keyword) {
         List<QuestionResultDto> results = new ArrayList<>();
         try {
             for (int i = ConstantsHelper.PageHelper.STARTINDEX; i <= ConstantsHelper.PageHelper.MAXPAGENUM; i++) {

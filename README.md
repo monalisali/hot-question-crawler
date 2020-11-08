@@ -11,6 +11,7 @@
 2. 运行 Python 项目—— zhihu-login，把 _encryptXZse86Value()，保存在 \output\xZse86Result.json 中的结果复制到 hot-question-crawler 
    项目的 xZse86Result.json 中
 3. 确认 ConstantsHelper.CAETGORYNAME 的值是否为当前需要处理的品类名称，它会作为保存的文件夹和文件名前缀
+4. ConstantsHelper.PageHelper.MAXPAGENUM 是百度爬取数据的页数
 
 ### 3. 说明
 

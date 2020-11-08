@@ -49,6 +49,7 @@ public class QuestionFromZhihu implements IQuestion {
         connectDto.setAccept("*/*");
         connectDto.setContentType("");
         connectDto.setxZse83(properties.getProperty("xZse83"));
+        connectDto.setConnectedByProxy(Boolean.parseBoolean(properties.getProperty("isConnectedByProxy")));
 
         for (XZSE86Dto h : this.getHotWordList()
         ) {
@@ -58,6 +59,11 @@ public class QuestionFromZhihu implements IQuestion {
             //ZhihuResponseDto responseDto = mockSendQuestionRequestion();
             List<ZhihuResponseQuestionDto> questionDtos =  getQuestionResult(responseDto);
             questionDtos.forEach(x->results.add(formatResponseDtoToQuestion(x)));
+            try {
+                Thread.currentThread().sleep(30000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
 
         return results.stream().distinct().collect(Collectors.toList());
