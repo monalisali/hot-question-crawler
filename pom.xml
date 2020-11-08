@@ -74,6 +74,11 @@
             <version>1.2.74</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>3.15</version>
+        </dependency>
 
     </dependencies>
 

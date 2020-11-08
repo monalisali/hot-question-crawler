@@ -10,12 +10,16 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.jsoup.select.Evaluator;
+import utils.ConstantsHelper;
 import utils.FileHelper;
 import utils.Helper;
 import utils.NetworkConnect;
 
 import javax.net.ssl.HttpsURLConnection;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.URLEncoder;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -106,6 +110,12 @@ public class Crawler {
         System.out.println("一共完成：" + questionContents.size() + "个");
 
         System.out.println("**************************解析所有的知乎问题，结束********************************");
+
+
+        String filePath = FileHelper.saveQuestionResultToExcel(ConstantsHelper.CAETGORYNAME, questionContents);
+        System.out.println("本次处理结果被保存到: " + filePath);
+
+        System.out.println("**************************解析所有的知乎问题，开始********************************");
         System.out.println("**********************************结束***************************************");
 
     }

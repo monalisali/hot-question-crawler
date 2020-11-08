@@ -1,6 +1,8 @@
 package utils;
 
 public class ConstantsHelper {
+    public static final String CAETGORYNAME = "保温饭盒";
+
     public class PageHelper{
         public static  final int MAXPAGENUM = 1;
         public static final int PAGESIZE = 10;
