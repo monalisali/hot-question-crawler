@@ -7,7 +7,16 @@ public class QuestionParseDto {
     private int browseCount;
     //问题链接
     private String questionUrl;
+    //问题名称
+    private String title;
 
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
     public int getFollowCount() {
         return followCount;

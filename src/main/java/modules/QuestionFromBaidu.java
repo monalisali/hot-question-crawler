@@ -10,7 +10,6 @@ import org.jsoup.select.Elements;
 import utils.ConstantsHelper;
 import utils.Helper;
 import utils.NetworkConnect;
-
 import javax.net.ssl.HttpsURLConnection;
 import java.io.IOException;
 import java.net.URLEncoder;

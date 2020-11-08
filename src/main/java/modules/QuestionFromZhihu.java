@@ -1,37 +1,18 @@
 package modules;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import dto.*;
 import org.apache.commons.codec.Charsets;
-import org.apache.commons.codec.binary.Hex;
-import org.apache.commons.codec.binary.StringUtils;
-import org.apache.commons.io.IOUtils;
-import org.apache.http.Header;
-import org.apache.http.HttpEntity;
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpPut;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
 import utils.ConstantsHelper;
 import utils.Helper;
 import utils.NetworkConnect;
-
-import javax.crypto.Mac;
-import javax.crypto.SecretKey;
-import javax.crypto.spec.SecretKeySpec;
 import javax.net.ssl.HttpsURLConnection;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -75,7 +56,7 @@ public class QuestionFromZhihu implements IQuestion {
             QuestionResultDto resp = sendQuestionRequest(h.getHotword(),connectDto);
             ZhihuResponseDto responseDto = convertQuestionResponseToDto(resp.getPagedHtmlResponse());
             //ZhihuResponseDto responseDto = mockSendQuestionRequestion();
-            List<ZhihuResponseQuestionDto> questionDtos =  getQuesitionResult(responseDto);
+            List<ZhihuResponseQuestionDto> questionDtos =  getQuestionResult(responseDto);
             questionDtos.forEach(x->results.add(formatResponseDtoToQuestion(x)));
         }
 
@@ -119,7 +100,7 @@ public class QuestionFromZhihu implements IQuestion {
         return stringBuilder.toString();
     }
 
-    private List<ZhihuResponseQuestionDto> getQuesitionResult(ZhihuResponseDto resp){
+    private List<ZhihuResponseQuestionDto> getQuestionResult(ZhihuResponseDto resp){
         List<ZhihuResponseQuestionDto> result = new ArrayList<>();
         List<ZhihuResponseDataDto> datas = resp.getData();
          if(datas != null){

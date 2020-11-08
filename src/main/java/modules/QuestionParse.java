@@ -1,28 +1,33 @@
 package modules;
 
-import com.sun.xml.internal.messaging.saaj.packaging.mime.util.QEncoderStream;
+
 import dto.QuestionParseDto;
 import dto.QuestionResultDto;
-import dto.XZSE86Dto;
-import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import utils.Helper;
 import utils.NetworkConnect;
-
 import javax.net.ssl.HttpsURLConnection;
-import javax.print.Doc;
+import java.io.File;
+import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 import java.util.stream.Collectors;
 
 public class QuestionParse {
+    private static Properties properties = Helper.GetAppProperties();
     private List<QuestionResultDto> biaduQuestion;
     private List<QuestionResultDto> zhihuQuestion;
     private List<QuestionResultDto> questions;
-
 
     public List<QuestionParseDto> getQuestionContent() {
         List<QuestionParseDto> results = new ArrayList<>();
@@ -43,6 +48,63 @@ public class QuestionParse {
     }
 
 
+    public String saveQuestionResultToExcel(String saveFileCategoryName, List<QuestionParseDto> questions) {
+        String projectPath = Crawler.class.getResource("/").getPath();
+        String projectRoot = projectPath.substring(0, projectPath.indexOf("target")).substring(1);
+        String parentFolder = projectRoot + properties.getProperty("questionOutputPath") + saveFileCategoryName;
+        String fileFullPath = setSaveFileFullPath(saveFileCategoryName, parentFolder);
+
+        HSSFWorkbook workbook = new HSSFWorkbook();
+        HSSFSheet sheet = workbook.createSheet("知乎问题解析内容");
+        //设置表头
+        HSSFRow row = sheet.createRow(0);
+        HSSFCell cell = row.createCell(0);
+        cell.setCellValue("问题名称");
+        cell = row.createCell(1);
+        cell.setCellValue("问题链接");
+        cell = row.createCell(2);
+        cell.setCellValue("关注人数");
+        cell = row.createCell(3);
+        cell.setCellValue("浏览次数");
+        sheet.setColumnWidth(0, 50 * 256);
+        sheet.setColumnWidth(1, 50 * 256);
+
+        for (QuestionParseDto q : questions
+        ) {
+            HSSFRow dataRow = sheet.createRow(sheet.getLastRowNum() + 1);
+            dataRow.createCell(0).setCellValue(q.getTitle());
+            dataRow.createCell(1).setCellValue(q.getQuestionUrl());
+            dataRow.createCell(2).setCellValue(q.getFollowCount());
+            dataRow.createCell(3).setCellValue(q.getBrowseCount());
+        }
+
+        File excelParentFolder = new File(parentFolder);
+        if (!excelParentFolder.exists()) {
+            excelParentFolder.mkdir();
+        }
+        File xlsFile = new File(fileFullPath);
+
+        try {
+            // 或者以流的形式写入文件 workbook.write(new FileOutputStream(xlsFile));
+            workbook.write(xlsFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                workbook.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return fileFullPath;
+    }
+
+    private static String setSaveFileFullPath(String saveFileCategoryName, String parentFolder) {
+        LocalDateTime dateTime = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy_HHmmss");
+        return parentFolder + "/" + saveFileCategoryName + "_" + dateTime.format(formatter) + ".xlsx";
+    }
+
     private QuestionParseDto parseHtml(Document document) {
         QuestionParseDto resultDto = new QuestionParseDto();
         Elements bodys = document.getElementsByTag("body");
@@ -50,6 +112,13 @@ public class QuestionParse {
             Element body = bodys.get(0);
             Element header = body.getElementsByClass("QuestionHeader-side").get(0);
             Elements numberBoders = header.getElementsByClass("NumberBoard-itemInner");
+            Elements titles = body.getElementsByClass("QuestionHeader-title");
+
+            if (titles != null && titles.size() > 0) {
+                Element title = titles.first();
+                resultDto.setTitle(title.text());
+            }
+
             if (numberBoders != null && numberBoders.size() > 0) {
                 String followerNumTxt = numberBoders.first().child(1).text();
                 String browserNumerTxt = numberBoders.last().child(1).text();
