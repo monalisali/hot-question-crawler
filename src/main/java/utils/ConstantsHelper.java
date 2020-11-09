@@ -11,5 +11,11 @@ public class ConstantsHelper {
 
     public class NetworkConnectConstant{
         public static final String CONNTSOURCE_ZHIHU = "ZhiHu_SearchQuestion";
+        public static final String CONNTSOURCE_JD_SearchProduct = "JD_SearchProduct";
+    }
+
+    public class JDSearchProduct{
+        public static final String SEARCH_TYPE = "st3";
+        public static final String KEYWORDTYPE = "kt0";
     }
 }

@@ -43,7 +43,17 @@ public class ConnectDto {
     private String refer;
     private String cookie;
     private String source;
+    private String origin;
     private boolean connectedByProxy;
+    private JDSearchRequestDto jdSearchRequestDto;
+
+    public JDSearchRequestDto getJdSearchRequestDto() {
+        return jdSearchRequestDto;
+    }
+
+    public void setJdSearchRequestDto(JDSearchRequestDto jdSearchRequestDto) {
+        this.jdSearchRequestDto = jdSearchRequestDto;
+    }
 
     public String getSource() {
         return source;
@@ -136,6 +146,14 @@ public class ConnectDto {
 
     public void setUserAgent(String userAgent) {
         this.userAgent = userAgent;
+    }
+
+    public String getOrigin() {
+        return origin;
+    }
+
+    public void setOrigin(String origin) {
+        this.origin = origin;
     }
 
 
