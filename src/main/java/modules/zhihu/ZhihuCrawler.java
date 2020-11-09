@@ -1,4 +1,4 @@
-package modules;
+package modules.zhihu;
 
 import dto.ConnectDto;
 import dto.QuestionParseDto;
@@ -8,6 +8,7 @@ import utils.ConstantsHelper;
 import utils.FileHelper;
 import utils.Helper;
 import utils.NetworkConnect;
+
 import javax.net.ssl.HttpsURLConnection;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,7 +16,7 @@ import java.util.List;
 import java.util.Properties;
 import java.util.stream.Collectors;
 
-public class Crawler {
+public class ZhihuCrawler {
     private static Properties properties = Helper.GetAppProperties();
 
     public static void main(String[] args) {
@@ -27,23 +28,20 @@ public class Crawler {
         System.out.println("\r\n");
 
         boolean cnnTest = false;
-        //不用翻墙也可以访问：https://readhub.cn/topic/5bMmlAm75lD"
+        //不用翻墙也可以访问：https://readhub.cn/topic/5bMmlAm75lD
         //翻墙才可以访问： https://www.google.com
         try {
-            Properties p = Helper.GetAppProperties();
-            if (p != null) {
-                boolean isCnnByProxy = Boolean.parseBoolean(p.getProperty("isConnectedByProxy"));
-                ConnectDto connectDto = new ConnectDto("https://www.google.com"
-                        , "GET"
-                        , properties.getProperty("accept1")
-                        , properties.getProperty("contentType1"), "", "", ""
-                );
-                HttpsURLConnection resp = NetworkConnect.createHttpConnection(connectDto);
-                System.out.println("是否使用代理: " + isCnnByProxy);
-                System.out.println("请求返回代码： " + resp.getResponseCode());
-                if (resp.getResponseCode() == 200) {
-                    cnnTest = true;
-                }
+            boolean isCnnByProxy = Boolean.parseBoolean(properties.getProperty("isConnectedByProxy"));
+            ConnectDto connectDto = new ConnectDto("https://readhub.cn/topic/5bMmlAm75lD"
+                    , "GET"
+                    , properties.getProperty("accept1")
+                    , properties.getProperty("contentType1"), "", "", ""
+            );
+            HttpsURLConnection resp = NetworkConnect.createHttpConnection(connectDto);
+            System.out.println("是否使用代理: " + isCnnByProxy);
+            System.out.println("请求返回代码： " + resp.getResponseCode());
+            if (resp.getResponseCode() == 200) {
+                cnnTest = true;
             }
         } catch (IOException e) {
             e.printStackTrace();

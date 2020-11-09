@@ -1,4 +1,4 @@
-package modules;
+package modules.zhihu;
 
 
 import dto.QuestionParseDto;
@@ -42,6 +42,11 @@ public class QuestionParse {
                 parseDto.setQuestionUrl(url);
                 results.add(parseDto);
                 System.out.println("解析完成：" + parseDto.getQuestionUrl());
+                try {
+                    Thread.currentThread().sleep(30000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         }
         return results;
@@ -49,7 +54,7 @@ public class QuestionParse {
 
 
     public String saveQuestionResultToExcel(String saveFileCategoryName, List<QuestionParseDto> questions) {
-        String projectPath = Crawler.class.getResource("/").getPath();
+        String projectPath = ZhihuCrawler.class.getResource("/").getPath();
         String projectRoot = projectPath.substring(0, projectPath.indexOf("target")).substring(1);
         String parentFolder = projectRoot + properties.getProperty("questionOutputPath") + saveFileCategoryName;
         String fileFullPath = setSaveFileFullPath(saveFileCategoryName, parentFolder);
@@ -102,7 +107,7 @@ public class QuestionParse {
     private static String setSaveFileFullPath(String saveFileCategoryName, String parentFolder) {
         LocalDateTime dateTime = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy_HHmmss");
-        return parentFolder + "/" + saveFileCategoryName + "_" + dateTime.format(formatter) + ".xlsx";
+        return parentFolder + "/" + saveFileCategoryName + "_" + dateTime.format(formatter) + ".xls";
     }
 
     private QuestionParseDto parseHtml(Document document) {
