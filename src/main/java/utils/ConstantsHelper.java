@@ -17,5 +17,6 @@ public class ConstantsHelper {
     public class JDSearchProduct{
         public static final String SEARCH_TYPE = "st3";
         public static final String KEYWORDTYPE = "kt0";
+        public static final String FIRST_CATEGORY_FILENAME = "JD商品一级类目.xls";
     }
 }

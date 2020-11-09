@@ -66,9 +66,9 @@ public class NetworkConnect {
                 conn.setRequestProperty("cookie", connectDto.getCookie());
             }
 
-            if(connectDto.getSource().equals(ConstantsHelper.NetworkConnectConstant.CONNTSOURCE_JD_SearchProduct)){ conn.setRequestProperty("origin", connectDto.getOrigin());
+            if(connectDto.getSource().equals(ConstantsHelper.NetworkConnectConstant.CONNTSOURCE_JD_SearchProduct)){
+                conn.setRequestProperty("origin", connectDto.getOrigin());
                 conn.setRequestProperty("cookie",connectDto.getCookie());
-                conn.setRequestProperty("origin",connectDto.getOrigin());
                 String jsonParms = JSON.toJSONString(connectDto.getJdSearchRequestDto());
                 try(OutputStream os = conn.getOutputStream()) {
                     byte[] input = jsonParms.getBytes(String.valueOf(Charsets.UTF_8));

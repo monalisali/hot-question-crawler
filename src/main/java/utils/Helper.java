@@ -1,9 +1,12 @@
 package utils;
 
+import modules.zhihu.ZhihuCrawler;
 import sun.misc.BASE64Decoder;
 
 import javax.net.ssl.HttpsURLConnection;
 import java.io.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Properties;
 
 public class Helper {
@@ -79,5 +82,21 @@ public class Helper {
             return false;
         }
 
+    }
+
+    public static String getProjectRootPath(){
+        String projectPath = ZhihuCrawler.class.getResource("/").getPath();
+        return projectPath.substring(0, projectPath.indexOf("target")).substring(1);
+    }
+
+    public static String getProjectOutputPath(){
+        Properties properties = GetAppProperties();
+        return getProjectRootPath() + properties.getProperty("questionOutputPath");
+    }
+
+    public static String setFileNameDateFormat(){
+        LocalDateTime dateTime = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy_HHmmss");
+        return dateTime.format(formatter);
     }
 }

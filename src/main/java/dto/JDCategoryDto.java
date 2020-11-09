@@ -1,19 +1,18 @@
 package dto;
 
 public class JDCategoryDto {
-    private String name;
+    private String categoryName;
     private int id;
     private int parentId;
     private int level;
 
-    public String getName() {
-        return name;
+    public String getCategoryName() {
+        return categoryName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
-
 
     public int getId() {
         return id;
