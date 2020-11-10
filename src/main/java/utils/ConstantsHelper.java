@@ -18,5 +18,9 @@ public class ConstantsHelper {
         public static final String SEARCH_TYPE = "st3";
         public static final String KEYWORDTYPE = "kt0";
         public static final String FIRST_CATEGORY_FILENAME = "JD商品一级类目.xls";
+        public static final String SECONDE_CATEGORY_FILENAME = "JD商品二级类目.xls";
+        public static final String SHEETNAME_FIRST_CATEGORY = "一级类目";
+        public static final String SHEETNAME_SECOND_CATEGORY = "二级类目";
+        public static final String SHEETNAME_THIRD_CATEGORY = "三级类目";
     }
 }

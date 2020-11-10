@@ -54,6 +54,8 @@ public class NetworkConnect {
             }
             conn.setDoOutput(true);
             conn.setDoInput(true);
+            conn.setReadTimeout(120 * 1000);
+            conn.setConnectTimeout(120 * 1000);
             conn.setRequestMethod(connectDto.getMethod());
             conn.setRequestProperty("Content-Type", connectDto.getContentType());
             conn.setRequestProperty("Accept", connectDto.getAccept());
@@ -69,6 +71,7 @@ public class NetworkConnect {
             if(connectDto.getSource().equals(ConstantsHelper.NetworkConnectConstant.CONNTSOURCE_JD_SearchProduct)){
                 conn.setRequestProperty("origin", connectDto.getOrigin());
                 conn.setRequestProperty("cookie",connectDto.getCookie());
+
                 String jsonParms = JSON.toJSONString(connectDto.getJdSearchRequestDto());
                 try(OutputStream os = conn.getOutputStream()) {
                     byte[] input = jsonParms.getBytes(String.valueOf(Charsets.UTF_8));
@@ -77,6 +80,7 @@ public class NetworkConnect {
             }
         } catch (IOException e) {
             e.printStackTrace();
+            conn = null;
         }
 
         return conn;

@@ -6,14 +6,23 @@
 4. 抓取3中Question的数据：**关注人数，被浏览次数**
 5. 保存结果到xlsx
 
+### 1.2 抓取京东联盟商品
+1. 先抓取2级、3级类目
+3. 通过2级、3级类中的类别ID构建请求报文中的商品类别信息，从而获取类别下所有的商品
+
 ### 1.2 从京东联盟抓取所有类目的商品信息
 
 ## 2. 执行前的准备工作
+### 2.1 抓取知乎问题
 1. 运行 zhihu-get-dropdownlist-keywords 项目，把结果复制到 hot-question-crawler 项目的 hotWordsToQuestion.txt 中
 2. 运行 Python 项目—— zhihu-login，把 _encryptXZse86Value()，保存在 \output\xZse86Result.json 中的结果复制到 hot-question-crawler 
    项目的 xZse86Result.json 中
-3. 确认 ConstantsHelper.CAETGORYNAME 的值是否为当前需要处理的品类名称，它会作为保存的文件夹和文件名前缀
+3. 确认 ConstantsHelper.CAETGORYNAME 的值是否为当前需要抓取问题的品类名称，它会作为保存的文件夹和文件名前缀
 4. ConstantsHelper.PageHelper.MAXPAGENUM 是百度爬取数据的页数
+
+### 2.2 抓取京东联盟商品
+1. 检查 src/output/京东/目录下是否有 JD商品一级类目.xls、JD商品二级类目.xls、JD商品三级类目.xls
+2. 通过
 
 
 ## 3. 说明
