@@ -24,10 +24,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Properties;
+import java.util.*;
+import java.util.stream.Collectors;
 
 
 public class JDProduct {
@@ -38,6 +36,7 @@ public class JDProduct {
     private List<JDCategoryDto> c2List;
     private List<JDCategoryDto> c3List;
     private List<JDCategoryDto> toSearchCategoryList;
+    private List<JDCategoryDto> c1ListIgnored;
     private boolean isToCreateJDCategory;
 
     public JDProduct(boolean isToCreateJDCategory) {
@@ -49,17 +48,61 @@ public class JDProduct {
             getCategoriesFromJD();
         }
         setObjectCategoryProperties();
-        List<JDSearchResponseDto> result = new ArrayList<>();
-        for (JDCategoryDto c : this.getToSearchCategoryList()
+        setToSearchCategories();
+
+        for (JDCategoryDto c1 : this.getC1List()
         ) {
-            //todo: 首先要发送一次请求，以获得totalCount,pageSize,pageNo信息，然后再进行循环
-            String resp = sendSearchProductRequest(1, 60, "", 737,
-                    Optional.of(new Integer(794)), Optional.of(new Integer(880)), 1);
-            JDSearchResponseDto respDto = parseSearchRepsone(resp);
-            if (respDto != null) {
-                result.add(respDto);
+            //一级类目相同的结果，存放在一起并保存为一个独立文件
+            List<JDGoodsDto> sameCategoryLevelOneList = new ArrayList<>();
+            List<JDCategoryDto> crtC2List = this.getC2List().stream().filter(x -> x.getParentId() == c1.getId()).collect(Collectors.toList());
+            for (JDCategoryDto c2 : crtC2List
+            ) {
+                List<JDCategoryDto> crtC3List = this.getC3List().stream().filter((x -> x.getParentId() == c2.getId())).collect(Collectors.toList());
+                for (JDCategoryDto c3 : crtC3List
+                ) {
+                    String firstPageResp = sendSearchProductRequest(ConstantsHelper.JDSearchProduct.Page_Start, ConstantsHelper.JDSearchProduct.Page_Size
+                            , "", c1.getId(), Optional.of(c2.getId()), Optional.of(c3.getId()), 1);
+                    JDSearchResponseDto firstPageRespDto = parseSearchRepsone(firstPageResp);
+                    if (firstPageRespDto != null) {
+                        JDSearchResponseDataDto dataDto = firstPageRespDto.getData();
+                        if (dataDto != null) {
+                            PageDto pageDto = dataDto.getPage();
+                            sameCategoryLevelOneList.addAll(dataDto.getUnionGoodsParsed());
+                            if (pageDto != null) {
+                                sameCategoryLevelOneList.addAll(getPagedResponse(pageDto, c1.getId(), c2.getId(), c3.getId()));
+                            }
+                        }
+                    }
+                }
             }
         }
+    }
+
+    private List<JDGoodsDto> getPagedResponse(PageDto pageDto, int c1Id, int c2Id, int c3Id) {
+        List<JDGoodsDto> results = new ArrayList<>();
+        if (pageDto != null) {
+            int pageTotalNum = (int) Math.ceil(pageDto.getTotalCount() / ConstantsHelper.JDSearchProduct.Page_Size);
+            if (pageTotalNum > 1) {
+                for (int p = 2; p <= pageTotalNum; p++) {
+                    String pagedResp = sendSearchProductRequest(p, ConstantsHelper.JDSearchProduct.Page_Size
+                            , "", c1Id, Optional.of(c2Id), Optional.of(c3Id), 1);
+                    JDSearchResponseDto responseDto = parseSearchRepsone(pagedResp);
+                    if (responseDto != null) {
+                        JDSearchResponseDataDto dataDto = responseDto.getData();
+                        if (dataDto != null && dataDto.getUnionGoodsParsed() != null) {
+                            results.addAll(dataDto.getUnionGoodsParsed());
+                        }
+                    }
+                    try {
+                        Thread.sleep(30000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+
+        return results;
     }
 
     private String sendSearchProductRequest(int pageNo, int pageSize, String searchUUID, int c1, Optional<Integer> c2, Optional<Integer> c3, int isZY) {
@@ -73,6 +116,10 @@ public class JDProduct {
     }
 
     private JDSearchResponseDto parseSearchRepsone(String response) {
+        if (response.isEmpty()) {
+            return null;
+        }
+
         JDSearchResponseDto responseDto = JSON.parseObject(response, JDSearchResponseDto.class);
         if (responseDto.getCode().equals("200")) {
             List<Object> unionGoods = responseDto.getData().getUnionGoods();
@@ -251,7 +298,7 @@ public class JDProduct {
                         , Optional.of(f.getId()), Optional.ofNullable(null), 0);
             }
 
-            if(resp.isEmpty()){
+            if (resp.isEmpty()) {
                 continue;
             }
 
@@ -329,25 +376,63 @@ public class JDProduct {
         return filePath;
     }
 
-    private void setObjectCategoryProperties(){
-        Workbook workbook1 =  openCategoryFile(ConstantsHelper.JDSearchProduct.FIRST_CATEGORY_FILENAME);
-        if(workbook1 != null){
-            this.setC1List(readCategotyFile(workbook1,ConstantsHelper.JDSearchProduct.SHEETNAME_FIRST_CATEGORY));
-        }
-
+    private void setObjectCategoryProperties() {
         Workbook workbook2 = openCategoryFile(ConstantsHelper.JDSearchProduct.SECONDE_CATEGORY_FILENAME);
-        if(workbook2 != null){
-            this.setC2List(readCategotyFile(workbook2,ConstantsHelper.JDSearchProduct.SHEETNAME_SECOND_CATEGORY));
+        if (workbook2 != null) {
+            this.setC2List(readCategotyFile(workbook2, ConstantsHelper.JDSearchProduct.SHEETNAME_SECOND_CATEGORY));
         }
 
         Workbook workbook3 = openCategoryFile(ConstantsHelper.JDSearchProduct.Third_CATEGORY_FILENAME);
-        if(workbook2 != null){
-            this.setC3List(readCategotyFile(workbook3,ConstantsHelper.JDSearchProduct.SHEETNAME_THIRD_CATEGORY));
+        if (workbook3 != null) {
+            this.setC3List(readCategotyFile(workbook3, ConstantsHelper.JDSearchProduct.SHEETNAME_THIRD_CATEGORY));
+        }
+
+        Workbook workbook4 = openCategoryFile(ConstantsHelper.JDSearchProduct.IGNORED_FIRST_CATEGORY);
+        if(workbook4 != null){
+            this.setC1ListIgnored(readCategotyFile(workbook4, "Sheet1"));
+        }
+
+        Workbook workbook1 = openCategoryFile(ConstantsHelper.JDSearchProduct.FIRST_CATEGORY_FILENAME);
+        if (workbook1 != null) {
+            List<JDCategoryDto> allC1 = readCategotyFile(workbook1, ConstantsHelper.JDSearchProduct.SHEETNAME_FIRST_CATEGORY);
+            List<Integer> ignoredC1Id = this.getC1ListIgnored().stream().map(JDCategoryDto::getId).collect(Collectors.toList());
+            List<JDCategoryDto> activeC1 = new ArrayList<>();
+            for (JDCategoryDto c1: allC1
+                 ) {
+                if(!ignoredC1Id.stream().anyMatch(x->x == c1.getId())){
+                    activeC1.add(c1);
+                }
+            }
+            this.setC1List(activeC1);
         }
     }
 
-    private void setToSearchCategories(){
+    private void setToSearchCategories() {
+        List<JDCategoryDto> list = new ArrayList<>();
+        for (JDCategoryDto c3 : this.getC3List()
+        ) {
+            Optional<JDCategoryDto> c2 = this.getC2List().stream().filter(x -> x.getId() == c3.getParentId()).findFirst();
+            if (c2.isPresent()) {
+                Optional<JDCategoryDto> c1 = this.getC1List().stream().filter(x -> x.getId() == c2.get().getParentId()).findFirst();
+                if (c1.isPresent()) {
+                    JDCategoryDto dto = creatToSearchCategory(c3, c1.get().getId(), c2.get().getId());
+                    list.add(dto);
+                }
+            }
+        }
+        //按照一级类目ID升序排列
+        list.sort((o1, o2) -> o1.getCat1Id() - o2.getCat1Id());
+        this.setToSearchCategoryList(list);
+    }
 
+    private JDCategoryDto creatToSearchCategory(JDCategoryDto category3, int c1Id, int c2Id) {
+        JDCategoryDto d = new JDCategoryDto();
+        d.setCategoryName(category3.getCategoryName());
+        d.setLevel(category3.getLevel());
+        d.setCat1Id(c1Id);
+        d.setCat2Id(c2Id);
+        d.setCat3Id(category3.getId());
+        return d;
     }
 
     public boolean isToCreateJDCategory() {
@@ -388,5 +473,13 @@ public class JDProduct {
 
     public void setToSearchCategoryList(List<JDCategoryDto> toSearchCategoryList) {
         this.toSearchCategoryList = toSearchCategoryList;
+    }
+
+    public List<JDCategoryDto> getC1ListIgnored() {
+        return c1ListIgnored;
+    }
+
+    public void setC1ListIgnored(List<JDCategoryDto> c1ListIgnored) {
+        this.c1ListIgnored = c1ListIgnored;
     }
 }
