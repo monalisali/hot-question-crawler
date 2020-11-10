@@ -34,7 +34,10 @@ public class JDProduct {
     private static Properties properties = Helper.GetAppProperties();
     private Properties changeProperties = Helper.getAppPropertiesByName("change.properties");
 
-    private List<JDCategoryDto> categoryList;
+    private List<JDCategoryDto> c1List;
+    private List<JDCategoryDto> c2List;
+    private List<JDCategoryDto> c3List;
+    private List<JDCategoryDto> toSearchCategoryList;
     private boolean isToCreateJDCategory;
 
     public JDProduct(boolean isToCreateJDCategory) {
@@ -45,9 +48,9 @@ public class JDProduct {
         if (this.isToCreateJDCategory()) {
             getCategoriesFromJD();
         }
-
+        setObjectCategoryProperties();
         List<JDSearchResponseDto> result = new ArrayList<>();
-        for (JDCategoryDto c : this.getCategoryList()
+        for (JDCategoryDto c : this.getToSearchCategoryList()
         ) {
             //todo: 首先要发送一次请求，以获得totalCount,pageSize,pageNo信息，然后再进行循环
             String resp = sendSearchProductRequest(1, 60, "", 737,
@@ -277,7 +280,7 @@ public class JDProduct {
     }
 
     //sheetName也作为文件名的一部分
-    public String saveCategoryResultToExcel(List<JDCategoryDto> list, String sheetName) {
+    private String saveCategoryResultToExcel(List<JDCategoryDto> list, String sheetName) {
         String outputPath = Helper.getProjectOutputPath();
         String filePrexfix = "京东/JD商品" + sheetName;
         String filePath = outputPath + filePrexfix + ".xls";
@@ -326,12 +329,25 @@ public class JDProduct {
         return filePath;
     }
 
-    public List<JDCategoryDto> getCategoryList() {
-        return categoryList;
+    private void setObjectCategoryProperties(){
+        Workbook workbook1 =  openCategoryFile(ConstantsHelper.JDSearchProduct.FIRST_CATEGORY_FILENAME);
+        if(workbook1 != null){
+            this.setC1List(readCategotyFile(workbook1,ConstantsHelper.JDSearchProduct.SHEETNAME_FIRST_CATEGORY));
+        }
+
+        Workbook workbook2 = openCategoryFile(ConstantsHelper.JDSearchProduct.SECONDE_CATEGORY_FILENAME);
+        if(workbook2 != null){
+            this.setC2List(readCategotyFile(workbook2,ConstantsHelper.JDSearchProduct.SHEETNAME_SECOND_CATEGORY));
+        }
+
+        Workbook workbook3 = openCategoryFile(ConstantsHelper.JDSearchProduct.Third_CATEGORY_FILENAME);
+        if(workbook2 != null){
+            this.setC3List(readCategotyFile(workbook3,ConstantsHelper.JDSearchProduct.SHEETNAME_THIRD_CATEGORY));
+        }
     }
 
-    public void setCategoryList(List<JDCategoryDto> categoryList) {
-        this.categoryList = categoryList;
+    private void setToSearchCategories(){
+
     }
 
     public boolean isToCreateJDCategory() {
@@ -340,5 +356,37 @@ public class JDProduct {
 
     public void setToCreateJDCategory(boolean toCreateJDCategory) {
         isToCreateJDCategory = toCreateJDCategory;
+    }
+
+    public List<JDCategoryDto> getC1List() {
+        return c1List;
+    }
+
+    public void setC1List(List<JDCategoryDto> c1List) {
+        this.c1List = c1List;
+    }
+
+    public List<JDCategoryDto> getC2List() {
+        return c2List;
+    }
+
+    public void setC2List(List<JDCategoryDto> c2List) {
+        this.c2List = c2List;
+    }
+
+    public List<JDCategoryDto> getC3List() {
+        return c3List;
+    }
+
+    public void setC3List(List<JDCategoryDto> c3List) {
+        this.c3List = c3List;
+    }
+
+    public List<JDCategoryDto> getToSearchCategoryList() {
+        return toSearchCategoryList;
+    }
+
+    public void setToSearchCategoryList(List<JDCategoryDto> toSearchCategoryList) {
+        this.toSearchCategoryList = toSearchCategoryList;
     }
 }
