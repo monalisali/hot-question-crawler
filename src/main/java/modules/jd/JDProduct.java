@@ -10,6 +10,7 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import utils.ConstantsHelper;
 import utils.Helper;
 import utils.NetworkConnect;
@@ -17,6 +18,7 @@ import utils.NetworkConnect;
 import javax.net.ssl.HttpsURLConnection;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -50,12 +52,12 @@ public class JDProduct {
 //        dto.setSkuId(new BigInteger("123456789876"));
 //        dto.setSkuName("Product1");
 //        dto.setShopName("Shop");
-//        dto.setWlPrice(new BigDecimal("11111.11"));
-//        dto.setWlCommission(new BigDecimal("11.11"));
+//        dto.setWlPrice(11111.11);
+//        dto.setWlCommission(11.11);
 //        dto.setWlCommissionRatio(10.11);
 //        dto.setIsZY(1);
 //        dto.setGoodComments(1000);
-//        dto.setFinalPrice(new BigDecimal("222222.22"));
+//        dto.setFinalPrice(222222.22);
 //        dto.setCategory1Name("衣服");
 //        dto.setCategory2Name("c2");
 //        dto.setCategory3Name("c3");
@@ -432,18 +434,18 @@ public class JDProduct {
     private String saveProductsToExcel(List<JDGoodsDto> products, JDCategoryDto c1){
         String outputPath = Helper.getProjectOutputPath();
         String categoryFolder = outputPath + "京东/京东商品导出/" + c1.getCategoryName() + "/";
-        String fileFullPath = categoryFolder + c1.getCategoryName() + "_" + Helper.setFileNameDateFormat() + ".xls";
+        String fileFullPath = categoryFolder + c1.getCategoryName() + "_" + Helper.setFileNameDateFormat() + ".xlsx";
         File excelParentFolder = new File(categoryFolder);
         if (!excelParentFolder.exists()) {
             excelParentFolder.mkdir();
         }
 
-        HSSFWorkbook workbook = new HSSFWorkbook();
-        HSSFSheet sheet = workbook.createSheet("sheet1");
+        XSSFWorkbook workbook = new XSSFWorkbook();
+        Sheet sheet = workbook.createSheet("sheet1");
 
         //设置表头
-        HSSFRow row = sheet.createRow(0);
-        HSSFCell cell = row.createCell(0);
+        Row row = sheet.createRow(0);
+        Cell cell = row.createCell(0);
         cell.setCellValue("goods_id");
 
         cell = row.createCell(1);
@@ -494,7 +496,7 @@ public class JDProduct {
 
         for (JDGoodsDto q : products
         ) {
-            HSSFRow dataRow = sheet.createRow(sheet.getLastRowNum() + 1);
+            Row dataRow = sheet.createRow(sheet.getLastRowNum() + 1);
             dataRow.createCell(0).setCellValue(String.valueOf(q.getSkuId()));
             dataRow.createCell(1).setCellValue(q.getSkuName());
             dataRow.createCell(2).setCellValue(q.getShopName());
@@ -512,10 +514,12 @@ public class JDProduct {
             dataRow.createCell(14).setCellValue(q.getGoodComments());
         }
 
-        File xlsFile = new File(fileFullPath);
+
         try {
             // 或者以流的形式写入文件 workbook.write(new FileOutputStream(xlsFile));
-            workbook.write(xlsFile);
+            FileOutputStream fileOut = new FileOutputStream(fileFullPath);
+            workbook.write(fileOut);
+            fileOut.close();
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
