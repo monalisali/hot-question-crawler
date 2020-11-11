@@ -69,7 +69,6 @@ public class JDProduct {
             getCategoriesFromJD();
         }
         setObjectCategoryProperties();
-        //setToSearchCategories();
 
         for (JDCategoryDto c1 : this.getC1List()
         ) {
@@ -77,20 +76,12 @@ public class JDProduct {
             //一级类目相同的结果，存放在一起并保存为一个独立文件
             List<JDGoodsDto> sameCategoryLevelOneList = new ArrayList<>();
             List<JDCategoryDto> crtC2List = this.getC2List().stream().filter(x -> x.getParentId() == c1.getId()).collect(Collectors.toList());
-            ////todo: remove test only
-            crtC2List = crtC2List.stream().limit(1).collect(Collectors.toList());
-            //todo: remove test only
-
             System.out.println("开始获取一级类目： " + c1.getCategoryName());
             System.out.println( c1.getCategoryName() + "一共有二级类目： " + crtC2List.size() + " 个");
             for (JDCategoryDto c2 : crtC2List
             ) {
                 int c3Count = 1;
                 List<JDCategoryDto> crtC3List = this.getC3List().stream().filter((x -> x.getParentId() == c2.getId())).collect(Collectors.toList());
-                //todo: remove test only
-                crtC3List = crtC3List.stream().skip(1).limit(1).collect(Collectors.toList());
-                //todo: remove test only
-
                 System.out.println( c2.getCategoryName() + "一共有三级类目： " + crtC3List.size() + " 个");
                 System.out.println("第" + c2Count + "个二级类目开始获取： " + c1.getCategoryName() + "_" + c2.getCategoryName());
                 c2Count++;
@@ -120,6 +111,8 @@ public class JDProduct {
             String filePath = saveProductsToExcel(sameCategoryLevelOneList,c1);
             System.out.println("文件保存路径：" + filePath);
         }
+
+        System.out.println("所有商品获取完成");
     }
 
     private List<JDGoodsDto> getPagedResponse(PageDto pageDto, JDCategoryDto c1, JDCategoryDto c2, JDCategoryDto c3) {
@@ -210,6 +203,7 @@ public class JDProduct {
         connectDto.setOrigin("https://union.jd.com");
         connectDto.setRequestUrl(properties.getProperty("jdSearchProductsUrl"));
         connectDto.setCookie(changeProperties.getProperty("jdCookie"));
+        connectDto.setConnectedByProxy(Boolean.parseBoolean(properties.getProperty("isConnectedByProxy")));
 
         JDSearchRequestDto requestDto = new JDSearchRequestDto();
         requestDto.setPageNo(pageNo);

@@ -27,27 +27,7 @@ public class ZhihuCrawler {
         System.out.println("3. createHttpConnection() 中的代理协议，IP，端口号与翻墙软件一致。而且代码中，必须使用HTTP模式进行设置");
         System.out.println("\r\n");
 
-        boolean cnnTest = false;
-        //不用翻墙也可以访问：https://readhub.cn/topic/5bMmlAm75lD
-        //翻墙才可以访问： https://www.google.com
-        try {
-            boolean isCnnByProxy = Boolean.parseBoolean(properties.getProperty("isConnectedByProxy"));
-            ConnectDto connectDto = new ConnectDto("https://readhub.cn/topic/5bMmlAm75lD"
-                    , "GET"
-                    , properties.getProperty("accept1")
-                    , properties.getProperty("contentType1"), "", "", ""
-            );
-            HttpsURLConnection resp = NetworkConnect.createHttpConnection(connectDto);
-            System.out.println("是否使用代理: " + isCnnByProxy);
-            System.out.println("请求返回代码： " + resp.getResponseCode());
-            if (resp.getResponseCode() == 200) {
-                cnnTest = true;
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        if (!cnnTest) {
+        if (!Helper.checkNetworkConnection()) {
             System.out.println("网络测试不通过");
             return;
         }

@@ -1,5 +1,6 @@
 package utils;
 
+import dto.ConnectDto;
 import modules.zhihu.ZhihuCrawler;
 import sun.misc.BASE64Decoder;
 
@@ -10,6 +11,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.Properties;
 
 public class Helper {
+    private static Properties properties = Helper.GetAppProperties();
+
     public static Properties GetAppProperties() {
         Properties pro = null;
         try {
@@ -98,5 +101,30 @@ public class Helper {
         LocalDateTime dateTime = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy_HHmmss");
         return dateTime.format(formatter);
+    }
+
+    public static boolean checkNetworkConnection(){
+        boolean cnnTest = false;
+        String testUrl = "";
+        //不用翻墙也可以访问：https://readhub.cn/topic/5bMmlAm75lD
+        //翻墙才可以访问： https://www.google.com
+        try {
+            boolean isCnnByProxy = Boolean.parseBoolean(properties.getProperty("isConnectedByProxy"));
+            testUrl = isCnnByProxy ? "https://www.google.com" : "https://readhub.cn/topic/5bMmlAm75lD";
+            ConnectDto connectDto = new ConnectDto(testUrl, "GET"
+                    , properties.getProperty("accept1")
+                    , properties.getProperty("contentType1"), "", "", ""
+            );
+            HttpsURLConnection resp = NetworkConnect.createHttpConnection(connectDto);
+            System.out.println("是否使用代理: " + isCnnByProxy);
+            System.out.println("请求返回代码： " + resp.getResponseCode());
+            if (resp.getResponseCode() == 200) {
+                cnnTest = true;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return cnnTest;
     }
 }

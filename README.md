@@ -26,7 +26,7 @@
 
 ### 2.2 抓取京东联盟商品
 1. 检查 src/output/京东/目录下是否有: JD商品一级类目.xls、JD商品二级类目.xls、JD商品三级类目.xls
-2. 没有的话，要把 app.properies 中的 isToGetJdProductCategory 值设置为 true
+2. 没有的话，要把 app.properies 中的 isToGetJdProductCategory 值设置为 true，然后进行类目抓取
 
 ### 2.3 预先需要创建的文件
 1. src/output: 程序保存文件的根目录
