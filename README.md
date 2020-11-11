@@ -28,6 +28,11 @@
 1. 检查 src/output/京东/目录下是否有: JD商品一级类目.xls、JD商品二级类目.xls、JD商品三级类目.xls
 2. 没有的话，要把 app.properies 中的 isToGetJdProductCategory 值设置为 true
 
+### 2.3 预先需要创建的文件
+1. src/output: 程序保存文件的根目录
+2. src/ouput/京东: JD商品类目文件
+3. src/output/京东/京东商品导出：JD商品导出文件 
+
 
 ## 3. 说明
 ### 3.1 hotWordsToQuestion.txt

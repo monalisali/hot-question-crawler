@@ -54,8 +54,8 @@ public class NetworkConnect {
             }
             conn.setDoOutput(true);
             conn.setDoInput(true);
-            conn.setReadTimeout(120 * 1000);
-            conn.setConnectTimeout(120 * 1000);
+            conn.setReadTimeout(300 * 1000);
+            conn.setConnectTimeout(300 * 1000);
             conn.setRequestMethod(connectDto.getMethod());
             conn.setRequestProperty("Content-Type", connectDto.getContentType());
             conn.setRequestProperty("Accept", connectDto.getAccept());
