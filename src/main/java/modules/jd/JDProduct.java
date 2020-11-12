@@ -45,28 +45,6 @@ public class JDProduct {
     }
 
     public void getJDProducts() {
-//        JDCategoryDto d1 = new JDCategoryDto();
-//        d1.setCategoryName("衣服");
-//        List<JDGoodsDto> list = new ArrayList<>();
-//        JDGoodsDto dto = new JDGoodsDto();
-//        dto.setSkuId(new BigInteger("123456789876"));
-//        dto.setSkuName("Product1");
-//        dto.setShopName("Shop");
-//        dto.setWlPrice(11111.11);
-//        dto.setWlCommission(11.11);
-//        dto.setWlCommissionRatio(10.11);
-//        dto.setIsZY(1);
-//        dto.setGoodComments(1000);
-//        dto.setFinalPrice(222222.22);
-//        dto.setCategory1Name("衣服");
-//        dto.setCategory2Name("c2");
-//        dto.setCategory3Name("c3");
-//        dto.setInOrderComm30Days(new BigDecimal("33.33"));
-//        dto.setInOrderCount30Days(new BigInteger("56789"));
-//        list.add(dto);
-//
-//        saveProductsToExcel(list, d1);
-
         if (this.isToCreateJDCategory()) {
             getCategoriesFromJD();
         }
@@ -79,19 +57,19 @@ public class JDProduct {
             List<JDGoodsDto> sameCategoryLevelOneList = new ArrayList<>();
             List<JDCategoryDto> crtC2List = this.getC2List().stream().filter(x -> x.getParentId() == c1.getId()).collect(Collectors.toList());
             System.out.println("开始获取一级类目： " + c1.getCategoryName());
-            System.out.println( c1.getCategoryName() + "一共有二级类目： " + crtC2List.size() + " 个");
+            System.out.println(c1.getCategoryName() + "一共有二级类目： " + crtC2List.size() + " 个");
             for (JDCategoryDto c2 : crtC2List
             ) {
                 int c3Count = 1;
                 List<JDCategoryDto> crtC3List = this.getC3List().stream().filter((x -> x.getParentId() == c2.getId())).collect(Collectors.toList());
-                System.out.println( c2.getCategoryName() + "一共有三级类目： " + crtC3List.size() + " 个");
+                System.out.println(c2.getCategoryName() + "一共有三级类目： " + crtC3List.size() + " 个");
                 System.out.println("第" + c2Count + "个二级类目开始获取： " + c1.getCategoryName() + "_" + c2.getCategoryName());
                 c2Count++;
                 for (JDCategoryDto c3 : crtC3List
                 ) {
                     String firstPageResp = sendSearchProductRequest(ConstantsHelper.JDSearchProduct.Page_Start, ConstantsHelper.JDSearchProduct.Page_Size
                             , "", c1.getId(), Optional.of(c2.getId()), Optional.of(c3.getId()), 1);
-                    JDSearchResponseDto firstPageRespDto = parseSearchRepsone(firstPageResp,c1,c2,c3);
+                    JDSearchResponseDto firstPageRespDto = parseSearchRepsone(firstPageResp, c1, c2, c3);
                     System.out.println("第" + c3Count + "个三级类目第一页获取完成： " + c1.getCategoryName() + "_" + c2.getCategoryName() + "_" + c3.getCategoryName());
                     if (firstPageRespDto != null) {
                         JDSearchResponseDataDto firstDataDto = firstPageRespDto.getData();
@@ -110,7 +88,7 @@ public class JDProduct {
             }
 
             System.out.println("获取一级类目获取完成： " + c1.getCategoryName());
-            String filePath = saveProductsToExcel(sameCategoryLevelOneList,c1);
+            String filePath = saveProductsToExcel(sameCategoryLevelOneList, c1);
             System.out.println("文件保存路径：" + filePath);
         }
 
@@ -122,17 +100,17 @@ public class JDProduct {
         if (pageDto != null) {
             int pageTotalNum = (int) Math.ceil(pageDto.getTotalCount() / ConstantsHelper.JDSearchProduct.Page_Size);
             System.out.println("三级类目：" + c1.getCategoryName() + "_" + c2.getCategoryName() + "_" + c3.getCategoryName()
-            + " 共有页数" + pageTotalNum);
+                    + " 共有页数" + pageTotalNum);
             if (pageTotalNum > 1) {
                 for (int p = 2; p <= pageTotalNum; p++) {
                     String pagedResp = sendSearchProductRequest(p, ConstantsHelper.JDSearchProduct.Page_Size
                             , "", c1.getId(), Optional.of(c2.getId()), Optional.of(c3.getId()), 1);
-                    JDSearchResponseDto responseDto = parseSearchRepsone(pagedResp,c1,c2,c3);
+                    JDSearchResponseDto responseDto = parseSearchRepsone(pagedResp, c1, c2, c3);
                     if (responseDto != null) {
                         JDSearchResponseDataDto dataDto = responseDto.getData();
                         if (dataDto != null && dataDto.getUnionGoodsParsed() != null) {
                             results.addAll(dataDto.getUnionGoodsParsed());
-                            System.out.println("第" + p +"页获取完成");
+                            System.out.println("第" + p + "页获取完成");
                         }
                     }
                     try {
@@ -157,7 +135,7 @@ public class JDProduct {
         return result;
     }
 
-    private JDSearchResponseDto parseSearchRepsone(String response,JDCategoryDto c1, JDCategoryDto c2, JDCategoryDto c3) {
+    private JDSearchResponseDto parseSearchRepsone(String response, JDCategoryDto c1, JDCategoryDto c2, JDCategoryDto c3) {
         if (response.isEmpty()) {
             return null;
         }
@@ -166,28 +144,29 @@ public class JDProduct {
         if (responseDto.getCode().equals("200")) {
             List<Object> unionGoods = responseDto.getData().getUnionGoods();
             List<JDGoodsDto> parsedGoods = new ArrayList<>();
-            for (int i = 0; i < unionGoods.size(); i++) {
-                JSONObject ele = (JSONObject) ((JSONArray) responseDto.getData().getUnionGoods().get(i)).get(0);
-                String jsonString = JSONObject.toJSONString(ele);
-                JDGoodsDto goodsDto = JSON.parseObject(jsonString, JDGoodsDto.class);
-                if(c1 != null){
-                    goodsDto.setCategory1Name(c1.getCategoryName());
-                }
+            if (unionGoods != null) {
+                for (int i = 0; i < unionGoods.size(); i++) {
+                    JSONObject ele = (JSONObject) ((JSONArray) responseDto.getData().getUnionGoods().get(i)).get(0);
+                    String jsonString = JSONObject.toJSONString(ele);
+                    JDGoodsDto goodsDto = JSON.parseObject(jsonString, JDGoodsDto.class);
+                    if (c1 != null) {
+                        goodsDto.setCategory1Name(c1.getCategoryName());
+                    }
 
-                if(c2 != null){
-                    goodsDto.setCategory2Name(c2.getCategoryName());
-                }
+                    if (c2 != null) {
+                        goodsDto.setCategory2Name(c2.getCategoryName());
+                    }
 
-                if(c3 != null){
-                    goodsDto.setCategory3Name(c3.getCategoryName());
-                }
+                    if (c3 != null) {
+                        goodsDto.setCategory3Name(c3.getCategoryName());
+                    }
 
-                if (goodsDto != null) {
-                    parsedGoods.add(goodsDto);
+                    if (goodsDto != null) {
+                        parsedGoods.add(goodsDto);
+                    }
                 }
+                responseDto.getData().setUnionGoodsParsed(parsedGoods);
             }
-            responseDto.getData().setUnionGoodsParsed(parsedGoods);
-
         } else {
             responseDto = null;
         }
@@ -250,6 +229,30 @@ public class JDProduct {
             e.printStackTrace();
         }
         return result;
+    }
+
+    private void mockSaveProductsToExcel(){
+        JDCategoryDto d1 = new JDCategoryDto();
+        d1.setCategoryName("衣服");
+        List<JDGoodsDto> list = new ArrayList<>();
+        JDGoodsDto dto = new JDGoodsDto();
+        dto.setSkuId(new BigInteger("123456789876"));
+        dto.setSkuName("Product1");
+        dto.setShopName("Shop");
+        dto.setWlPrice(11111.11);
+        dto.setWlCommission(11.11);
+        dto.setWlCommissionRatio(10.11);
+        dto.setIsZY(1);
+        dto.setGoodComments(1000);
+        dto.setFinalPrice(222222.22);
+        dto.setCategory1Name("衣服");
+        dto.setCategory2Name("c2");
+        dto.setCategory3Name("c3");
+        dto.setInOrderComm30Days(new BigDecimal("33.33"));
+        dto.setInOrderCount30Days(new BigInteger("56789"));
+        list.add(dto);
+
+        saveProductsToExcel(list, d1);
     }
 
     //获取当前类目的前提是，上级类目一级存在。所以，一级类目是自己手动整理的。
@@ -357,11 +360,15 @@ public class JDProduct {
                 continue;
             }
 
-            JDSearchResponseDto respDto = parseSearchRepsone(resp,null,null,null);
+            JDSearchResponseDto respDto = parseSearchRepsone(resp, null, null, null);
             if (level == 2) {
-                crtCategories = respDto.getData().getCatList2();
+                if (respDto != null) {
+                    crtCategories = respDto.getData().getCatList2();
+                }
             } else {
-                crtCategories = respDto.getData().getCatList3();
+                if (respDto != null) {
+                    crtCategories = respDto.getData().getCatList3();
+                }
             }
             if (crtCategories != null) {
                 crtCategories.forEach(x -> x.setLevel(level));
@@ -431,7 +438,7 @@ public class JDProduct {
         return filePath;
     }
 
-    private String saveProductsToExcel(List<JDGoodsDto> products, JDCategoryDto c1){
+    private String saveProductsToExcel(List<JDGoodsDto> products, JDCategoryDto c1) {
         String outputPath = Helper.getProjectOutputPath();
         String categoryFolder = outputPath + "京东/京东商品导出/" + c1.getCategoryName() + "/";
         String fileFullPath = categoryFolder + c1.getCategoryName() + "_" + Helper.setFileNameDateFormat() + ".xlsx";
@@ -545,7 +552,7 @@ public class JDProduct {
         }
 
         Workbook workbook4 = openCategoryFile(ConstantsHelper.JDSearchProduct.IGNORED_FIRST_CATEGORY);
-        if(workbook4 != null){
+        if (workbook4 != null) {
             this.setC1ListIgnored(readCategotyFile(workbook4, "Sheet1"));
         }
 
@@ -554,9 +561,9 @@ public class JDProduct {
             List<JDCategoryDto> allC1 = readCategotyFile(workbook1, ConstantsHelper.JDSearchProduct.SHEETNAME_FIRST_CATEGORY);
             List<Integer> ignoredC1Id = this.getC1ListIgnored().stream().map(JDCategoryDto::getId).collect(Collectors.toList());
             List<JDCategoryDto> activeC1 = new ArrayList<>();
-            for (JDCategoryDto c1: allC1
-                 ) {
-                if(!ignoredC1Id.stream().anyMatch(x->x == c1.getId())){
+            for (JDCategoryDto c1 : allC1
+            ) {
+                if (!ignoredC1Id.stream().anyMatch(x -> x == c1.getId())) {
                     activeC1.add(c1);
                 }
             }
