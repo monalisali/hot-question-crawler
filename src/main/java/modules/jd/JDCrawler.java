@@ -10,11 +10,12 @@ public class JDCrawler {
     private static Logger logger = LogManager.getLogger(JDCrawler.class.getClass());
 
     public static void main(String[] args) {
-        if (!Helper.checkNetworkConnection()) {
+        if (Helper.checkNetworkConnection()) {
+            System.out.println("网络测试通过");
+            JDProduct jdProduct = new JDProduct(Boolean.parseBoolean(properties.getProperty("isToGetJdProductCategory")));
+            jdProduct.getJDProducts();
+        }else {
             System.out.println("网络测试不通过");
-            return;
         }
-        JDProduct jdProduct = new JDProduct(Boolean.parseBoolean(properties.getProperty("isToGetJdProductCategory")));
-        jdProduct.getJDProducts();
     }
 }
