@@ -30,7 +30,6 @@
    
 2. 预先需要设置的内容
    * 创建src\output
-   * 确认 ConstantsHelper.CAETGORYNAME： 它代表当前需要处理的品类名称，会作为执行结果的文件夹和文件前缀
    * hotWordsToQuestion.txt：百度抓取用到的关键词，不要放历史内容
    * output/xZse86Result.json：知乎抓取用到的关键字 + 每个关键字对应的xZse86值，不要放历史内容
    * change.properties的zhiHuCookie ("子凡"账号)
@@ -57,8 +56,8 @@ b) 如果要复制到印象笔记中以后备用的话，一定要写复制到�
   解析时会报错，不知道什么原因**
 
 #### 2.1.2.3 结果保存
-1. 文件被保存在src\output\ConstantsHelper.CAETGORYNAME\
-2. 每次运行结果不会删除原来的文件，会以ConstantsHelper.CAETGORYNAME + 时间的形式生成新的文件
+1. 文件被保存在src\output\程序启动时输入的品类名称\
+2. 每次运行结果不会删除原来的文件，会以程序启动时输入的品类名称 + 时间的形式生成新的文件
 
 
 ## 2.2 抓取京东联盟商品

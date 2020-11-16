@@ -11,7 +11,9 @@ import utils.Helper;
 import utils.NetworkConnect;
 
 import javax.net.ssl.HttpsURLConnection;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
@@ -38,6 +40,15 @@ public class ZhihuCrawler {
 
         System.out.println("网络测试通过，开始爬数据");
         System.out.println("**********************************开始***************************************");
+        String keyword = "";
+        System.out.println("请输入当前需要处理的品类名称，如：保温饭盒，按回车键结束。它会作为执行结果的文件夹和文件前缀");
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        try {
+            keyword = br.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         List<String> hotWords = FileHelper.ReadHotWords();
 //        List<String> hotWords = new ArrayList<>();
 //        hotWords.add("保温饭盒");
@@ -77,7 +88,7 @@ public class ZhihuCrawler {
         System.out.println("一共完成：" + questionContents.size() + "个");
 
         System.out.println("**************************解析所有的知乎问题，结束********************************");
-        String filePath = parse.saveQuestionResultToExcel(ConstantsHelper.CAETGORYNAME, questionContents);
+        String filePath = parse.saveQuestionResultToExcel(keyword, questionContents);
         System.out.println("本次处理结果被保存到: " + filePath);
 
         System.out.println("**************************解析所有的知乎问题，开始********************************");
