@@ -4,6 +4,7 @@ import dto.ConnectDto;
 import dto.QuestionParseDto;
 import dto.QuestionResultDto;
 import dto.XZSE86Dto;
+import org.apache.commons.codec.Charsets;
 import utils.ConstantsHelper;
 import utils.FileHelper;
 import utils.Helper;
@@ -11,6 +12,8 @@ import utils.NetworkConnect;
 
 import javax.net.ssl.HttpsURLConnection;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;

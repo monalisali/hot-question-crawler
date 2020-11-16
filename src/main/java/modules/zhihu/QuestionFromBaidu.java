@@ -53,9 +53,11 @@ public class QuestionFromBaidu implements IQuestion {
         List<QuestionResultDto> zhiHuQuestions = new ArrayList<>();
         Properties pro = Helper.GetAppProperties();
         if (pro != null) {
+            int count = 1;
             for (String q : this.getHotWordList()
             ) {
                 pagedHtmlList.addAll(sendHttpGetRequest(q));
+                System.out.println("第" + (count++) + "个热词完成：" + q);
                 try {
                     Thread.currentThread().sleep(30000);
                 } catch (InterruptedException e) {
@@ -82,7 +84,7 @@ public class QuestionFromBaidu implements IQuestion {
                 QuestionResultDto pagedResult = new QuestionResultDto();
                 int pn = i * ConstantsHelper.PageHelper.PAGESIZE;
                 keyword = isSearchFromZhihuOnly ? keyword + " " + _zhihuSpecificSite : keyword;
-                String keyEncode = URLEncoder.encode(keyword, String.valueOf(Charsets.UTF_8));
+                String keyEncode = Helper.replacePlusFromUrlEncode(URLEncoder.encode(keyword, String.valueOf(Charsets.UTF_8)));
                 StringBuilder sb = new StringBuilder(_baiduUrlPrefix);
                 sb.append("&wd=");
                 sb.append(keyEncode);

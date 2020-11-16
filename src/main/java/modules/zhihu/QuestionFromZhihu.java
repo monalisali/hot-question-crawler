@@ -50,7 +50,7 @@ public class QuestionFromZhihu implements IQuestion {
         connectDto.setContentType("");
         connectDto.setxZse83(properties.getProperty("xZse83"));
         connectDto.setConnectedByProxy(Boolean.parseBoolean(properties.getProperty("isConnectedByProxy")));
-
+        int count = 1;
         for (XZSE86Dto h : this.getHotWordList()
         ) {
             connectDto.setxZse86(h.getxZse86Val());
@@ -59,6 +59,7 @@ public class QuestionFromZhihu implements IQuestion {
             //ZhihuResponseDto responseDto = mockSendQuestionRequestion();
             List<ZhihuResponseQuestionDto> questionDtos =  getQuestionResult(responseDto);
             questionDtos.forEach(x->results.add(formatResponseDtoToQuestion(x)));
+            System.out.println("第" + (count++) + "个热词完成：" + h.getHotword());
             try {
                 Thread.currentThread().sleep(30000);
             } catch (InterruptedException e) {
@@ -86,7 +87,7 @@ public class QuestionFromZhihu implements IQuestion {
         StringBuilder urlStringBuilder = new StringBuilder(properties.getProperty("zhihuSearchQuestionUrl"));
         try {
             urlStringBuilder.append("&q=");
-            urlStringBuilder.append(URLEncoder.encode(hotword, String.valueOf(Charsets.UTF_8)));
+            urlStringBuilder.append(Helper.replacePlusFromUrlEncode(URLEncoder.encode(hotword, String.valueOf(Charsets.UTF_8))));
             urlStringBuilder.append("&correction=1&offset=0&limit=20&lc_idx=0&show_all_topics=0");
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
@@ -99,12 +100,13 @@ public class QuestionFromZhihu implements IQuestion {
         StringBuilder stringBuilder = new StringBuilder(properties.getProperty("zhihuSearchReferUr"));
         try {
             stringBuilder.append("&q=");
-            stringBuilder.append(URLEncoder.encode(hotword, String.valueOf(Charsets.UTF_8)));
+            stringBuilder.append( Helper.replacePlusFromUrlEncode(URLEncoder.encode(hotword, String.valueOf(Charsets.UTF_8))));
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
         return stringBuilder.toString();
     }
+
 
     private List<ZhihuResponseQuestionDto> getQuestionResult(ZhihuResponseDto resp){
         List<ZhihuResponseQuestionDto> result = new ArrayList<>();
