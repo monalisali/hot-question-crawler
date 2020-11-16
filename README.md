@@ -51,6 +51,11 @@
 3. 把 zhihu-login 中的 output/xZse86Result.json 内容，复制到 hot-question-crawler 中的 xZse86Result.json 
 4. 用"子凡"账号，在网页上登录一下知乎，并做一次查询，拿到返回的cookie，并把它复制到change.properties的zhiHuCookie中去
 
+**从zhihu-login的 xZse86Result.json 复制内容到 hot-question-crawler 时要注意：**
+a) 要么直接复制过去
+b) 如果要复制到印象笔记中以后备用的话，一定要写复制到记事本，然后再复制到印象笔记的一般笔记中。**不要复制到印象笔记的markdown中，从markdown在复制到 hot-question-crawler 后，fastJson在
+  解析时会报错，不知道什么原因**
+
 #### 2.1.2.3 结果保存
 1. 文件被保存在src\output\ConstantsHelper.CAETGORYNAME\
 2. 每次运行结果不会删除原来的文件，会以ConstantsHelper.CAETGORYNAME + 时间的形式生成新的文件
