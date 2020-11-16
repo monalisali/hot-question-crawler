@@ -27,5 +27,6 @@ public class ConstantsHelper {
 
         public static final int Page_Start = 1;
         public static final int Page_Size = 60;
+        public static final int Excel_Max_Row = 100000;
     }
 }

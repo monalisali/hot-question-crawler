@@ -86,10 +86,22 @@ public class JDProduct {
                     c3Count++;
                 }
             }
-
             System.out.println("获取一级类目获取完成： " + c1.getCategoryName());
-            String filePath = saveProductsToExcel(sameCategoryLevelOneList, c1);
-            System.out.println("文件保存路径：" + filePath);
+
+            if(sameCategoryLevelOneList.size() > ConstantsHelper.JDSearchProduct.Excel_Max_Row){
+                int excelSplitNum = (int) Math.ceil(sameCategoryLevelOneList.size() / ConstantsHelper.JDSearchProduct.Excel_Max_Row);
+                for(int i = 1;i<=excelSplitNum;i++){
+                    List<JDGoodsDto> list = sameCategoryLevelOneList.stream().skip((i - 1) * ConstantsHelper.JDSearchProduct.Excel_Max_Row)
+                            .limit(ConstantsHelper.JDSearchProduct.Excel_Max_Row).collect(Collectors.toList());
+                    String filePath = saveProductsToExcel(list, c1);
+                    System.out.println("文件保存路径：" + filePath);
+                }
+            }else {
+                String filePath = saveProductsToExcel(sameCategoryLevelOneList, c1);
+                System.out.println("文件保存路径：" + filePath);
+            }
+
+
         }
 
         System.out.println("所有商品获取完成");
