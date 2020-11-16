@@ -127,4 +127,8 @@ public class Helper {
 
         return cnnTest;
     }
+
+    public static String replacePlusFromUrlEncode(String str){
+        return str.replace("+","%20");
+    }
 }

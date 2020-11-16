@@ -9,10 +9,9 @@
 ## 1.2 抓取京东联盟商品
 1. 一级商品目录是自己手动准备的
 2. 通过一级类目ID，获取二级类目
-3. 通过二级类目，获取三级类目
-4. 通过一级、二级、三级目录文件，获取每个三级类目的: 一级类目ID，二级类目ID
-5. 通过4）的数据,构建每个三级类目的请求报文，从而获取类目下的商品信息
-6. 文件保存到\src\output\京东\
+3. 通过二级类目，获取三级类目。获取的三级目录，都包含了对应的一级类目ID，二级类目ID
+4. 查询每个三级类目对应的商品（请求报文中需要一级、二级、三级类目ID）
+5. 文件保存到\src\output\京东\
 
 
 # 2. 使用程序步骤
@@ -30,8 +29,8 @@
    * 程序会通过关键字抓取关键字在百度、知乎中的"知乎问题"
    
 2. 预先需要设置的内容
-   * 在src\output
-   * 确认 ConstantsHelper.CAETGORYNAME： 它当前需要处理的品类名称，会作为执行结果的文件夹和文件前缀
+   * 创建src\output
+   * 确认 ConstantsHelper.CAETGORYNAME： 它代表当前需要处理的品类名称，会作为执行结果的文件夹和文件前缀
    * hotWordsToQuestion.txt：百度抓取用到的关键词，不要放历史内容
    * output/xZse86Result.json：知乎抓取用到的关键字 + 每个关键字对应的xZse86值，不要放历史内容
    * change.properties的zhiHuCookie ("子凡"账号)
@@ -40,11 +39,12 @@
 #### 2.1.2.1 从百度抓取知乎问题
 1. hotWordsToQuestion.txt 有当前需要处理的关键字
 2. ConstantsHelper.PageHelper.STARTINDEX 设置的是抓取结果的起始页，设置为0，**这个不用改**， ConstantsHelper.PageHelper.MAXPAGENUM 设置的是抓取的最大页码，
-现在设置为2。也就是说，现在抓取前3也的知乎问题
+现在设置为2。也就是说，现在抓取前3页的知乎问题
 
 #### 2.1.2.2 从知乎抓取知乎问题
-从知乎抓取问题（即模拟在输入框中输入关键字，然后点击"搜索"按钮的操作），有两点要特别注意：**先要登录，XZse86 请求头**
-[XZse86相关说明](https://github.com/monalisali/zhihu-login/blob/master/%E9%87%8D%E8%A6%81%E4%BA%8B%E9%A1%B9.md)
+从知乎抓取问题（即模拟在输入框中输入关键字，然后点击"搜索"按钮的操作），有两点要特别注意：
+a) 先要模拟知乎登录: hot-question-crawler 项目取巧了，没有模拟登录。而是直接用账号在浏览器中登录一下，然后把cookie复制过来
+b) XZse86 请求头：这是知乎防范爬虫的几个机制，具体破解可以参考：[XZse86相关说明](https://github.com/monalisali/zhihu-login/blob/master/%E9%87%8D%E8%A6%81%E4%BA%8B%E9%A1%B9.md)
 
 1. 把 hot-question-crawler 中的 hotWordsToQuestion.txt 内容，复制到Python项目——zhihu-login 中的 hotWordsToQuestion.txt 中去
 2. zhihu-login 中的 _encryptXZse86Value() 会为每个关键字计算出对应的XZse86值，并保存在 output/xZse86Result.json
@@ -63,18 +63,18 @@ b) 如果要复制到印象笔记中以后备用的话，一定要写复制到�
 
 ## 2.2 抓取京东联盟商品
 1. 目的
-   * 通过京东商品一级类目、二级类目、三级类目获取类目下的商品信息
+   * 通过三级类目ID获取该类目下的商品信息（报文中需要传入当前三级类目对应的一级、二级类目ID）
    
 2. 预先需要设置的内容
   * src/output: 程序保存文件的根目录
   * src/ouput/京东: JD商品类目文件
   * src/output/京东/京东商品导出：JD商品导出文件, “京东商品导出”文件夹下，每个一级类目为一个子文件
-  * change.properties文件中的jdCookie （makemoneyyy1@163.com）
+  * change.properties文件中的jdCookie ：用账号 makemoneyyy1@163.com 登录一下，获取cookie
  
 ### 2.2.1 运行 hot-question-crawler 项目下的 JDCrawler.java
 
 1. 检查 src/output/京东/目录下是否有: JD商品一级类目.xls、JD商品二级类目.xls、JD商品三级类目.xls
-2. 没有的话，要把 app.properies 中的 isToGetJdProductCategory 值设置为 true: 程序会先执行类目抓取再进行商品抓取。设置为false，则直接进行商品抓取
+2. 没有的话，要把 app.properies 中的 isToGetJdProductCategory 值设置为 true: 程序会先执行类目抓取再进行商品抓取。如果设置为false，则直接进行商品抓取
 3. 用 makemoneyyy1@163.com 在网页上登陆一次京东联盟，然后把返回的cookie，并把它复制到change.properties中的jdCookie
 
 ### 2.2.3 结果保存
