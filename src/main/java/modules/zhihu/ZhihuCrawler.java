@@ -103,7 +103,7 @@ public class ZhihuCrawler {
         List<QuestionResultDto> combines = new ArrayList<>();
         combines.addAll(baiduQuestion);
         combines.addAll(zhihuQuestions);
-        List<QuestionResultDto> dist = combines.stream().distinct().filter(x->x.getLink().indexOf("https") >= 0).limit(1).collect(Collectors.toList());
+        List<QuestionResultDto> dist = combines.stream().distinct().filter(x->x.getLink().indexOf("https") >= 0).collect(Collectors.toList());
         parse.setQuestions(dist);
         return parse;
     }
