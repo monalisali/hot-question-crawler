@@ -55,7 +55,7 @@ public class Helper {
 
         if (connection != null) {
             try {
-                BufferedReader rd = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                BufferedReader rd = new BufferedReader(new InputStreamReader(connection.getInputStream(),"UTF-8"));
                 String line;
                 while ((line = rd.readLine()) != null) {
                     sbResp.append(line);

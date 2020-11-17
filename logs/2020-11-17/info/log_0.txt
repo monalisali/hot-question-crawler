@@ -1,0 +1,46 @@
+2020-11-17 22:48:47 [main] modules.zhihu.QuestionFromZhihu.getQuestion()
+INFO: 知乎获取问题，发送请求完成：砧板保养
+2020-11-17 22:49:17 [main] modules.zhihu.QuestionFromZhihu.getQuestion()
+INFO: 知乎获取问题，发送请求完成：砧板 洗碗机
+2020-11-17 22:49:49 [main] modules.zhihu.QuestionFromZhihu.getQuestion()
+INFO: 知乎获取问题，发送请求完成：砧板 材质
+2020-11-17 22:50:23 [main] modules.zhihu.QuestionFromZhihu.getQuestion()
+INFO: 知乎获取问题，发送请求完成：砧板 不锈钢
+2020-11-17 22:51:34 [main] modules.zhihu.QuestionFromZhihu.getQuestion()
+INFO: 知乎获取问题，发送请求完成：砧板 推荐
+2020-11-17 22:52:17 [main] modules.zhihu.QuestionFromZhihu.getQuestion()
+INFO: 知乎获取问题，发送请求完成：砧板 品牌
+2020-11-17 22:53:12 [main] modules.zhihu.QuestionFromZhihu.getQuestion()
+INFO: 知乎获取问题，发送请求完成：砧板材质
+2020-11-17 22:53:44 [main] modules.zhihu.QuestionFromZhihu.getQuestion()
+INFO: 知乎获取问题，发送请求完成：砧板尺寸
+2020-11-17 22:54:15 [main] modules.zhihu.QuestionFromZhihu.getQuestion()
+INFO: 知乎获取问题，发送请求完成：砧板测评
+2020-11-17 22:54:47 [main] modules.zhihu.QuestionFromZhihu.getQuestion()
+INFO: 知乎获取问题，发送请求完成：砧板材料
+2020-11-17 22:55:18 [main] modules.zhihu.QuestionFromZhihu.getQuestion()
+INFO: 知乎获取问题，发送请求完成：砧板的选择
+2020-11-17 22:55:49 [main] modules.zhihu.QuestionFromZhihu.getQuestion()
+INFO: 知乎获取问题，发送请求完成：砧板多久换一次
+2020-11-17 22:56:20 [main] modules.zhihu.QuestionFromZhihu.getQuestion()
+INFO: 知乎获取问题，发送请求完成：砧板大小
+2020-11-17 22:56:51 [main] modules.zhihu.QuestionFromZhihu.getQuestion()
+INFO: 知乎获取问题，发送请求完成：砧板多久换
+2020-11-17 22:57:24 [main] modules.zhihu.QuestionFromZhihu.getQuestion()
+INFO: 知乎获取问题，发送请求完成：砧板发霉
+2020-11-17 22:57:58 [main] modules.zhihu.QuestionFromZhihu.getQuestion()
+INFO: 知乎获取问题，发送请求完成：砧板分类
+2020-11-17 22:58:29 [main] modules.zhihu.QuestionFromZhihu.getQuestion()
+INFO: 知乎获取问题，发送请求完成：砧板防霉
+2020-11-17 22:59:00 [main] modules.zhihu.QuestionFromZhihu.getQuestion()
+INFO: 知乎获取问题，发送请求完成：砧板架
+2020-11-17 22:59:32 [main] modules.zhihu.QuestionFromZhihu.getQuestion()
+INFO: 知乎获取问题，发送请求完成：砧板开裂
+2020-11-17 23:00:03 [main] modules.zhihu.QuestionFromZhihu.getQuestion()
+INFO: 知乎获取问题，发送请求完成：砧板木材
+2020-11-17 23:00:34 [main] modules.zhihu.QuestionFromZhihu.getQuestion()
+INFO: 知乎获取问题，发送请求完成：砧板哪种好
+2020-11-17 23:01:05 [main] modules.zhihu.QuestionFromZhihu.getQuestion()
+INFO: 知乎获取问题，发送请求完成：砧板品牌
+2020-11-17 23:01:36 [main] modules.zhihu.QuestionFromZhihu.getQuestion()
+INFO: 知乎获取问题，发送请求完成：砧板品牌推荐

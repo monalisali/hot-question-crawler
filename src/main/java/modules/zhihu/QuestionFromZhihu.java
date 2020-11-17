@@ -3,6 +3,7 @@ package modules.zhihu;
 import com.alibaba.fastjson.JSON;
 import dto.*;
 import org.apache.commons.codec.Charsets;
+import org.tinylog.Logger;
 import utils.ConstantsHelper;
 import utils.Helper;
 import utils.NetworkConnect;
@@ -55,11 +56,17 @@ public class QuestionFromZhihu implements IQuestion {
         ) {
             connectDto.setxZse86(h.getxZse86Val());
             QuestionResultDto resp = sendQuestionRequest(h.getHotword(),connectDto);
+            Logger.info("知乎获取问题，发送请求完成：" + h.getHotword());
+            Logger.info("知乎获取问题，关键字：" + h.getHotword() + "返回内容：\r\n" + resp.getPagedHtmlResponse());
             ZhihuResponseDto responseDto = convertQuestionResponseToDto(resp.getPagedHtmlResponse());
-            //ZhihuResponseDto responseDto = mockSendQuestionRequestion();
-            List<ZhihuResponseQuestionDto> questionDtos =  getQuestionResult(responseDto);
-            questionDtos.forEach(x->results.add(formatResponseDtoToQuestion(x)));
-            System.out.println("第" + (count++) + "个热词完成：" + h.getHotword());
+            if(responseDto != null){
+                List<ZhihuResponseQuestionDto> questionDtos =  getQuestionResult(responseDto);
+                questionDtos.forEach(x->results.add(formatResponseDtoToQuestion(x)));
+                System.out.println("第" + (count++) + "个热词完成：" + h.getHotword());
+            }else {
+                Logger.error("知乎获取问题，关键字" + h.getHotword() + "在 convertQuestionResponseToDto()中返回null");
+            }
+
             try {
                 Thread.currentThread().sleep(30000);
             } catch (InterruptedException e) {
@@ -124,8 +131,13 @@ public class QuestionFromZhihu implements IQuestion {
     }
 
     private ZhihuResponseDto convertQuestionResponseToDto(String resp){
-        ZhihuResponseDto responseDto = JSON.parseObject(resp, ZhihuResponseDto.class);
-        return responseDto;
+        try{
+            ZhihuResponseDto responseDto = JSON.parseObject(resp, ZhihuResponseDto.class);
+            return responseDto;
+        }catch (Exception e){
+            Logger.error(e);
+            return null;
+        }
     }
 
     private QuestionResultDto formatResponseDtoToQuestion(ZhihuResponseQuestionDto questionDto){
