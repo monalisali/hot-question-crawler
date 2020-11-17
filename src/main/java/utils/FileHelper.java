@@ -4,6 +4,8 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
 import dto.XZSE86Dto;
 import org.apache.commons.codec.Charsets;
+
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -20,7 +22,12 @@ public class FileHelper {
 
     public static List<String> ReadHotWords() {
         List<String> hotWords = new ArrayList<>();
-        Path path = Paths.get(_hotWordsFilePath);
+        String filePath = _hotWordsFilePath;
+        File file = new File(filePath);
+        if(!file.exists()){
+            filePath = "./classes/hotWordsToQuestion.txt";
+        }
+        Path path = Paths.get(filePath);
         try {
             hotWords = Files.readAllLines(path, Charsets.UTF_8);
         } catch (IOException e) {
@@ -31,7 +38,12 @@ public class FileHelper {
 
     public static List<XZSE86Dto> ReadZhiHuHotWords() {
         List<XZSE86Dto> xZSE86ValueList = new ArrayList<>();
-        Path path = Paths.get(_zhiHuHotwordsObjPath);
+        String filePath = _zhiHuHotwordsObjPath;
+        File file = new File(filePath);
+        if(!file.exists()){
+            filePath = "./classes/xZse86Result.json";
+        }
+        Path path = Paths.get(filePath);
         try {
             List<String> hotWords = Files.readAllLines(path, Charsets.UTF_8);
             String hotWordLine = hotWords.get(0);

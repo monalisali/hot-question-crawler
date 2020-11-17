@@ -32,6 +32,7 @@ public class QuestionParse {
     public List<QuestionParseDto> getQuestionContent() {
         List<QuestionParseDto> results = new ArrayList<>();
         List<String> allQuestionsUrl = this.getQuestions().stream().map(x -> x.getLink()).collect(Collectors.toList());
+        int count = 1;
         for (String url : allQuestionsUrl
         ) {
             HttpsURLConnection conn = NetworkConnect.sendHttpGet(url);
@@ -41,7 +42,7 @@ public class QuestionParse {
                 QuestionParseDto parseDto = parseHtml(document);
                 parseDto.setQuestionUrl(url);
                 results.add(parseDto);
-                System.out.println("解析完成：" + parseDto.getQuestionUrl());
+                System.out.println("第"+ (count++) +"个解析完成：" + parseDto.getQuestionUrl());
                 try {
                     Thread.currentThread().sleep(30000);
                 } catch (InterruptedException e) {
@@ -54,9 +55,10 @@ public class QuestionParse {
 
 
     public String saveQuestionResultToExcel(String saveFileCategoryName, List<QuestionParseDto> questions) {
-        String projectPath = ZhihuCrawler.class.getResource("/").getPath();
-        String projectRoot = projectPath.substring(0, projectPath.indexOf("target")).substring(1);
-        String parentFolder = projectRoot + properties.getProperty("questionOutputPath") + saveFileCategoryName;
+        //String projectPath = ZhihuCrawler.class.getResource("/").getPath();
+        //String projectRoot = projectPath.substring(0, projectPath.indexOf("target")).substring(1);
+        //String parentFolder = projectRoot + properties.getProperty("questionOutputPath") + saveFileCategoryName;
+        String parentFolder =  properties.getProperty("questionOutputPath") + saveFileCategoryName;
         String fileFullPath = setSaveFileFullPath(saveFileCategoryName, parentFolder);
 
         HSSFWorkbook workbook = new HSSFWorkbook();

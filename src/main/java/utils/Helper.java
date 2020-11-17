@@ -17,7 +17,12 @@ public class Helper {
         Properties pro = null;
         try {
             pro = new Properties();
-            FileInputStream in = new FileInputStream("./src/main/resources/app.properties");
+            String filePath = "./src/main/resources/app.properties";
+            File file = new File(filePath);
+            if(!file.exists()){
+                filePath = "./classes/app.properties";
+            }
+            FileInputStream in = new FileInputStream(filePath);
             pro.load(in);
             in.close();
         } catch (IOException e) {
@@ -30,7 +35,13 @@ public class Helper {
         Properties pro = null;
         try {
             pro = new Properties();
-            FileInputStream in = new FileInputStream("./src/main/resources/" + propertyFileName);
+            String filePath = "./src/main/resources/"  + propertyFileName;
+            File file = new File(filePath);
+            if(!file.exists()){
+                filePath = "./classes/" + propertyFileName;
+            }
+
+            FileInputStream in = new FileInputStream(filePath);
             pro.load(in);
             in.close();
         } catch (IOException e) {
