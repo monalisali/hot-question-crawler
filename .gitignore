@@ -11,5 +11,3 @@ buildNumber.properties
 # https://github.com/takari/maven-wrapper#usage-without-binary-jar
 .mvn/wrapper/maven-wrapper.jar
 src/output/
-src/main/resources/hotWordsToQuestion.txt
-src/main/resources/xZse86Result.json
