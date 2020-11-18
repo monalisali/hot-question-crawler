@@ -24,18 +24,8 @@ import java.util.stream.Collectors;
 
 public class ZhihuCrawler {
     private static Properties properties = Helper.GetAppProperties();
-    private static Dao dao;
+    private static Dao dao = new Dao(DatabaseHelp.getSqlSessionFactory());
     public static void main(String[] args) {
-
-        try {
-            dao = new Dao(DatabaseHelp.getSqlSessionFactory());
-            TopCategory topCategory = dao.selectTopCategoryID("6AC1705C-1BCB-49F6-AB19-46667E13A1CB");
-            List<HotWord> words = dao.selectAllHotWords();
-            String ss = "";
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
 
         System.out.println("网络测试开始");
         System.out.println("为了避免被百度屏蔽IP，需要使用代理，请确认做了已下操作：");
@@ -52,60 +42,52 @@ public class ZhihuCrawler {
 
         System.out.println("网络测试通过，开始爬数据");
         System.out.println("**********************************开始***************************************");
-        String keyword = "";
-        System.out.println("请输入当前需要处理的品类名称，如：保温饭盒，按回车键结束。它会作为执行结果的文件夹和文件前缀");
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        try {
-            keyword = br.readLine();
-        } catch (IOException e) {
-            e.printStackTrace();
+        List<TopCategory> topCategories = dao.selectAllActiveTopCategories();
+        for (TopCategory top: topCategories
+             ) {
+            List<HotWord> crtHotWords = dao.selectHotWordsByTopCategoryId(top.getId());
+            List<String> hotWords = crtHotWords.stream().map(x->x.getName()).collect(Collectors.toList());
+            System.out.println("当前操作的品类名称：" + top.getName() + "   共有热词：" + hotWords.size());
+            System.out.println(hotWords.toString());
+
+            System.out.println("**************************通过百度，爬取知乎问题  开始********************************");
+            QuestionFromBaidu baidu = new QuestionFromBaidu(hotWords, true);
+            List<QuestionResultDto> baiduQuestion = baidu.getQuestion();
+            StringBuilder printStringBuilder = new StringBuilder();
+            baiduQuestion.forEach(x -> printStringBuilder.append(x.getLink() + "\r\n"));
+            System.out.println("百度，爬取问题链接，共有" + baiduQuestion.size() + "个：");
+            System.out.println(printStringBuilder.toString());
+            System.out.println("**************************通过百度，爬取知乎问题  完成********************************");
+            System.out.println("\r\n");
+
+
+            System.out.println("**************************通过知乎，爬取知乎问题  开始********************************");
+            List<XZSE86Dto> zhihuHotwords = FileHelper.ReadZhiHuHotWords();
+            QuestionFromZhihu zhihu = new QuestionFromZhihu(zhihuHotwords);
+            List<QuestionResultDto> zhihuQuestions = zhihu.getQuestion();
+            StringBuilder zhihuStringBuilder = new StringBuilder();
+            zhihuQuestions.forEach(x -> zhihuStringBuilder.append(x.getLink() + "\r\n"));
+
+            System.out.println("知乎，爬取问题链接，共有" + zhihuQuestions.size() + "个：");
+            System.out.println(zhihuStringBuilder.toString());
+            System.out.println();
+            System.out.println("**************************通过知乎，爬取知乎问题  完成********************************");
+            System.out.println("\r\n");
+
+
+            System.out.println("**************************解析所有的知乎问题，开始********************************");
+            QuestionParse parse = createQuestionParseObj(baiduQuestion, zhihuQuestions);
+            System.out.println("去重后，有待解析问题：" + parse.getQuestions().size() + "个");
+            List<QuestionParseDto> questionContents = parse.getQuestionContent();
+            System.out.println("一共完成：" + questionContents.size() + "个");
+
+            System.out.println("**************************解析所有的知乎问题，结束********************************");
+            String filePath = parse.saveQuestionResultToExcel(top.getName(), questionContents);
+            System.out.println("本次处理结果被保存到: " + filePath);
+
+            System.out.println("**************************解析所有的知乎问题，开始********************************");
+            System.out.println("**********************************结束***************************************");
         }
-
-        List<String> hotWords = FileHelper.ReadHotWords();
-//        List<String> hotWords = new ArrayList<>();
-//        hotWords.add("保温饭盒");
-        System.out.println("一共有" + hotWords.size() + "个热词:");
-        System.out.println(hotWords.toString());
-
-        System.out.println("\r\n");
-        System.out.println("**************************通过知乎，爬取知乎问题  开始********************************");
-        List<XZSE86Dto> zhihuHotwords = FileHelper.ReadZhiHuHotWords();
-        QuestionFromZhihu zhihu = new QuestionFromZhihu(zhihuHotwords);
-        List<QuestionResultDto> zhihuQuestions = zhihu.getQuestion();
-        StringBuilder zhihuStringBuilder = new StringBuilder();
-        zhihuQuestions.forEach(x -> zhihuStringBuilder.append(x.getLink() + "\r\n"));
-
-        System.out.println("知乎，爬取问题链接，共有" + zhihuQuestions.size() + "个：");
-        System.out.println(zhihuStringBuilder.toString());
-        System.out.println();
-        System.out.println("**************************通过知乎，爬取知乎问题  完成********************************");
-        System.out.println("\r\n");
-
-
-        System.out.println("**************************通过百度，爬取知乎问题  开始********************************");
-        QuestionFromBaidu baidu = new QuestionFromBaidu(hotWords, true);
-        List<QuestionResultDto> baiduQuestion = baidu.getQuestion();
-        StringBuilder printStringBuilder = new StringBuilder();
-        baiduQuestion.forEach(x -> printStringBuilder.append(x.getLink() + "\r\n"));
-        System.out.println("百度，爬取问题链接，共有" + baiduQuestion.size() + "个：");
-        System.out.println(printStringBuilder.toString());
-        System.out.println("**************************通过百度，爬取知乎问题  完成********************************");
-        System.out.println("\r\n");
-
-
-        System.out.println("**************************解析所有的知乎问题，开始********************************");
-        QuestionParse parse = createQuestionParseObj(baiduQuestion, zhihuQuestions);
-        System.out.println("去重后，有待解析问题：" + parse.getQuestions().size() + "个");
-        List<QuestionParseDto> questionContents = parse.getQuestionContent();
-        System.out.println("一共完成：" + questionContents.size() + "个");
-
-        System.out.println("**************************解析所有的知乎问题，结束********************************");
-        String filePath = parse.saveQuestionResultToExcel(keyword, questionContents);
-        System.out.println("本次处理结果被保存到: " + filePath);
-
-        System.out.println("**************************解析所有的知乎问题，开始********************************");
-        System.out.println("**********************************结束***************************************");
-
     }
 
     private static QuestionParse createQuestionParseObj(List<QuestionResultDto> baiduQuestion, List<QuestionResultDto> zhihuQuestions) {

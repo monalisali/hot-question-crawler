@@ -16,17 +16,17 @@ public class Dao {
         this.sqlSessionFactory = sqlSessionFactory;
     }
 
-    public TopCategory selectTopCategoryID(String id) {
+    public List<TopCategory> selectAllActiveTopCategories(){
         try (SqlSession session = sqlSessionFactory.openSession()) {
-            Map<String, Object> map = new HashMap<>();
-            map.put("id", id);
-            return session.selectOne("com.hcsp.Mapper.selectTopCategoryID", map);
+            return session.selectList("com.hcsp.Mapper.selectAllActiveTopCategories");
         }
     }
 
-    public List<HotWord> selectAllHotWords(){
+    public List<HotWord> selectHotWordsByTopCategoryId (String topCategoryId){
         try (SqlSession session = sqlSessionFactory.openSession()) {
-            return session.selectList("com.hcsp.Mapper.selectAllHotWord");
+            Map<String, Object> map = new HashMap<>();
+            map.put("topCategoryId", topCategoryId);
+            return session.selectList("com.hcsp.Mapper.selectHotWordsByTopCategoryId",map);
         }
     }
 }

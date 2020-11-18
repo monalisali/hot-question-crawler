@@ -54,6 +54,8 @@ public class QuestionFromBaidu implements IQuestion {
         Properties pro = Helper.GetAppProperties();
         if (pro != null) {
             int count = 1;
+            //todo: HotWord表中增加字段：isDone bit （1：获取question完成，0：重新再次获取）
+            //获取完成后，把isDone设置为1；重新获取前，删除原来的question
             for (String q : this.getHotWordList()
             ) {
                 pagedHtmlList.addAll(sendHttpGetRequest(q));
