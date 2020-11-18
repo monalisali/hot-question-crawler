@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hcsp.Mapper">
+
+
+
+    <select id="selectTopCategoryID" parameterType="String" resultType="TopCategory">
+        select id,name,isActive
+        from dbo.[TopCategory]
+        where id = #{id}
+    </select>
+
+    <select id="selectAllHotWord" resultMap="HotWordResultMap">
+        select id,topCategoryID,name
+        from dbo.[HotWord]
+
+    </select>
+
+
+    <resultMap id="HotWordResultMap" type="entity.HotWord">
+        <result property="id" column="id"/>
+        <result property="topCategoryID" column="topCategoryID"/>
+        <result property="hotWordName" column="hotWordName"/>
+    </resultMap>
+
+</mapper>

@@ -1,14 +1,15 @@
 package modules.zhihu;
 
+import dao.Dao;
 import dto.ConnectDto;
 import dto.QuestionParseDto;
 import dto.QuestionResultDto;
 import dto.XZSE86Dto;
+import entity.HotWord;
+import entity.TopCategory;
 import org.apache.commons.codec.Charsets;
-import utils.ConstantsHelper;
-import utils.FileHelper;
-import utils.Helper;
-import utils.NetworkConnect;
+import org.apache.logging.log4j.core.tools.picocli.CommandLine;
+import utils.*;
 
 import javax.net.ssl.HttpsURLConnection;
 import java.io.BufferedReader;
@@ -23,8 +24,19 @@ import java.util.stream.Collectors;
 
 public class ZhihuCrawler {
     private static Properties properties = Helper.GetAppProperties();
-
+    private static Dao dao;
     public static void main(String[] args) {
+
+        try {
+            dao = new Dao(DatabaseHelp.getSqlSessionFactory());
+            TopCategory topCategory = dao.selectTopCategoryID("6AC1705C-1BCB-49F6-AB19-46667E13A1CB");
+            List<HotWord> words = dao.selectAllHotWords();
+            String ss = "";
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
         System.out.println("网络测试开始");
         System.out.println("为了避免被百度屏蔽IP，需要使用代理，请确认做了已下操作：");
         System.out.println("1. 翻墙软件设置为了「全局模式」");
