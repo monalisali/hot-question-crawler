@@ -50,8 +50,6 @@ public class ZhihuCrawler {
         }
 
         List<String> hotWords = FileHelper.ReadHotWords();
-//        List<String> hotWords = new ArrayList<>();
-//        hotWords.add("保温饭盒");
         System.out.println("一共有" + hotWords.size() + "个热词:");
         System.out.println(hotWords.toString());
 
@@ -90,8 +88,6 @@ public class ZhihuCrawler {
         System.out.println("**************************解析所有的知乎问题，结束********************************");
         String filePath = parse.saveQuestionResultToExcel(keyword, questionContents);
         System.out.println("本次处理结果被保存到: " + filePath);
-
-        System.out.println("**************************解析所有的知乎问题，开始********************************");
         System.out.println("**********************************结束***************************************");
 
     }

@@ -59,7 +59,7 @@ public class QuestionFromBaidu implements IQuestion {
                 pagedHtmlList.addAll(sendHttpGetRequest(q));
                 System.out.println("第" + (count++) + "个热词完成：" + q);
                 try {
-                    Thread.currentThread().sleep(30000);
+                    Thread.currentThread().sleep(20000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -68,7 +68,8 @@ public class QuestionFromBaidu implements IQuestion {
             //解析百度加密过的知乎链接，并赋值给属性
             links.forEach(x -> x.setLink(NetworkConnect.getHttpResponseLocation(x.getDeCodeLink())));
             //只保留链接中有question的链接
-            zhiHuQuestions = links.stream().filter(x -> x.getLink().contains("/question/")).collect(Collectors.toList());
+            zhiHuQuestions = links.stream()
+                    .filter(x -> x.getLink() != null && x.getLink().contains("/question/")).collect(Collectors.toList());
             cleanLink(zhiHuQuestions);
             zhiHuQuestions.forEach(x -> x.getLink().trim());
             result = zhiHuQuestions.stream().distinct().collect(Collectors.toList());
