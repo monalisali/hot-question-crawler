@@ -31,20 +31,19 @@ public class QuestionFromZhihu implements IQuestion {
     private Properties changeProperties = Helper.getAppPropertiesByName("change.properties");
     private static Dao dao = new Dao(DatabaseHelp.getSqlSessionFactory());
     private ZhihuLoginDto zhihuLoginDto = new ZhihuLoginDto();
-    private List<XZSE86Dto> hotWordList;
+    private List<XZSE86Dto> hotWordXzse86;
 
-    public QuestionFromZhihu(List<XZSE86Dto> hotWords) {
-        this.hotWordList = hotWords;
+    public QuestionFromZhihu(TopCategory topCategory) {
+        this.hotWordXzse86 = getXzse86HotWordList(topCategory);
     }
 
-    public List<XZSE86Dto> getHotWordList() {
-        return hotWordList;
+    public List<XZSE86Dto> getHotWordXzse86() {
+        return hotWordXzse86;
     }
 
-    public void setHotWordList(List<XZSE86Dto> hotWordList) {
-        this.hotWordList = hotWordList;
+    public void setHotWordXzse86(List<XZSE86Dto> hotWordXzse86) {
+        this.hotWordXzse86 = hotWordXzse86;
     }
-
 
     //目前只能获取第一页的数据，翻页的话又加密参数（猜测是：search_hash_id）还未破解
     @Override
@@ -59,7 +58,8 @@ public class QuestionFromZhihu implements IQuestion {
         connectDto.setxZse83(properties.getProperty("xZse83"));
         connectDto.setConnectedByProxy(Boolean.parseBoolean(properties.getProperty("isConnectedByProxy")));
         int count = 1;
-        for (XZSE86Dto h : this.getHotWordList()
+
+        for (XZSE86Dto h : this.getHotWordXzse86()
         ) {
             connectDto.setxZse86(h.getxZse86Val());
             QuestionResultDto resp = sendQuestionRequest(h.getHotword(),connectDto);

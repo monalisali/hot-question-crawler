@@ -50,22 +50,19 @@ public class ZhihuCrawler {
             System.out.println("当前操作的品类名称：" + top.getName() + "   共有热词：" + hotWords.size());
             System.out.println(hotWords.toString());
 
-//            System.out.println("**************************通过百度，爬取知乎问题  开始********************************");
-              QuestionFromBaidu baidu = new QuestionFromBaidu(hotWords, true);
-              List<QuestionResultDto> baiduQuestion = baidu.getQuestion();
-//            StringBuilder printStringBuilder = new StringBuilder();
-//            baiduQuestion.forEach(x -> printStringBuilder.append(x.getLink() + "\r\n"));
-//            System.out.println("百度，爬取问题链接，共有" + baiduQuestion.size() + "个：");
-//            System.out.println(printStringBuilder.toString());
-//            System.out.println("**************************通过百度，爬取知乎问题  完成********************************");
-//            System.out.println("\r\n");
+            System.out.println("**************************通过百度，爬取知乎问题  开始********************************");
+            QuestionFromBaidu baidu = new QuestionFromBaidu(hotWords, true);
+            List<QuestionResultDto> baiduQuestion = baidu.getQuestion();
+            StringBuilder printStringBuilder = new StringBuilder();
+            baiduQuestion.forEach(x -> printStringBuilder.append(x.getLink() + "\r\n"));
+            System.out.println("百度，爬取问题链接，共有" + baiduQuestion.size() + "个：");
+            System.out.println(printStringBuilder.toString());
+            System.out.println("**************************通过百度，爬取知乎问题  完成********************************");
+            System.out.println("\r\n");
 
 
             System.out.println("**************************通过知乎，爬取知乎问题  开始********************************");
-            List<XZSE86Dto> zhihuHotwords = FileHelper.ReadZhiHuHotWords();
-            QuestionFromZhihu zhihu = new QuestionFromZhihu(zhihuHotwords);
-            zhihu.getXzse86HotWordList(top);
-
+            QuestionFromZhihu zhihu = new QuestionFromZhihu(top);
             List<QuestionResultDto> zhihuQuestions = zhihu.getQuestion();
             StringBuilder zhihuStringBuilder = new StringBuilder();
             zhihuQuestions.forEach(x -> zhihuStringBuilder.append(x.getLink() + "\r\n"));
