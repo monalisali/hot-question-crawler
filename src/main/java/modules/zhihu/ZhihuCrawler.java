@@ -53,6 +53,16 @@ public class ZhihuCrawler {
         System.out.println("一共有" + hotWords.size() + "个热词:");
         System.out.println(hotWords.toString());
 
+        System.out.println("**************************通过百度，爬取知乎问题  开始********************************");
+        QuestionFromBaidu baidu = new QuestionFromBaidu(hotWords, true);
+        List<QuestionResultDto> baiduQuestion = baidu.getQuestion();
+        StringBuilder printStringBuilder = new StringBuilder();
+        baiduQuestion.forEach(x -> printStringBuilder.append(x.getLink() + "\r\n"));
+        System.out.println("百度，爬取问题链接，共有" + baiduQuestion.size() + "个：");
+        System.out.println(printStringBuilder.toString());
+        System.out.println("**************************通过百度，爬取知乎问题  完成********************************");
+        System.out.println("\r\n");
+
         System.out.println("\r\n");
         System.out.println("**************************通过知乎，爬取知乎问题  开始********************************");
         List<XZSE86Dto> zhihuHotwords = FileHelper.ReadZhiHuHotWords();
@@ -65,17 +75,6 @@ public class ZhihuCrawler {
         System.out.println(zhihuStringBuilder.toString());
         System.out.println();
         System.out.println("**************************通过知乎，爬取知乎问题  完成********************************");
-        System.out.println("\r\n");
-
-
-        System.out.println("**************************通过百度，爬取知乎问题  开始********************************");
-        QuestionFromBaidu baidu = new QuestionFromBaidu(hotWords, true);
-        List<QuestionResultDto> baiduQuestion = baidu.getQuestion();
-        StringBuilder printStringBuilder = new StringBuilder();
-        baiduQuestion.forEach(x -> printStringBuilder.append(x.getLink() + "\r\n"));
-        System.out.println("百度，爬取问题链接，共有" + baiduQuestion.size() + "个：");
-        System.out.println(printStringBuilder.toString());
-        System.out.println("**************************通过百度，爬取知乎问题  完成********************************");
         System.out.println("\r\n");
 
 

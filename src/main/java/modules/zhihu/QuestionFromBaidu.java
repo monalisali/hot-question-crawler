@@ -59,7 +59,7 @@ public class QuestionFromBaidu implements IQuestion {
                 pagedHtmlList.addAll(sendHttpGetRequest(q));
                 System.out.println("第" + (count++) + "个热词完成：" + q);
                 try {
-                    Thread.currentThread().sleep(20000);
+                    Thread.currentThread().sleep(15000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
