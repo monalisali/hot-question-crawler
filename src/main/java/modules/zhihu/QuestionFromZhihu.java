@@ -1,10 +1,16 @@
 package modules.zhihu;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.TypeReference;
+import dao.Dao;
 import dto.*;
+import entity.HotWord;
+import entity.TopCategory;
+import entity.XZSE86;
 import org.apache.commons.codec.Charsets;
 import org.tinylog.Logger;
 import utils.ConstantsHelper;
+import utils.DatabaseHelp;
 import utils.Helper;
 import utils.NetworkConnect;
 import javax.net.ssl.HttpsURLConnection;
@@ -23,6 +29,7 @@ import java.util.stream.Collectors;
 public class QuestionFromZhihu implements IQuestion {
     private Properties properties = Helper.GetAppProperties();
     private Properties changeProperties = Helper.getAppPropertiesByName("change.properties");
+    private static Dao dao = new Dao(DatabaseHelp.getSqlSessionFactory());
     private ZhihuLoginDto zhihuLoginDto = new ZhihuLoginDto();
     private List<XZSE86Dto> hotWordList;
 
@@ -114,7 +121,6 @@ public class QuestionFromZhihu implements IQuestion {
         return stringBuilder.toString();
     }
 
-
     private List<ZhihuResponseQuestionDto> getQuestionResult(ZhihuResponseDto resp){
         List<ZhihuResponseQuestionDto> result = new ArrayList<>();
         List<ZhihuResponseDataDto> datas = resp.getData();
@@ -159,6 +165,16 @@ public class QuestionFromZhihu implements IQuestion {
             e.printStackTrace();
         }
         return responseDto;
+    }
+
+    public List<XZSE86Dto> getXzse86HotWordList(TopCategory topCategory){
+        List<XZSE86Dto> result = new ArrayList<>();
+        XZSE86 xzse86 = dao.selectXzse86ByTopCategoryId(topCategory.getId());
+        if(xzse86 != null){
+            String jsonLine = xzse86.getXZSE86JSON().substring(1, xzse86.getXZSE86JSON().length() - 1).replace("\\\"", "\"");
+            result = JSON.parseObject(jsonLine, new TypeReference<List<XZSE86Dto>>() {});
+        }
+        return result;
     }
 
     /*

@@ -48,6 +48,12 @@
         where hotWordId = #{hotWordId}
     </select>
 
+<!--    XZSE86-->
+    <select id="selectXzse86ByTopCategoryId" parameterType="String" resultMap="Xzse86ResultMap">
+        select id,topCategoryId,xZSE86JSON from dbo.XZSE86
+        where topCategoryID = #{topCategoryID}
+    </select>
+
     <resultMap id="HotWordResultMap" type="entity.HotWord">
         <result property="id" column="id"/>
         <result property="topCategoryID" column="topCategoryID"/>
@@ -69,6 +75,12 @@
        <result property="name" column="name"/>
        <result property="createTime" column="createTime" />
 
+    </resultMap>
+    
+    <resultMap id="Xzse86ResultMap" type="XZSE86">
+        <result property="id" column="id"/>
+        <result property="topCategoryId" column="topCategoryId"/>
+        <result property="XZSE86JSON" column="XZSE86JSON"/>
     </resultMap>
 
 </mapper>

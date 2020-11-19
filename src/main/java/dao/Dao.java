@@ -3,6 +3,7 @@ package dao;
 import entity.HotWord;
 import entity.Question;
 import entity.TopCategory;
+import entity.XZSE86;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
@@ -62,6 +63,15 @@ public class Dao {
             Map<String, Object> map = new HashMap<>();
             map.put("hotWordId", hotWordId);
             return session.selectList("com.hcsp.Mapper.selectQuestionsByHotWordId",map);
+        }
+    }
+
+    //Xzse86
+    public XZSE86 selectXzse86ByTopCategoryId (String topCategoryID){
+        try(SqlSession session = sqlSessionFactory.openSession(true)){
+            Map<String,Object> map = new HashMap<>();
+            map.put("topCategoryID",topCategoryID);
+            return session.selectOne("com.hcsp.Mapper.selectXzse86ByTopCategoryId",map);
         }
     }
 }
