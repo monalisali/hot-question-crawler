@@ -6,6 +6,7 @@ public class HotWord {
     private String id;
     private String topCategoryID;
     private String Name;
+    private Boolean isDone;
 
     public String getId() {
         return id;
@@ -29,5 +30,13 @@ public class HotWord {
 
     public void setName(String name) {
         Name = name;
+    }
+
+    public Boolean getDone() {
+        return isDone;
+    }
+
+    public void setDone(Boolean done) {
+        isDone = done;
     }
 }

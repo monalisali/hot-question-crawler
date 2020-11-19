@@ -10,8 +10,6 @@
         where isActive = 1
     </select>
 
-
-
     <select id="selectHotWordsByTopCategoryId" parameterType="String" resultMap="HotWordResultMap">
         select id,topCategoryID,name
         from dbo.[HotWord]
@@ -19,11 +17,26 @@
 
     </select>
 
+    <select id="selectHotWordByName" parameterType="String" resultMap="HotWordResultMap">
+        select id,topCategoryID,[name],isDone
+        from dbo.[HotWord]
+        where [name] = #{name}
+    </select>
+
+    <update id="updateHotWord" parameterType="HotWord">
+        update dbo.[HotWord]
+        <set>
+            <if test="isDone != null">isDone = #{isDone}</if>
+        </set>
+        where id = #{id}
+    </update>
+
 
     <resultMap id="HotWordResultMap" type="entity.HotWord">
         <result property="id" column="id"/>
         <result property="topCategoryID" column="topCategoryID"/>
         <result property="name" column="name"/>
+        <result property="isDone" column="isDone"/>
     </resultMap>
 
     <resultMap id="TopCategoryMap" type="entity.TopCategory">

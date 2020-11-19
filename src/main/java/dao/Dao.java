@@ -29,4 +29,18 @@ public class Dao {
             return session.selectList("com.hcsp.Mapper.selectHotWordsByTopCategoryId",map);
         }
     }
+
+    public HotWord selectHotWordByName(String name){
+        try (SqlSession session = sqlSessionFactory.openSession()) {
+            Map<String, Object> map = new HashMap<>();
+            map.put("name", name);
+            return session.selectOne("com.hcsp.Mapper.selectHotWordByName", map);
+        }
+    }
+
+    public void updateHotWord(HotWord hotWord){
+        try(SqlSession session = sqlSessionFactory.openSession(true)){
+            session.update("com.hcsp.Mapper.updateHotWord",hotWord);
+        }
+    }
 }
