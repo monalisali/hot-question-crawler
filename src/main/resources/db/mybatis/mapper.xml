@@ -3,12 +3,14 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hcsp.Mapper">
-
+<!--    TopCategory-->
     <select id="selectAllActiveTopCategories" resultMap="TopCategoryMap">
         select id,name,isActive
         from dbo.TopCategory
         where isActive = 1
     </select>
+
+<!--    HotWord-->
 
     <select id="selectHotWordsByTopCategoryId" parameterType="String" resultMap="HotWordResultMap">
         select id,topCategoryID,name
@@ -31,6 +33,20 @@
         where id = #{id}
     </update>
 
+<!--    Question-->
+    <insert id="insertQuestions" parameterType="map">
+        insert into dbo.[Question] (id,hotWordId,url,source,[name],[createTime])
+        values
+        <foreach collection="questions" item="question" separator=",">
+            (#{question.id},#{question.hotWordId},#{question.url},#{question.source},#{question.name},#{question.createTime})
+        </foreach>
+    </insert>
+
+    <select id="selectQuestionsByHotWordId" parameterType="String" resultMap="QuestionResultMap">
+        select id,hotWordId,url,source,[name],[createTime]
+        from dbo.[Question]
+        where hotWordId = #{hotWordId}
+    </select>
 
     <resultMap id="HotWordResultMap" type="entity.HotWord">
         <result property="id" column="id"/>
@@ -43,6 +59,16 @@
         <result property="id" column="id" />
         <result property="name" column="name"/>
         <result property="isActive" column="isActive" />
+    </resultMap>
+
+    <resultMap id="QuestionResultMap" type="Question">
+       <result property="id" column="id"/>
+       <result property="hotWordId" column="hotWordId"/>
+       <result property="url" column="url"/>
+       <result property="source" column="source"/>
+       <result property="name" column="name"/>
+       <result property="createTime" column="createTime" />
+
     </resultMap>
 
 </mapper>

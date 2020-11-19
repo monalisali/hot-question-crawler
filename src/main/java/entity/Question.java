@@ -1,6 +1,7 @@
 package entity;
 
 import java.math.BigInteger;
+import java.sql.Timestamp;
 
 public class Question {
     private String id;
@@ -8,6 +9,7 @@ public class Question {
     private String url;
     private String source;
     private String name;
+    private Timestamp CreateTime;
 
     public String getId() {
         return id;
@@ -47,5 +49,13 @@ public class Question {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Timestamp getCreateTime() {
+        return CreateTime;
+    }
+
+    public void setCreateTime(Timestamp createTime) {
+        CreateTime = createTime;
     }
 }

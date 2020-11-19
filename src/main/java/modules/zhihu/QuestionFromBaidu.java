@@ -4,6 +4,7 @@ import dao.Dao;
 import dto.ConnectDto;
 import dto.QuestionResultDto;
 import entity.HotWord;
+import entity.Question;
 import org.apache.commons.codec.Charsets;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -16,9 +17,8 @@ import utils.NetworkConnect;
 import javax.net.ssl.HttpsURLConnection;
 import java.io.IOException;
 import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Properties;
+import java.sql.Timestamp;
+import java.util.*;
 import java.util.stream.Collectors;
 
 
@@ -58,19 +58,26 @@ public class QuestionFromBaidu implements IQuestion {
         Properties pro = Helper.GetAppProperties();
         if (pro != null) {
             int count = 1;
-            //todo: HotWord表中增加字段：isDone bit （1：获取question完成，0：重新再次获取）
-            //获取完成后，把isDone设置为1；重新获取前，删除原来的question
             for (String q : this.getHotWordList()
             ) {
                 HotWord crtHotWord = dao.selectHotWordByName(q);
-                //isDone = 0 是采取获取Question
+                //isDone = 0 时才获取Question
                 if(crtHotWord.getDone() == null || !crtHotWord.getDone()){
-                    result.addAll(getQuestion(sendHttpGetRequest(q)));
-                    crtHotWord.setDone(true);
-                    dao.updateHotWord(crtHotWord);
+                    List<QuestionResultDto> validResults = new ArrayList<>();
+                    List<QuestionResultDto> crtQuestions = getQuestion(sendHttpGetRequest(q));
+                    List<Question> existedQuestions = dao.selectQuestionsByHotWordId(crtHotWord.getId());
+                    for (QuestionResultDto c:crtQuestions
+                         ) {
+                        Optional<Question> chk = existedQuestions.stream().filter(x->x.getUrl().equals(c.getLink())).findFirst();
+                        if(!chk.isPresent()){
+                            result.add(c);
+                            validResults.add(c);
+                        }
+                    }
+                    dbProcessAfterGetQuestion(crtHotWord,validResults);
                     System.out.println("第" + (count++) + "个热词完成：" + q);
                     try {
-                        Thread.currentThread().sleep(30000);
+                        Thread.currentThread().sleep(20000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -153,10 +160,34 @@ public class QuestionFromBaidu implements IQuestion {
         //解析百度加密过的知乎链接，并赋值给属性
         links.forEach(x -> x.setLink(NetworkConnect.getHttpResponseLocation(x.getDeCodeLink())));
         //只保留链接中有question的链接
-        List<QuestionResultDto> zhiHuQuestions = links.stream().filter(x -> x.getLink().contains("/question/")).collect(Collectors.toList());
+        List<QuestionResultDto> zhiHuQuestions = links.stream()
+                .filter(x -> x.getLink() != null && x.getLink().contains("/question/")).collect(Collectors.toList());
         cleanLink(zhiHuQuestions);
         zhiHuQuestions.forEach(x -> x.getLink().trim());
         return zhiHuQuestions.stream().distinct().collect(Collectors.toList());
+    }
+
+    //此时只能拿到question url，没有名称。名称在最后合并zhihu、baidu所有问题后，再去解析时获取
+    private Question createQuestionObj(HotWord hotWord, QuestionResultDto questionResult){
+        Question question = new Question();
+        question.setId(UUID.randomUUID().toString());
+        question.setHotWordId(hotWord.getId());
+        question.setUrl(questionResult.getLink());
+        question.setSource(ConstantsHelper.Question.QuestionSource_Baidu);
+        question.setCreateTime(new Timestamp(System.currentTimeMillis()));
+        return question;
+    }
+
+    private void dbProcessAfterGetQuestion(HotWord crtHotWord,List<QuestionResultDto> crtQuestions){
+        List<Question> questions = new ArrayList<>();
+        crtHotWord.setDone(true);
+        dao.updateHotWord(crtHotWord);
+
+        if(crtQuestions.size() > 0){
+            crtQuestions.stream().forEach(x-> questions.add(createQuestionObj(crtHotWord,x)));
+            dao.batchInsertQuestions(questions);
+        }
+
     }
 }
 

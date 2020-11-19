@@ -1,6 +1,7 @@
 package dao;
 
 import entity.HotWord;
+import entity.Question;
 import entity.TopCategory;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -16,12 +17,15 @@ public class Dao {
         this.sqlSessionFactory = sqlSessionFactory;
     }
 
+    //TopCategory
+
     public List<TopCategory> selectAllActiveTopCategories(){
         try (SqlSession session = sqlSessionFactory.openSession()) {
             return session.selectList("com.hcsp.Mapper.selectAllActiveTopCategories");
         }
     }
 
+    //HotWord
     public List<HotWord> selectHotWordsByTopCategoryId (String topCategoryId){
         try (SqlSession session = sqlSessionFactory.openSession()) {
             Map<String, Object> map = new HashMap<>();
@@ -41,6 +45,23 @@ public class Dao {
     public void updateHotWord(HotWord hotWord){
         try(SqlSession session = sqlSessionFactory.openSession(true)){
             session.update("com.hcsp.Mapper.updateHotWord",hotWord);
+        }
+    }
+
+    //Question
+    public void batchInsertQuestions(List<Question> questions){
+        try(SqlSession session = sqlSessionFactory.openSession(true)){
+            Map<String, Object> map = new HashMap<>();
+            map.put("questions", questions);
+            session.insert("com.hcsp.Mapper.insertQuestions",map);
+        }
+    }
+
+    public List<Question> selectQuestionsByHotWordId (String hotWordId){
+        try(SqlSession session = sqlSessionFactory.openSession(true)){
+            Map<String, Object> map = new HashMap<>();
+            map.put("hotWordId", hotWordId);
+            return session.selectList("com.hcsp.Mapper.selectQuestionsByHotWordId",map);
         }
     }
 }

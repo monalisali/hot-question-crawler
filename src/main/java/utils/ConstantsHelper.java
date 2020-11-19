@@ -3,6 +3,11 @@ package utils;
 public class ConstantsHelper {
     public static final String CAETGORYNAME = "茶具";
 
+    public class Question{
+        public static final String QuestionSource_Zhihu = "zhihu";
+        public static final String QuestionSource_Baidu = "baidu";
+    }
+
     public class PageHelper{
         public static  final int MAXPAGENUM = 1;
         public static final int PAGESIZE = 10;

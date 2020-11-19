@@ -74,7 +74,7 @@ public class ZhihuCrawler {
             System.out.println("**************************通过知乎，爬取知乎问题  完成********************************");
             System.out.println("\r\n");
 
-
+            //todo:从数据库获取所有的question，解析完成后更新question name
             System.out.println("**************************解析所有的知乎问题，开始********************************");
             QuestionParse parse = createQuestionParseObj(baiduQuestion, zhihuQuestions);
             System.out.println("去重后，有待解析问题：" + parse.getQuestions().size() + "个");
