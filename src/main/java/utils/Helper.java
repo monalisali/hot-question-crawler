@@ -1,6 +1,8 @@
 package utils;
 
 import dto.ConnectDto;
+import dto.QuestionResultDto;
+import entity.Question;
 import modules.zhihu.ZhihuCrawler;
 import sun.misc.BASE64Decoder;
 
@@ -19,7 +21,7 @@ public class Helper {
             pro = new Properties();
             String filePath = "./src/main/resources/app.properties";
             File file = new File(filePath);
-            if(!file.exists()){
+            if (!file.exists()) {
                 filePath = "./classes/app.properties";
             }
             FileInputStream in = new FileInputStream(filePath);
@@ -35,9 +37,9 @@ public class Helper {
         Properties pro = null;
         try {
             pro = new Properties();
-            String filePath = "./src/main/resources/"  + propertyFileName;
+            String filePath = "./src/main/resources/" + propertyFileName;
             File file = new File(filePath);
-            if(!file.exists()){
+            if (!file.exists()) {
                 filePath = "./classes/" + propertyFileName;
             }
 
@@ -55,7 +57,7 @@ public class Helper {
 
         if (connection != null) {
             try {
-                BufferedReader rd = new BufferedReader(new InputStreamReader(connection.getInputStream(),"UTF-8"));
+                BufferedReader rd = new BufferedReader(new InputStreamReader(connection.getInputStream(), "UTF-8"));
                 String line;
                 while ((line = rd.readLine()) != null) {
                     sbResp.append(line);
@@ -98,23 +100,23 @@ public class Helper {
 
     }
 
-    public static String getProjectRootPath(){
+    public static String getProjectRootPath() {
         String projectPath = ZhihuCrawler.class.getResource("/").getPath();
         return projectPath.substring(0, projectPath.indexOf("target")).substring(1);
     }
 
-    public static String getProjectOutputPath(){
+    public static String getProjectOutputPath() {
         Properties properties = GetAppProperties();
         return getProjectRootPath() + properties.getProperty("questionOutputPath");
     }
 
-    public static String setFileNameDateFormat(){
+    public static String setFileNameDateFormat() {
         LocalDateTime dateTime = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy_HHmmss");
         return dateTime.format(formatter);
     }
 
-    public static boolean checkNetworkConnection(){
+    public static boolean checkNetworkConnection() {
         boolean cnnTest = false;
         String testUrl = "";
         //不用翻墙也可以访问：https://readhub.cn/topic/5bMmlAm75lD
@@ -139,7 +141,13 @@ public class Helper {
         return cnnTest;
     }
 
-    public static String replacePlusFromUrlEncode(String str){
-        return str.replace("+","%20");
+    public static String replacePlusFromUrlEncode(String str) {
+        return str.replace("+", "%20");
+    }
+
+    public static QuestionResultDto convertQuestionToQuestionResultDto(Question question){
+        QuestionResultDto resultDto = new QuestionResultDto();
+        resultDto.setLink(question.getUrl());
+        return resultDto;
     }
 }

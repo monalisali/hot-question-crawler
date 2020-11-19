@@ -75,6 +75,7 @@ public class QuestionFromBaidu implements IQuestion {
                         }
                     }
                     dbProcessAfterGetQuestion(crtHotWord,validResults);
+                    existedQuestions.forEach(x->result.add(Helper.convertQuestionToQuestionResultDto(x)));
                     System.out.println("第" + (count++) + "个热词完成：" + q);
                     try {
                         Thread.currentThread().sleep(20000);
@@ -82,6 +83,8 @@ public class QuestionFromBaidu implements IQuestion {
                         e.printStackTrace();
                     }
                 }else{
+                    List<Question> getQuestions = dao.selectQuestionsByHotWordId(crtHotWord.getId());
+                    getQuestions.forEach(x->result.add(Helper.convertQuestionToQuestionResultDto(x)));
                     System.out.println("Question已经获取过了，第" + (count++) + "个热词完成：" + q);
                 }
             }
