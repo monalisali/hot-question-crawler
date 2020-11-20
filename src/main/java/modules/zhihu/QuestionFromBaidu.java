@@ -74,7 +74,8 @@ public class QuestionFromBaidu implements IQuestion {
                             validResults.add(c);
                         }
                     }
-                    List<QuestionResultDto> distinctValid = validResults.stream().distinct().collect(Collectors.toList());
+                    List<QuestionResultDto> distinctValid = validResults.stream().distinct()
+                            .filter(x-> x.getLink().contains("https")).collect(Collectors.toList());
                     Helper.dbProcessAfterGetQuestion(crtHotWord,distinctValid,ConstantsHelper.Question.QuestionSource_Baidu);
                     System.out.println("第" + (count++) + "个热词完成：" + q);
                     if(count <= this.getHotWordList().size()){

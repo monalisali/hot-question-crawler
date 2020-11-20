@@ -12,6 +12,7 @@
         <typeAlias alias="QuestionContent" type="entity.QuestionContent" />
         <typeAlias alias="TopCategory" type="entity.TopCategory" />
         <typeAlias alias="XZSE86" type="entity.XZSE86"/>
+        <typeAlias alias="CombinedQuestion" type="entity.CombinedQuestion"/>
     </typeAliases>
     <environments default="development">
         <environment id="development">

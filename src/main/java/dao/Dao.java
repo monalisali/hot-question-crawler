@@ -1,9 +1,6 @@
 package dao;
 
-import entity.HotWord;
-import entity.Question;
-import entity.TopCategory;
-import entity.XZSE86;
+import entity.*;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
@@ -66,12 +63,43 @@ public class Dao {
         }
     }
 
+    public List<Question> selectQuestionByTopCategory(String topCategoryId){
+        try(SqlSession session = sqlSessionFactory.openSession(true)){
+            Map<String,Object> map = new HashMap<>();
+            map.put("topCategoryId",topCategoryId);
+            return session.selectList("com.hcsp.Mapper.selectQuestionByTopCategory",map);
+        }
+    }
+
     //Xzse86
     public XZSE86 selectXzse86ByTopCategoryId (String topCategoryID){
         try(SqlSession session = sqlSessionFactory.openSession(true)){
             Map<String,Object> map = new HashMap<>();
             map.put("topCategoryID",topCategoryID);
             return session.selectOne("com.hcsp.Mapper.selectXzse86ByTopCategoryId",map);
+        }
+    }
+
+    //CombinedQuestion
+    public List<CombinedQuestion> selectCombinedQuestion (String topCategoryId){
+        try(SqlSession session = sqlSessionFactory.openSession(true)){
+            Map<String,Object> map = new HashMap<>();
+            map.put("topCategoryId",topCategoryId);
+            map.put("hotWordId",null);
+            return session.selectList("com.hcsp.Mapper.selectCombinedQuestion",map);
+        }
+    }
+
+    public void insertCombinedQuestion(CombinedQuestion cq){
+        try(SqlSession session = sqlSessionFactory.openSession(true)){
+            Map<String,Object> map = new HashMap<>();
+            map.put("id",cq.getId());
+            map.put("topCategoryId",cq.getTopCategoryID());
+            map.put("hotWordId",cq.getHotWordId());
+            map.put("url",cq.getUrl());
+            map.put("name",cq.getName());
+            map.put("createTime",cq.getCreateTime());
+            session.insert("com.hcsp.Mapper.insertCombinedQuestion",map);
         }
     }
 }

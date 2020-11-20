@@ -87,7 +87,8 @@ public class QuestionFromZhihu implements IQuestion {
                             validResults.add(q);
                         }
                     }
-                    List<QuestionResultDto> distinctValid = validResults.stream().distinct().collect(Collectors.toList());
+                    List<QuestionResultDto> distinctValid = validResults.stream().distinct()
+                            .filter(x-> x.getLink().contains("https")).collect(Collectors.toList());
                     Helper.dbProcessAfterGetQuestion(crtHotWord, distinctValid, ConstantsHelper.Question.QuestionSource_Zhihu);
                     System.out.println("第" + (count++) + "个热词完成：" + h.getHotword());
                 } else {

@@ -1,8 +1,12 @@
 package modules.zhihu;
 
 
+import dao.Dao;
 import dto.QuestionParseDto;
 import dto.QuestionResultDto;
+import entity.CombinedQuestion;
+import entity.Question;
+import entity.TopCategory;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
@@ -11,25 +15,32 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import utils.DatabaseHelp;
 import utils.Helper;
 import utils.NetworkConnect;
 import javax.net.ssl.HttpsURLConnection;
 import java.io.File;
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Properties;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class QuestionParse {
     private static Properties properties = Helper.GetAppProperties();
+    private static Dao dao = new Dao(DatabaseHelp.getSqlSessionFactory());
     private List<QuestionResultDto> biaduQuestion;
     private List<QuestionResultDto> zhihuQuestion;
     private List<QuestionResultDto> questions;
+    private TopCategory topCategory;
+
+    public QuestionParse(TopCategory topCategory){
+        this.topCategory = topCategory;
+    }
 
     public List<QuestionParseDto> getQuestionContent() {
+        insertCombinedQuestion();
         List<QuestionParseDto> results = new ArrayList<>();
         List<String> allQuestionsUrl = this.getQuestions().stream().map(x -> x.getLink()).collect(Collectors.toList());
         int count = 1;
@@ -44,7 +55,7 @@ public class QuestionParse {
                 results.add(parseDto);
                 System.out.println("第"+ (count++) +"个解析完成：" + parseDto.getQuestionUrl());
                 try {
-                    Thread.currentThread().sleep(30000);
+                    Thread.sleep(30000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -142,6 +153,26 @@ public class QuestionParse {
         return resultDto;
     }
 
+    private void insertCombinedQuestion(){
+        List<CombinedQuestion> existedCombinedQuestions = dao.selectCombinedQuestion(this.getTopCategory().getId());
+        List<Question> currectQuestions = dao.selectQuestionByTopCategory(this.getTopCategory().getId());
+        for (Question q: currectQuestions
+             ) {
+            Optional<CombinedQuestion> chk = existedCombinedQuestions.stream()
+                    .filter(x->x.getHotWordId().equals(q.getHotWordId()) && x.getUrl().equals(q.getUrl()))
+                    .findFirst();
+            if(!chk.isPresent()){
+                CombinedQuestion cq = new CombinedQuestion();
+                cq.setId(UUID.randomUUID().toString());
+                cq.setTopCategoryID(this.getTopCategory().getId());
+                cq.setHotWordId(q.getHotWordId());
+                cq.setUrl(q.getUrl());
+                cq.setCreateTime(new Timestamp(System.currentTimeMillis()));
+                dao.insertCombinedQuestion(cq);
+            }
+        }
+    }
+
     public List<QuestionResultDto> getBiaduQuestion() {
         return biaduQuestion;
     }
@@ -166,5 +197,11 @@ public class QuestionParse {
         this.questions = questions;
     }
 
+    public TopCategory getTopCategory() {
+        return topCategory;
+    }
 
+    public void setTopCategory(TopCategory topCategory) {
+        this.topCategory = topCategory;
+    }
 }

@@ -3,14 +3,14 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hcsp.Mapper">
-<!--    TopCategory-->
+    <!--    TopCategory-->
     <select id="selectAllActiveTopCategories" resultMap="TopCategoryMap">
         select id,name,isActive
         from dbo.TopCategory
         where isActive = 1
     </select>
 
-<!--    HotWord-->
+    <!--    HotWord-->
 
     <select id="selectHotWordsByTopCategoryId" parameterType="String" resultMap="HotWordResultMap">
         select id,topCategoryID,name,isDoneBaidu,isDoneZhihu
@@ -34,7 +34,7 @@
         where id = #{id}
     </update>
 
-<!--    Question-->
+    <!--    Question-->
     <insert id="insertQuestions" parameterType="map">
         insert into dbo.[Question] (id,hotWordId,url,source,[name],[createTime])
         values
@@ -49,11 +49,38 @@
         where hotWordId = #{hotWordId}
     </select>
 
-<!--    XZSE86-->
+    <select id="selectQuestionByTopCategory" parameterType="String" resultMap="QuestionResultMap">
+       SELECT q.HotWordID,q.URL FROM dbo.TopCategory t
+       INNER JOIN dbo.HotWord h ON t.ID = h.TopCategoryID
+       INNER JOIN dbo.Question q ON h.ID = q.HotWordID
+       WHERE t.ID = #{topCategoryId}
+       GROUP BY q.HotWordID,q.URL
+    </select>
+
+    <!--    XZSE86-->
     <select id="selectXzse86ByTopCategoryId" parameterType="String" resultMap="Xzse86ResultMap">
         select id,topCategoryId,xZSE86JSON from dbo.XZSE86
         where topCategoryID = #{topCategoryID}
     </select>
+
+    <!--    CombinedQuestion-->
+    <select id="selectCombinedQuestion" parameterType="map" resultType="CombinedQuestion">
+        select id,topCategoryId, hotWordId,name,url,createTime
+        from dbo.CombinedQuestion
+        <where>
+            <if test="topCategoryId != null">topCategoryId = #{topCategoryId}</if>
+            <if test="hotWordId != null">hotWordId = #{hotWordId}</if>
+        </where>
+
+    </select>
+
+
+    <insert id="insertCombinedQuestion" parameterType="map">
+        insert into dbo.[CombinedQuestion] (id,topCategoryId,hotWordId,url,[name],[createTime])
+        values
+        (#{id}, #{topCategoryId}, #{hotWordId},#{url},#{name},#{createTime})
+
+    </insert>
 
     <resultMap id="HotWordResultMap" type="entity.HotWord">
         <result property="id" column="id"/>
@@ -64,21 +91,21 @@
     </resultMap>
 
     <resultMap id="TopCategoryMap" type="entity.TopCategory">
-        <result property="id" column="id" />
+        <result property="id" column="id"/>
         <result property="name" column="name"/>
-        <result property="isActive" column="isActive" />
+        <result property="isActive" column="isActive"/>
     </resultMap>
 
     <resultMap id="QuestionResultMap" type="Question">
-       <result property="id" column="id"/>
-       <result property="hotWordId" column="hotWordId"/>
-       <result property="url" column="url"/>
-       <result property="source" column="source"/>
-       <result property="name" column="name"/>
-       <result property="createTime" column="createTime" />
+        <result property="id" column="id"/>
+        <result property="hotWordId" column="hotWordId"/>
+        <result property="url" column="url"/>
+        <result property="source" column="source"/>
+        <result property="name" column="name"/>
+        <result property="createTime" column="createTime"/>
 
     </resultMap>
-    
+
     <resultMap id="Xzse86ResultMap" type="XZSE86">
         <result property="id" column="id"/>
         <result property="topCategoryId" column="topCategoryId"/>

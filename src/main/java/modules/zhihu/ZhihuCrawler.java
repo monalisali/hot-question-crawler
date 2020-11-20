@@ -5,10 +5,11 @@ import dto.ConnectDto;
 import dto.QuestionParseDto;
 import dto.QuestionResultDto;
 import dto.XZSE86Dto;
+import entity.CombinedQuestion;
 import entity.HotWord;
+import entity.Question;
 import entity.TopCategory;
 import org.apache.commons.codec.Charsets;
-import org.apache.logging.log4j.core.tools.picocli.CommandLine;
 import utils.*;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -26,7 +27,6 @@ public class ZhihuCrawler {
     private static Properties properties = Helper.GetAppProperties();
     private static Dao dao = new Dao(DatabaseHelp.getSqlSessionFactory());
     public static void main(String[] args) {
-
         System.out.println("网络测试开始");
         System.out.println("为了避免被百度屏蔽IP，需要使用代理，请确认做了已下操作：");
         System.out.println("1. 翻墙软件设置为了「全局模式」");
@@ -74,11 +74,9 @@ public class ZhihuCrawler {
             System.out.println("\r\n");
 
 
-
-
             //todo:从数据库获取所有的question，解析完成后更新question name
             System.out.println("**************************解析所有的知乎问题，开始********************************");
-            QuestionParse parse = createQuestionParseObj(baiduQuestion, zhihuQuestions);
+            QuestionParse parse = createQuestionParseObj(baiduQuestion, zhihuQuestions,top);
             System.out.println("去重后，有待解析问题：" + parse.getQuestions().size() + "个");
             List<QuestionParseDto> questionContents = parse.getQuestionContent();
             System.out.println("一共完成：" + questionContents.size() + "个");
@@ -92,8 +90,9 @@ public class ZhihuCrawler {
         }
     }
 
-    private static QuestionParse createQuestionParseObj(List<QuestionResultDto> baiduQuestion, List<QuestionResultDto> zhihuQuestions) {
-        QuestionParse parse = new QuestionParse();
+    private static QuestionParse createQuestionParseObj(List<QuestionResultDto> baiduQuestion
+            , List<QuestionResultDto> zhihuQuestions,TopCategory topCategory) {
+        QuestionParse parse = new QuestionParse(topCategory);
         parse.setBiaduQuestion(baiduQuestion);
         parse.setZhihuQuestion(zhihuQuestions);
         List<QuestionResultDto> combines = new ArrayList<>();
