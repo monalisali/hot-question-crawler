@@ -79,7 +79,38 @@
         insert into dbo.[CombinedQuestion] (id,topCategoryId,hotWordId,url,[name],[createTime])
         values
         (#{id}, #{topCategoryId}, #{hotWordId},#{url},#{name},#{createTime})
+    </insert>
 
+    <update id="updateCombinedQuestions" parameterType="map">
+        <foreach collection="combinedQuestions" item = "cq">
+            update dbo.[CombinedQuestion]
+            <set>
+                topCategoryId = #{cq.topCategoryId},
+                hotWordId = #{cq.hotWordId},
+                url = #{cq.url},
+                name = #{cq.name},
+                createTime = #{cq.createTime}
+            </set>
+            where id = #{cq.id}
+        </foreach>
+    </update>
+
+
+    <update id="updateCombinedQuestion" parameterType="CombinedQuestion">
+        update dbo.[CombinedQuestion]
+        <set>
+            <if test="name != null">name=#{name}</if>
+        </set>
+        where id = #{id}
+    </update>
+
+<!--    QuestionContent-->
+    <insert id="insertQuestionContents" parameterType="map">
+        insert into dbo.QuestionContent ( id, combinedQuestionId, followerCount, browserCount, createTime)
+        values
+        <foreach collection="questionContents" item="qc" separator=",">
+            (#{qc.id},#{qc.combinedQuestionId},#{qc.followerCount},#{qc.browserCount},#{qc.createTime})
+        </foreach>
     </insert>
 
     <resultMap id="HotWordResultMap" type="entity.HotWord">

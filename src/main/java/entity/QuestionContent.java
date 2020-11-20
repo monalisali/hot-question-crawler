@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 
 public class QuestionContent {
     private String id;
-    private String questionId;
+    private String combinedQuestionId;
     private BigInteger followerCount;
     private BigInteger browserCount;
     private Timestamp createTime;
@@ -18,12 +18,12 @@ public class QuestionContent {
         this.id = id;
     }
 
-    public String getQuestionId() {
-        return questionId;
+    public String getCombinedQuestionId() {
+        return combinedQuestionId;
     }
 
-    public void setQuestionId(String questionId) {
-        this.questionId = questionId;
+    public void setCombinedQuestionId(String combinedQuestionId) {
+        this.combinedQuestionId = combinedQuestionId;
     }
 
     public BigInteger getFollowerCount() {

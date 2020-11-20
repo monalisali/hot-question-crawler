@@ -3,9 +3,9 @@ package modules.zhihu;
 
 import dao.Dao;
 import dto.QuestionParseDto;
-import dto.QuestionResultDto;
 import entity.CombinedQuestion;
 import entity.Question;
+import entity.QuestionContent;
 import entity.TopCategory;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
@@ -21,6 +21,7 @@ import utils.NetworkConnect;
 import javax.net.ssl.HttpsURLConnection;
 import java.io.File;
 import java.io.IOException;
+import java.math.BigInteger;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -30,9 +31,7 @@ import java.util.stream.Collectors;
 public class QuestionParse {
     private static Properties properties = Helper.GetAppProperties();
     private static Dao dao = new Dao(DatabaseHelp.getSqlSessionFactory());
-    private List<QuestionResultDto> biaduQuestion;
-    private List<QuestionResultDto> zhihuQuestion;
-    private List<QuestionResultDto> questions;
+    private List<CombinedQuestion> questions;
     private TopCategory topCategory;
 
     public QuestionParse(TopCategory topCategory){
@@ -40,27 +39,35 @@ public class QuestionParse {
     }
 
     public List<QuestionParseDto> getQuestionContent() {
-        insertCombinedQuestion();
+        prepareBeforeParse();
         List<QuestionParseDto> results = new ArrayList<>();
-        List<String> allQuestionsUrl = this.getQuestions().stream().map(x -> x.getLink()).collect(Collectors.toList());
+        List<QuestionContent> questionContents = new ArrayList<>();
         int count = 1;
-        for (String url : allQuestionsUrl
+        System.out.println("去重后，有待解析问题：" + this.getQuestions().size() + "个");
+
+        for (CombinedQuestion cq : this.getQuestions()
         ) {
-            HttpsURLConnection conn = NetworkConnect.sendHttpGet(url);
+            HttpsURLConnection conn = NetworkConnect.sendHttpGet(cq.getUrl());
             String response = Helper.getHttpsURLConnectionResponse(conn);
             if (!response.isEmpty()) {
                 Document document = Jsoup.parse(response);
                 QuestionParseDto parseDto = parseHtml(document);
-                parseDto.setQuestionUrl(url);
+                parseDto.setQuestionUrl(cq.getUrl());
+                cq.setName(parseDto.getTitle());
                 results.add(parseDto);
+                questionContents.add(createQuestionContentObj(cq,parseDto));
                 System.out.println("第"+ (count++) +"个解析完成：" + parseDto.getQuestionUrl());
-                try {
-                    Thread.sleep(30000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+                if(count <= this.getQuestions().size()){
+                    try {
+                        Thread.sleep(30000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         }
+        dao.updateCombinedQuestions(this.getQuestions());
+        dao.batchInsertQuestionContents(questionContents);
         return results;
     }
 
@@ -164,7 +171,7 @@ public class QuestionParse {
             if(!chk.isPresent()){
                 CombinedQuestion cq = new CombinedQuestion();
                 cq.setId(UUID.randomUUID().toString());
-                cq.setTopCategoryID(this.getTopCategory().getId());
+                cq.setTopCategoryId(this.getTopCategory().getId());
                 cq.setHotWordId(q.getHotWordId());
                 cq.setUrl(q.getUrl());
                 cq.setCreateTime(new Timestamp(System.currentTimeMillis()));
@@ -173,27 +180,26 @@ public class QuestionParse {
         }
     }
 
-    public List<QuestionResultDto> getBiaduQuestion() {
-        return biaduQuestion;
+    private void prepareBeforeParse(){
+        insertCombinedQuestion();
+        this.setQuestions(dao.selectCombinedQuestion(this.getTopCategory().getId()));
     }
 
-    public void setBiaduQuestion(List<QuestionResultDto> biaduQuestion) {
-        this.biaduQuestion = biaduQuestion;
+    private QuestionContent createQuestionContentObj(CombinedQuestion cq,QuestionParseDto dto){
+        QuestionContent questionContent = new QuestionContent();
+        questionContent.setId(UUID.randomUUID().toString());
+        questionContent.setCombinedQuestionId(cq.getId());
+        questionContent.setBrowserCount(BigInteger.valueOf(dto.getBrowseCount()));
+        questionContent.setFollowerCount(BigInteger.valueOf(dto.getFollowCount()));
+        questionContent.setCreateTime(new Timestamp(System.currentTimeMillis()));
+        return questionContent;
     }
 
-    public List<QuestionResultDto> getZhihuQuestion() {
-        return zhihuQuestion;
-    }
-
-    public void setZhihuQuestion(List<QuestionResultDto> zhihuQuestion) {
-        this.zhihuQuestion = zhihuQuestion;
-    }
-
-    public List<QuestionResultDto> getQuestions() {
+    public List<CombinedQuestion> getQuestions() {
         return questions;
     }
 
-    public void setQuestions(List<QuestionResultDto> questions) {
+    public void setQuestions(List<CombinedQuestion> questions) {
         this.questions = questions;
     }
 

@@ -94,12 +94,35 @@ public class Dao {
         try(SqlSession session = sqlSessionFactory.openSession(true)){
             Map<String,Object> map = new HashMap<>();
             map.put("id",cq.getId());
-            map.put("topCategoryId",cq.getTopCategoryID());
+            map.put("topCategoryId",cq.getTopCategoryId());
             map.put("hotWordId",cq.getHotWordId());
             map.put("url",cq.getUrl());
             map.put("name",cq.getName());
             map.put("createTime",cq.getCreateTime());
             session.insert("com.hcsp.Mapper.insertCombinedQuestion",map);
+        }
+    }
+
+    public void updateCombinedQuestions(List<CombinedQuestion> combinedQuestions){
+        try(SqlSession session = sqlSessionFactory.openSession(true)){
+            Map<String, Object> map = new HashMap<>();
+            map.put("combinedQuestions", combinedQuestions);
+            session.update("com.hcsp.Mapper.updateCombinedQuestions",map);
+        }
+    }
+
+    public void updateCombinedQuestion(CombinedQuestion cq){
+        try(SqlSession session = sqlSessionFactory.openSession(true)){
+            session.update("com.hcsp.Mapper.updateCombinedQuestion",cq);
+        }
+    }
+
+    //QuestionContent
+    public void batchInsertQuestionContents(List<QuestionContent> questionContents) {
+        try(SqlSession session = sqlSessionFactory.openSession(true)){
+            Map<String, Object> map = new HashMap<>();
+            map.put("questionContents", questionContents);
+            session.insert("com.hcsp.Mapper.insertQuestionContents",map);
         }
     }
 }

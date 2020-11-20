@@ -4,7 +4,7 @@ import java.sql.Timestamp;
 
 public class CombinedQuestion {
     private String id;
-    private String topCategoryID;
+    private String topCategoryId;
     private String hotWordId;
     private String url;
     private String name;
@@ -51,11 +51,11 @@ public class CombinedQuestion {
         this.createTime = createTime;
     }
 
-    public String getTopCategoryID() {
-        return topCategoryID;
+    public String getTopCategoryId() {
+        return topCategoryId;
     }
 
-    public void setTopCategoryID(String topCategoryID) {
-        this.topCategoryID = topCategoryID;
+    public void setTopCategoryId(String topCategoryId) {
+        this.topCategoryId = topCategoryId;
     }
 }

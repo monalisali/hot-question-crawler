@@ -1,30 +1,15 @@
 package modules.zhihu;
 
 import dao.Dao;
-import dto.ConnectDto;
 import dto.QuestionParseDto;
 import dto.QuestionResultDto;
-import dto.XZSE86Dto;
-import entity.CombinedQuestion;
 import entity.HotWord;
-import entity.Question;
 import entity.TopCategory;
-import org.apache.commons.codec.Charsets;
 import utils.*;
-
-import javax.net.ssl.HttpsURLConnection;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 import java.util.stream.Collectors;
 
 public class ZhihuCrawler {
-    private static Properties properties = Helper.GetAppProperties();
     private static Dao dao = new Dao(DatabaseHelp.getSqlSessionFactory());
     public static void main(String[] args) {
         System.out.println("网络测试开始");
@@ -46,7 +31,7 @@ public class ZhihuCrawler {
         for (TopCategory top: topCategories
              ) {
             List<HotWord> crtHotWords = dao.selectHotWordsByTopCategoryId(top.getId());
-            List<String> hotWords = crtHotWords.stream().map(x->x.getName()).collect(Collectors.toList());
+            List<String> hotWords = crtHotWords.stream().map(HotWord::getName).collect(Collectors.toList());
             System.out.println("当前操作的品类名称：" + top.getName() + "   共有热词：" + hotWords.size());
             System.out.println(hotWords.toString());
 
@@ -54,7 +39,7 @@ public class ZhihuCrawler {
             QuestionFromZhihu zhihu = new QuestionFromZhihu(top);
             List<QuestionResultDto> zhihuQuestions = zhihu.getQuestion();
             StringBuilder zhihuStringBuilder = new StringBuilder();
-            zhihuQuestions.forEach(x -> zhihuStringBuilder.append(x.getLink() + "\r\n"));
+            zhihuQuestions.forEach(x -> zhihuStringBuilder.append(x.getLink()).append("\r\n"));
 
             System.out.println("知乎，爬取问题链接，共有" + zhihuQuestions.size() + "个：");
             System.out.println(zhihuStringBuilder.toString());
@@ -67,7 +52,7 @@ public class ZhihuCrawler {
             QuestionFromBaidu baidu = new QuestionFromBaidu(hotWords, true);
             List<QuestionResultDto> baiduQuestion = baidu.getQuestion();
             StringBuilder printStringBuilder = new StringBuilder();
-            baiduQuestion.forEach(x -> printStringBuilder.append(x.getLink() + "\r\n"));
+            baiduQuestion.forEach(x -> printStringBuilder.append(x.getLink()).append("\r\n"));
             System.out.println("百度，爬取问题链接，共有" + baiduQuestion.size() + "个：");
             System.out.println(printStringBuilder.toString());
             System.out.println("**************************通过百度，爬取知乎问题  完成********************************");
@@ -76,8 +61,7 @@ public class ZhihuCrawler {
 
             //todo:从数据库获取所有的question，解析完成后更新question name
             System.out.println("**************************解析所有的知乎问题，开始********************************");
-            QuestionParse parse = createQuestionParseObj(baiduQuestion, zhihuQuestions,top);
-            System.out.println("去重后，有待解析问题：" + parse.getQuestions().size() + "个");
+            QuestionParse parse = new QuestionParse(top);
             List<QuestionParseDto> questionContents = parse.getQuestionContent();
             System.out.println("一共完成：" + questionContents.size() + "个");
 
@@ -90,16 +74,16 @@ public class ZhihuCrawler {
         }
     }
 
-    private static QuestionParse createQuestionParseObj(List<QuestionResultDto> baiduQuestion
-            , List<QuestionResultDto> zhihuQuestions,TopCategory topCategory) {
-        QuestionParse parse = new QuestionParse(topCategory);
-        parse.setBiaduQuestion(baiduQuestion);
-        parse.setZhihuQuestion(zhihuQuestions);
-        List<QuestionResultDto> combines = new ArrayList<>();
-        combines.addAll(baiduQuestion);
-        combines.addAll(zhihuQuestions);
-        List<QuestionResultDto> dist = combines.stream().distinct().filter(x->x.getLink().indexOf("https") >= 0).collect(Collectors.toList());
-        parse.setQuestions(dist);
-        return parse;
-    }
+//    private static QuestionParse createQuestionParseObj(List<QuestionResultDto> baiduQuestion
+//            , List<QuestionResultDto> zhihuQuestions,TopCategory topCategory) {
+//        QuestionParse parse = new QuestionParse(topCategory);
+//        parse.setBiaduQuestion(baiduQuestion);
+//        parse.setZhihuQuestion(zhihuQuestions);
+//        List<QuestionResultDto> combines = new ArrayList<>();
+//        combines.addAll(baiduQuestion);
+//        combines.addAll(zhihuQuestions);
+//        List<QuestionResultDto> dist = combines.stream().distinct().filter(x->x.getLink().indexOf("https") >= 0).collect(Collectors.toList());
+//        parse.setQuestions(dist);
+//        return parse;
+//    }
 }
