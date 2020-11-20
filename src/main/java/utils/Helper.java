@@ -1,19 +1,26 @@
 package utils;
 
+import dao.Dao;
 import dto.ConnectDto;
 import dto.QuestionResultDto;
+import entity.HotWord;
 import entity.Question;
 import modules.zhihu.ZhihuCrawler;
 import sun.misc.BASE64Decoder;
 
 import javax.net.ssl.HttpsURLConnection;
 import java.io.*;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
+import java.util.UUID;
 
 public class Helper {
     private static Properties properties = Helper.GetAppProperties();
+    private static Dao dao = new Dao(DatabaseHelp.getSqlSessionFactory());
 
     public static Properties GetAppProperties() {
         Properties pro = null;
@@ -149,5 +156,31 @@ public class Helper {
         QuestionResultDto resultDto = new QuestionResultDto();
         resultDto.setLink(question.getUrl());
         return resultDto;
+    }
+
+    public static void dbProcessAfterGetQuestion(HotWord crtHotWord,List<QuestionResultDto> crtQuestions, String source) {
+        List<Question> questions = new ArrayList<>();
+        if(source.equals(ConstantsHelper.Question.QuestionSource_Baidu)){
+            crtHotWord.setDoneBaidu(true);
+        }else {
+            crtHotWord.setDoneZhihu(true);
+        }
+        dao.updateHotWord(crtHotWord);
+
+        if(crtQuestions.size() > 0){
+            crtQuestions.stream().forEach(x-> questions.add(createQuestionObj(crtHotWord,x,source)));
+            dao.batchInsertQuestions(questions);
+        }
+    }
+
+    //此时只能拿到question url，没有名称。名称在最后合并zhihu、baidu所有问题后，再去解析时获取
+    public static Question createQuestionObj(HotWord hotWord, QuestionResultDto questionResult, String source){
+        Question question = new Question();
+        question.setId(UUID.randomUUID().toString());
+        question.setHotWordId(hotWord.getId());
+        question.setUrl(questionResult.getLink());
+        question.setSource(source);
+        question.setCreateTime(new Timestamp(System.currentTimeMillis()));
+        return question;
     }
 }

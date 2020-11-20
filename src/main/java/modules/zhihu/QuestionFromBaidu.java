@@ -52,9 +52,7 @@ public class QuestionFromBaidu implements IQuestion {
 
     @Override
     public List<QuestionResultDto> getQuestion() {
-        List<QuestionResultDto> pagedHtmlList = new ArrayList<>();
         List<QuestionResultDto> result = new ArrayList<>();
-        List<QuestionResultDto> zhiHuQuestions = new ArrayList<>();
         Properties pro = Helper.GetAppProperties();
         if (pro != null) {
             int count = 1;
@@ -62,30 +60,35 @@ public class QuestionFromBaidu implements IQuestion {
             ) {
                 HotWord crtHotWord = dao.selectHotWordByName(q);
                 //isDone = 0 时才获取Question
-                if(crtHotWord.getDone() == null || !crtHotWord.getDone()){
+                if(crtHotWord.getDoneBaidu() == null || !crtHotWord.getDoneBaidu()){
                     List<QuestionResultDto> validResults = new ArrayList<>();
                     List<QuestionResultDto> crtQuestions = getQuestion(sendHttpGetRequest(q));
                     List<Question> existedQuestions = dao.selectQuestionsByHotWordId(crtHotWord.getId());
                     for (QuestionResultDto c:crtQuestions
                          ) {
-                        Optional<Question> chk = existedQuestions.stream().filter(x->x.getUrl().equals(c.getLink())).findFirst();
+                        Optional<Question> chk = existedQuestions.stream()
+                                .filter(x->x.getUrl().equals(c.getLink()) && x.getSource().equals(ConstantsHelper.Question.QuestionSource_Baidu))
+                                .findFirst();
                         if(!chk.isPresent()){
                             result.add(c);
                             validResults.add(c);
                         }
                     }
-                    dbProcessAfterGetQuestion(crtHotWord,validResults);
-                    existedQuestions.forEach(x->result.add(Helper.convertQuestionToQuestionResultDto(x)));
+                    List<QuestionResultDto> distinctValid = validResults.stream().distinct().collect(Collectors.toList());
+                    Helper.dbProcessAfterGetQuestion(crtHotWord,distinctValid,ConstantsHelper.Question.QuestionSource_Baidu);
                     System.out.println("第" + (count++) + "个热词完成：" + q);
-                    try {
-                        Thread.currentThread().sleep(20000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
+                    if(count <= this.getHotWordList().size()){
+                        try {
+                            Thread.sleep(20000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }else{
                     List<Question> getQuestions = dao.selectQuestionsByHotWordId(crtHotWord.getId());
-                    getQuestions.forEach(x->result.add(Helper.convertQuestionToQuestionResultDto(x)));
-                    System.out.println("Question已经获取过了，第" + (count++) + "个热词完成：" + q);
+                    getQuestions.stream().filter(x->x.getSource().equals(ConstantsHelper.Question.QuestionSource_Baidu))
+                            .forEach(x->result.add(Helper.convertQuestionToQuestionResultDto(x)));
+                    System.out.println("第" + (count++) + "个热词完成：" + q + " 直接从数据库中获取Question");
                 }
             }
         }
@@ -168,29 +171,6 @@ public class QuestionFromBaidu implements IQuestion {
         cleanLink(zhiHuQuestions);
         zhiHuQuestions.forEach(x -> x.getLink().trim());
         return zhiHuQuestions.stream().distinct().collect(Collectors.toList());
-    }
-
-    //此时只能拿到question url，没有名称。名称在最后合并zhihu、baidu所有问题后，再去解析时获取
-    private Question createQuestionObj(HotWord hotWord, QuestionResultDto questionResult){
-        Question question = new Question();
-        question.setId(UUID.randomUUID().toString());
-        question.setHotWordId(hotWord.getId());
-        question.setUrl(questionResult.getLink());
-        question.setSource(ConstantsHelper.Question.QuestionSource_Baidu);
-        question.setCreateTime(new Timestamp(System.currentTimeMillis()));
-        return question;
-    }
-
-    private void dbProcessAfterGetQuestion(HotWord crtHotWord,List<QuestionResultDto> crtQuestions){
-        List<Question> questions = new ArrayList<>();
-        crtHotWord.setDone(true);
-        dao.updateHotWord(crtHotWord);
-
-        if(crtQuestions.size() > 0){
-            crtQuestions.stream().forEach(x-> questions.add(createQuestionObj(crtHotWord,x)));
-            dao.batchInsertQuestions(questions);
-        }
-
     }
 }
 

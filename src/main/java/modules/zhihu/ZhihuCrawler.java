@@ -50,17 +50,6 @@ public class ZhihuCrawler {
             System.out.println("当前操作的品类名称：" + top.getName() + "   共有热词：" + hotWords.size());
             System.out.println(hotWords.toString());
 
-            System.out.println("**************************通过百度，爬取知乎问题  开始********************************");
-            QuestionFromBaidu baidu = new QuestionFromBaidu(hotWords, true);
-            List<QuestionResultDto> baiduQuestion = baidu.getQuestion();
-            StringBuilder printStringBuilder = new StringBuilder();
-            baiduQuestion.forEach(x -> printStringBuilder.append(x.getLink() + "\r\n"));
-            System.out.println("百度，爬取问题链接，共有" + baiduQuestion.size() + "个：");
-            System.out.println(printStringBuilder.toString());
-            System.out.println("**************************通过百度，爬取知乎问题  完成********************************");
-            System.out.println("\r\n");
-
-
             System.out.println("**************************通过知乎，爬取知乎问题  开始********************************");
             QuestionFromZhihu zhihu = new QuestionFromZhihu(top);
             List<QuestionResultDto> zhihuQuestions = zhihu.getQuestion();
@@ -72,6 +61,20 @@ public class ZhihuCrawler {
             System.out.println();
             System.out.println("**************************通过知乎，爬取知乎问题  完成********************************");
             System.out.println("\r\n");
+
+
+            System.out.println("**************************通过百度，爬取知乎问题  开始********************************");
+            QuestionFromBaidu baidu = new QuestionFromBaidu(hotWords, true);
+            List<QuestionResultDto> baiduQuestion = baidu.getQuestion();
+            StringBuilder printStringBuilder = new StringBuilder();
+            baiduQuestion.forEach(x -> printStringBuilder.append(x.getLink() + "\r\n"));
+            System.out.println("百度，爬取问题链接，共有" + baiduQuestion.size() + "个：");
+            System.out.println(printStringBuilder.toString());
+            System.out.println("**************************通过百度，爬取知乎问题  完成********************************");
+            System.out.println("\r\n");
+
+
+
 
             //todo:从数据库获取所有的question，解析完成后更新question name
             System.out.println("**************************解析所有的知乎问题，开始********************************");

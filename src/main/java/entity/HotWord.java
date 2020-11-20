@@ -6,7 +6,8 @@ public class HotWord {
     private String id;
     private String topCategoryID;
     private String Name;
-    private Boolean isDone;
+    private Boolean isDoneBaidu;
+    private Boolean isDoneZhihu;
 
     public String getId() {
         return id;
@@ -32,11 +33,19 @@ public class HotWord {
         Name = name;
     }
 
-    public Boolean getDone() {
-        return isDone;
+    public Boolean getDoneBaidu() {
+        return isDoneBaidu;
     }
 
-    public void setDone(Boolean done) {
-        isDone = done;
+    public void setDoneBaidu(Boolean doneBaidu) {
+        isDoneBaidu = doneBaidu;
+    }
+
+    public Boolean getDoneZhihu() {
+        return isDoneZhihu;
+    }
+
+    public void setDoneZhihu(Boolean doneZhihu) {
+        isDoneZhihu = doneZhihu;
     }
 }

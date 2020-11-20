@@ -5,6 +5,7 @@ import com.alibaba.fastjson.TypeReference;
 import dao.Dao;
 import dto.*;
 import entity.HotWord;
+import entity.Question;
 import entity.TopCategory;
 import entity.XZSE86;
 import org.apache.commons.codec.Charsets;
@@ -13,6 +14,7 @@ import utils.ConstantsHelper;
 import utils.DatabaseHelp;
 import utils.Helper;
 import utils.NetworkConnect;
+
 import javax.net.ssl.HttpsURLConnection;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -22,6 +24,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Properties;
 import java.util.stream.Collectors;
 
@@ -45,7 +48,7 @@ public class QuestionFromZhihu implements IQuestion {
         this.hotWordXzse86 = hotWordXzse86;
     }
 
-    //目前只能获取第一页的数据，翻页的话又加密参数（猜测是：search_hash_id）还未破解
+    //目前只能获取第一页的数据，翻页的话有加密参数（猜测是：search_hash_id）还未破解
     @Override
     public List<QuestionResultDto> getQuestion() {
         List<QuestionResultDto> results = new ArrayList<>();
@@ -61,30 +64,55 @@ public class QuestionFromZhihu implements IQuestion {
 
         for (XZSE86Dto h : this.getHotWordXzse86()
         ) {
-            connectDto.setxZse86(h.getxZse86Val());
-            QuestionResultDto resp = sendQuestionRequest(h.getHotword(),connectDto);
-            Logger.info("知乎获取问题，发送请求完成：" + h.getHotword());
-            Logger.info("知乎获取问题，关键字：" + h.getHotword() + "返回内容：\r\n" + resp.getPagedHtmlResponse());
-            ZhihuResponseDto responseDto = convertQuestionResponseToDto(resp.getPagedHtmlResponse());
-            if(responseDto != null){
-                List<ZhihuResponseQuestionDto> questionDtos =  getQuestionResult(responseDto);
-                questionDtos.forEach(x->results.add(formatResponseDtoToQuestion(x)));
-                System.out.println("第" + (count++) + "个热词完成：" + h.getHotword());
-            }else {
-                Logger.error("知乎获取问题，关键字" + h.getHotword() + "在 convertQuestionResponseToDto()中返回null");
-            }
+            HotWord crtHotWord = dao.selectHotWordByName(h.getHotword());
+            if (crtHotWord.getDoneZhihu() == null || !crtHotWord.getDoneZhihu()) {
+                connectDto.setxZse86(h.getxZse86Val());
+                QuestionResultDto resp = sendQuestionRequest(h.getHotword(), connectDto);
+                Logger.info("知乎获取问题，发送请求完成：" + h.getHotword());
+                Logger.info("知乎获取问题，关键字：" + h.getHotword() + "返回内容：\r\n" + resp.getPagedHtmlResponse());
+                ZhihuResponseDto responseDto = convertQuestionResponseToDto(resp.getPagedHtmlResponse());
+                List<Question> existedQuestions = dao.selectQuestionsByHotWordId(crtHotWord.getId());
+                List<QuestionResultDto> crtQuestions = new ArrayList<>();
+                List<QuestionResultDto> validResults = new ArrayList<>();
+                if (responseDto != null) {
+                    List<ZhihuResponseQuestionDto> questionDtos = getQuestionResult(responseDto);
+                    questionDtos.forEach(x -> crtQuestions.add(formatResponseDtoToQuestion(x)));
+                    for (QuestionResultDto q : crtQuestions
+                    ) {
+                        Optional<Question> chk = existedQuestions.stream()
+                                .filter(x -> x.getUrl().equals(q.getLink()) && x.getSource().equals(ConstantsHelper.Question.QuestionSource_Zhihu))
+                                .findFirst();
+                        if (!chk.isPresent()) {
+                            results.add(q);
+                            validResults.add(q);
+                        }
+                    }
+                    List<QuestionResultDto> distinctValid = validResults.stream().distinct().collect(Collectors.toList());
+                    Helper.dbProcessAfterGetQuestion(crtHotWord, distinctValid, ConstantsHelper.Question.QuestionSource_Zhihu);
+                    System.out.println("第" + (count++) + "个热词完成：" + h.getHotword());
+                } else {
+                    Logger.error("知乎获取问题，关键字" + h.getHotword() + "在 convertQuestionResponseToDto()中返回null");
+                }
 
-            try {
-                Thread.currentThread().sleep(30000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+                if (count <= this.getHotWordXzse86().size()) {
+                    try {
+                        Thread.sleep(30000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            } else {
+                List<Question> getQuestions = dao.selectQuestionsByHotWordId(crtHotWord.getId());
+                getQuestions.stream().filter(x -> x.getSource().equals(ConstantsHelper.Question.QuestionSource_Zhihu))
+                        .forEach(x -> results.add(Helper.convertQuestionToQuestionResultDto(x)));
+                System.out.println("第" + (count++) + "个热词完成：" + h.getHotword() + " 直接从数据库中获取Question");
             }
         }
 
-        return results.stream().distinct().collect(Collectors.toList());
+        return results;
     }
 
-    private QuestionResultDto sendQuestionRequest(String hotWord,ConnectDto connectDto){
+    private QuestionResultDto sendQuestionRequest(String hotWord, ConnectDto connectDto) {
         QuestionResultDto result = new QuestionResultDto();
         connectDto.setRequestUrl(setQuestionUrl(hotWord));
         connectDto.setRefer(setQuestionRef(hotWord));
@@ -114,51 +142,51 @@ public class QuestionFromZhihu implements IQuestion {
         StringBuilder stringBuilder = new StringBuilder(properties.getProperty("zhihuSearchReferUr"));
         try {
             stringBuilder.append("&q=");
-            stringBuilder.append( Helper.replacePlusFromUrlEncode(URLEncoder.encode(hotword, String.valueOf(Charsets.UTF_8))));
+            stringBuilder.append(Helper.replacePlusFromUrlEncode(URLEncoder.encode(hotword, String.valueOf(Charsets.UTF_8))));
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
         return stringBuilder.toString();
     }
 
-    private List<ZhihuResponseQuestionDto> getQuestionResult(ZhihuResponseDto resp){
+    private List<ZhihuResponseQuestionDto> getQuestionResult(ZhihuResponseDto resp) {
         List<ZhihuResponseQuestionDto> result = new ArrayList<>();
         List<ZhihuResponseDataDto> datas = resp.getData();
-         if(datas != null){
-             for (ZhihuResponseDataDto d : datas
-                  ) {
-                 ZhihuResponseObjDto obj = d.getObject();
-                 if(obj != null && obj.getQuestion() != null){
-                     result.add(obj.getQuestion());
-                 }
-             }
-         }
-         return result;
+        if (datas != null) {
+            for (ZhihuResponseDataDto d : datas
+            ) {
+                ZhihuResponseObjDto obj = d.getObject();
+                if (obj != null && obj.getQuestion() != null) {
+                    result.add(obj.getQuestion());
+                }
+            }
+        }
+        return result;
     }
 
-    private ZhihuResponseDto convertQuestionResponseToDto(String resp){
-        try{
+    private ZhihuResponseDto convertQuestionResponseToDto(String resp) {
+        try {
             ZhihuResponseDto responseDto = JSON.parseObject(resp, ZhihuResponseDto.class);
             return responseDto;
-        }catch (Exception e){
+        } catch (Exception e) {
             Logger.error(e);
             return null;
         }
     }
 
-    private QuestionResultDto formatResponseDtoToQuestion(ZhihuResponseQuestionDto questionDto){
+    private QuestionResultDto formatResponseDtoToQuestion(ZhihuResponseQuestionDto questionDto) {
         QuestionResultDto resultDto = new QuestionResultDto();
-        resultDto.setLink( properties.getProperty("zhiHuQuestionUrl") + questionDto.getId());
+        resultDto.setLink(properties.getProperty("zhiHuQuestionUrl") + questionDto.getId());
         return resultDto;
     }
 
-    private ZhihuResponseDto mockSendQuestionRequestion(){
+    private ZhihuResponseDto mockSendQuestionRequestion() {
         ZhihuResponseDto responseDto = new ZhihuResponseDto();
         Path path = Paths.get("./src/main/resources/responseExample/知乎关键字查询返回结果.json");
         try {
             List<String> responseList = Files.readAllLines(path, Charsets.UTF_8);
             StringBuilder sb = new StringBuilder();
-            responseList.forEach(x->sb.append(x));
+            responseList.forEach(x -> sb.append(x));
             responseDto = JSON.parseObject(sb.toString(), ZhihuResponseDto.class);
 
         } catch (IOException e) {
@@ -167,15 +195,18 @@ public class QuestionFromZhihu implements IQuestion {
         return responseDto;
     }
 
-    public List<XZSE86Dto> getXzse86HotWordList(TopCategory topCategory){
+    public List<XZSE86Dto> getXzse86HotWordList(TopCategory topCategory) {
         List<XZSE86Dto> result = new ArrayList<>();
         XZSE86 xzse86 = dao.selectXzse86ByTopCategoryId(topCategory.getId());
-        if(xzse86 != null){
+        if (xzse86 != null) {
             String jsonLine = xzse86.getXZSE86JSON().substring(1, xzse86.getXZSE86JSON().length() - 1).replace("\\\"", "\"");
-            result = JSON.parseObject(jsonLine, new TypeReference<List<XZSE86Dto>>() {});
+            result = JSON.parseObject(jsonLine, new TypeReference<List<XZSE86Dto>>() {
+            });
         }
         return result;
     }
+
+
 
     /*
 

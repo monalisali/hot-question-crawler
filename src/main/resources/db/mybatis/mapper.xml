@@ -13,14 +13,14 @@
 <!--    HotWord-->
 
     <select id="selectHotWordsByTopCategoryId" parameterType="String" resultMap="HotWordResultMap">
-        select id,topCategoryID,name
+        select id,topCategoryID,name,isDoneBaidu,isDoneZhihu
         from dbo.[HotWord]
         where topCategoryID = #{topCategoryId}
 
     </select>
 
     <select id="selectHotWordByName" parameterType="String" resultMap="HotWordResultMap">
-        select id,topCategoryID,[name],isDone
+        select id,topCategoryID,[name],isDoneBaidu,isDoneZhihu
         from dbo.[HotWord]
         where [name] = #{name}
     </select>
@@ -28,7 +28,8 @@
     <update id="updateHotWord" parameterType="HotWord">
         update dbo.[HotWord]
         <set>
-            <if test="isDone != null">isDone = #{isDone}</if>
+            <if test="isDoneBaidu != null">isDoneBaidu = #{isDoneBaidu},</if>
+            <if test="isDoneZhihu != null">isDoneZhihu = #{isDoneZhihu}</if>
         </set>
         where id = #{id}
     </update>
@@ -58,7 +59,8 @@
         <result property="id" column="id"/>
         <result property="topCategoryID" column="topCategoryID"/>
         <result property="name" column="name"/>
-        <result property="isDone" column="isDone"/>
+        <result property="isDoneBaidu" column="isDoneBaidu"/>
+        <result property="isDoneZhihu" column="isDoneZhihu"/>
     </resultMap>
 
     <resultMap id="TopCategoryMap" type="entity.TopCategory">
