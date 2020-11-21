@@ -9,12 +9,11 @@ import entity.Question;
 import entity.TopCategory;
 import entity.XZSE86;
 import org.apache.commons.codec.Charsets;
-import org.tinylog.Logger;
+import org.apache.log4j.Logger;
 import utils.ConstantsHelper;
 import utils.DatabaseHelp;
 import utils.Helper;
 import utils.NetworkConnect;
-
 import javax.net.ssl.HttpsURLConnection;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -32,6 +31,7 @@ import java.util.stream.Collectors;
 public class QuestionFromZhihu implements IQuestion {
     private Properties properties = Helper.GetAppProperties();
     private Properties changeProperties = Helper.getAppPropertiesByName("change.properties");
+    private static Logger logger = Logger.getLogger(QuestionFromZhihu.class);
     private static Dao dao = new Dao(DatabaseHelp.getSqlSessionFactory());
     private ZhihuLoginDto zhihuLoginDto = new ZhihuLoginDto();
     private List<XZSE86Dto> hotWordXzse86;
@@ -65,11 +65,12 @@ public class QuestionFromZhihu implements IQuestion {
         for (XZSE86Dto h : this.getHotWordXzse86()
         ) {
             HotWord crtHotWord = dao.selectHotWordByName(h.getHotword());
+            //isDoneZhihu = 0 或者 null 时，才会从知乎获取Question
             if (crtHotWord.getDoneZhihu() == null || !crtHotWord.getDoneZhihu()) {
                 connectDto.setxZse86(h.getxZse86Val());
                 QuestionResultDto resp = sendQuestionRequest(h.getHotword(), connectDto);
-                Logger.info("知乎获取问题，发送请求完成：" + h.getHotword());
-                Logger.info("知乎获取问题，关键字：" + h.getHotword() + "返回内容：\r\n" + resp.getPagedHtmlResponse());
+                logger.info("知乎获取问题，发送请求完成：" + h.getHotword());
+                logger.info("知乎获取问题，关键字：" + h.getHotword() + "返回内容：\r\n" + resp.getPagedHtmlResponse());
                 ZhihuResponseDto responseDto = convertQuestionResponseToDto(resp.getPagedHtmlResponse());
                 List<Question> existedQuestions = dao.selectQuestionsByHotWordId(crtHotWord.getId());
                 List<QuestionResultDto> crtQuestions = new ArrayList<>();
@@ -77,6 +78,7 @@ public class QuestionFromZhihu implements IQuestion {
                 if (responseDto != null) {
                     List<ZhihuResponseQuestionDto> questionDtos = getQuestionResult(responseDto);
                     questionDtos.forEach(x -> crtQuestions.add(formatResponseDtoToQuestion(x)));
+                    //当前Question不存在与db中时，才会加到结果集中
                     for (QuestionResultDto q : crtQuestions
                     ) {
                         Optional<Question> chk = existedQuestions.stream()
@@ -92,7 +94,7 @@ public class QuestionFromZhihu implements IQuestion {
                     Helper.dbProcessAfterGetQuestion(crtHotWord, distinctValid, ConstantsHelper.Question.QuestionSource_Zhihu);
                     System.out.println("第" + (count++) + "个热词完成：" + h.getHotword());
                 } else {
-                    Logger.error("知乎获取问题，关键字" + h.getHotword() + "在 convertQuestionResponseToDto()中返回null");
+                    logger.error("知乎获取问题，关键字" + h.getHotword() + "在 convertQuestionResponseToDto()中返回null");
                 }
 
                 if (count <= this.getHotWordXzse86().size()) {
@@ -109,6 +111,11 @@ public class QuestionFromZhihu implements IQuestion {
                 System.out.println("第" + (count++) + "个热词完成：" + h.getHotword() + " 直接从数据库中获取Question");
             }
         }
+
+        System.out.println("知乎，爬取问题链接，共有" + results.size() + "个：");
+        StringBuilder zhihuStringBuilder = new StringBuilder();
+        results.forEach(x -> zhihuStringBuilder.append(x.getLink()).append("\r\n"));
+        System.out.println(zhihuStringBuilder.toString());
 
         return results;
     }
@@ -170,7 +177,7 @@ public class QuestionFromZhihu implements IQuestion {
             ZhihuResponseDto responseDto = JSON.parseObject(resp, ZhihuResponseDto.class);
             return responseDto;
         } catch (Exception e) {
-            Logger.error(e);
+            logger.error(e);
             return null;
         }
     }

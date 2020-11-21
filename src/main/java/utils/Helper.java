@@ -2,15 +2,20 @@ package utils;
 
 import dao.Dao;
 import dto.ConnectDto;
+import dto.QuestionContentDto;
 import dto.QuestionResultDto;
 import entity.HotWord;
 import entity.Question;
+import entity.QuestionContent;
 import modules.zhihu.ZhihuCrawler;
 import sun.misc.BASE64Decoder;
 
 import javax.net.ssl.HttpsURLConnection;
 import java.io.*;
 import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -158,6 +163,8 @@ public class Helper {
         return resultDto;
     }
 
+    //1.更新HotWord
+    //2.insert Question 到 dbo.Question表
     public static void dbProcessAfterGetQuestion(HotWord crtHotWord,List<QuestionResultDto> crtQuestions, String source) {
         List<Question> questions = new ArrayList<>();
         if(source.equals(ConstantsHelper.Question.QuestionSource_Baidu)){
@@ -182,5 +189,22 @@ public class Helper {
         question.setSource(source);
         question.setCreateTime(new Timestamp(System.currentTimeMillis()));
         return question;
+    }
+
+    public static LocalDate convertTimestampToLocalDate(Timestamp timestamp){
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        return LocalDate.parse(dateFormat.format(timestamp));
+    }
+
+
+    public static QuestionContentDto convertEntityToQuestionContentDto(QuestionContent entity){
+        QuestionContentDto dto = new QuestionContentDto();
+        dto.setId(entity.getId());
+        dto.setBrowserCount(entity.getBrowserCount());
+        dto.setCombinedQuestionId(entity.getCombinedQuestionId());
+        dto.setCreateTime(entity.getCreateTime());
+        dto.setCreateTimeLocalDate(convertTimestampToLocalDate(entity.getCreateTime()));
+        dto.setFollowerCount(entity.getFollowerCount());
+        return dto;
     }
 }

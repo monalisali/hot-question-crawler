@@ -59,11 +59,12 @@ public class QuestionFromBaidu implements IQuestion {
             for (String q : this.getHotWordList()
             ) {
                 HotWord crtHotWord = dao.selectHotWordByName(q);
-                //isDone = 0 时才获取Question
+                //isDoneBaidu = 0 或者 null时，才从百度获取Question
                 if(crtHotWord.getDoneBaidu() == null || !crtHotWord.getDoneBaidu()){
                     List<QuestionResultDto> validResults = new ArrayList<>();
                     List<QuestionResultDto> crtQuestions = getQuestion(sendHttpGetRequest(q));
                     List<Question> existedQuestions = dao.selectQuestionsByHotWordId(crtHotWord.getId());
+                    //Question不存在与db中时，才会加入到结果集
                     for (QuestionResultDto c:crtQuestions
                          ) {
                         Optional<Question> chk = existedQuestions.stream()
@@ -93,6 +94,11 @@ public class QuestionFromBaidu implements IQuestion {
                 }
             }
         }
+
+        StringBuilder printStringBuilder = new StringBuilder();
+        result.forEach(x -> printStringBuilder.append(x.getLink()).append("\r\n"));
+        System.out.println("百度，爬取问题链接，共有" + result.size() + "个：");
+        System.out.println(printStringBuilder.toString());
         return result;
     }
 

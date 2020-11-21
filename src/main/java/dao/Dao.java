@@ -1,5 +1,6 @@
 package dao;
 
+import dto.QuestionContentDto;
 import entity.*;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -123,6 +124,14 @@ public class Dao {
             Map<String, Object> map = new HashMap<>();
             map.put("questionContents", questionContents);
             session.insert("com.hcsp.Mapper.insertQuestionContents",map);
+        }
+    }
+
+    public List<QuestionContentDto> selectQuestionContents(String topCategoryId){
+        try(SqlSession session = sqlSessionFactory.openSession(true)){
+            Map<String,Object> map = new HashMap<>();
+            map.put("topCategoryId",topCategoryId);
+            return session.selectList("com.hcsp.Mapper.selectQuestionContents",map);
         }
     }
 }

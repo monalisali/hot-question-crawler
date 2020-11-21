@@ -113,6 +113,15 @@
         </foreach>
     </insert>
 
+    <select id="selectQuestionContents" parameterType="String" resultType="QuestionContentDto">
+        SELECT t.Name AS topCateogryName, c.Name AS questionName,c.url as questionUrl, q.Id, q.combinedQuestionId,q.followerCount,q.browserCount,q.createTime
+        FROM dbo.TopCategory t
+        INNER JOIN dbo.HotWord h ON t.ID = h.TopCategoryID
+        INNER JOIN dbo.CombinedQuestion c ON t.ID = c.TopCategoryID AND h.ID = c.HotWordID
+        INNER JOIN dbo.QuestionContent q ON c.ID = q.CombinedQuestionID
+        WHERE t.ID =  #{topCategoryId}
+    </select>
+
     <resultMap id="HotWordResultMap" type="entity.HotWord">
         <result property="id" column="id"/>
         <result property="topCategoryID" column="topCategoryID"/>

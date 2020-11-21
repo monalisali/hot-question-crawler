@@ -1,16 +1,27 @@
 package modules.zhihu;
 
 import dao.Dao;
+import dto.QuestionContentDto;
 import dto.QuestionParseDto;
 import dto.QuestionResultDto;
 import entity.HotWord;
 import entity.TopCategory;
+import org.apache.log4j.Logger;
 import utils.*;
-import java.util.List;
+
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class ZhihuCrawler {
     private static Dao dao = new Dao(DatabaseHelp.getSqlSessionFactory());
+    private static Logger logger = Logger.getLogger(ZhihuCrawler.class);
+    private static Properties properties = Helper.GetAppProperties();
+
     public static void main(String[] args) {
         System.out.println("网络测试开始");
         System.out.println("为了避免被百度屏蔽IP，需要使用代理，请确认做了已下操作：");
@@ -24,12 +35,11 @@ public class ZhihuCrawler {
             return;
         }
 
-
         System.out.println("网络测试通过，开始爬数据");
         System.out.println("**********************************开始***************************************");
         List<TopCategory> topCategories = dao.selectAllActiveTopCategories();
-        for (TopCategory top: topCategories
-             ) {
+        for (TopCategory top : topCategories
+        ) {
             List<HotWord> crtHotWords = dao.selectHotWordsByTopCategoryId(top.getId());
             List<String> hotWords = crtHotWords.stream().map(HotWord::getName).collect(Collectors.toList());
             System.out.println("当前操作的品类名称：" + top.getName() + "   共有热词：" + hotWords.size());
@@ -37,53 +47,23 @@ public class ZhihuCrawler {
 
             System.out.println("**************************通过知乎，爬取知乎问题  开始********************************");
             QuestionFromZhihu zhihu = new QuestionFromZhihu(top);
-            List<QuestionResultDto> zhihuQuestions = zhihu.getQuestion();
-            StringBuilder zhihuStringBuilder = new StringBuilder();
-            zhihuQuestions.forEach(x -> zhihuStringBuilder.append(x.getLink()).append("\r\n"));
-
-            System.out.println("知乎，爬取问题链接，共有" + zhihuQuestions.size() + "个：");
-            System.out.println(zhihuStringBuilder.toString());
-            System.out.println();
+            zhihu.getQuestion();
             System.out.println("**************************通过知乎，爬取知乎问题  完成********************************");
-            System.out.println("\r\n");
 
 
             System.out.println("**************************通过百度，爬取知乎问题  开始********************************");
             QuestionFromBaidu baidu = new QuestionFromBaidu(hotWords, true);
-            List<QuestionResultDto> baiduQuestion = baidu.getQuestion();
-            StringBuilder printStringBuilder = new StringBuilder();
-            baiduQuestion.forEach(x -> printStringBuilder.append(x.getLink()).append("\r\n"));
-            System.out.println("百度，爬取问题链接，共有" + baiduQuestion.size() + "个：");
-            System.out.println(printStringBuilder.toString());
+            baidu.getQuestion();
             System.out.println("**************************通过百度，爬取知乎问题  完成********************************");
-            System.out.println("\r\n");
 
 
-            //todo:从数据库获取所有的question，解析完成后更新question name
             System.out.println("**************************解析所有的知乎问题，开始********************************");
             QuestionParse parse = new QuestionParse(top);
-            List<QuestionParseDto> questionContents = parse.getQuestionContent();
-            System.out.println("一共完成：" + questionContents.size() + "个");
-
-            System.out.println("**************************解析所有的知乎问题，结束********************************");
-            String filePath = parse.saveQuestionResultToExcel(top.getName(), questionContents);
-            System.out.println("本次处理结果被保存到: " + filePath);
-
+            parse.ParseAndCalcuateQuestion();
             System.out.println("**************************解析所有的知乎问题，开始********************************");
+
+
             System.out.println("**********************************结束***************************************");
         }
     }
-
-//    private static QuestionParse createQuestionParseObj(List<QuestionResultDto> baiduQuestion
-//            , List<QuestionResultDto> zhihuQuestions,TopCategory topCategory) {
-//        QuestionParse parse = new QuestionParse(topCategory);
-//        parse.setBiaduQuestion(baiduQuestion);
-//        parse.setZhihuQuestion(zhihuQuestions);
-//        List<QuestionResultDto> combines = new ArrayList<>();
-//        combines.addAll(baiduQuestion);
-//        combines.addAll(zhihuQuestions);
-//        List<QuestionResultDto> dist = combines.stream().distinct().filter(x->x.getLink().indexOf("https") >= 0).collect(Collectors.toList());
-//        parse.setQuestions(dist);
-//        return parse;
-//    }
 }
