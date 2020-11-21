@@ -1,19 +1,10 @@
 package modules.zhihu;
 
 import dao.Dao;
-import dto.QuestionContentDto;
-import dto.QuestionParseDto;
-import dto.QuestionResultDto;
 import entity.HotWord;
 import entity.TopCategory;
 import org.apache.log4j.Logger;
 import utils.*;
-
-import java.sql.Timestamp;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
