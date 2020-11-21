@@ -22,6 +22,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import utils.*;
+
 import javax.net.ssl.HttpsURLConnection;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -45,7 +46,7 @@ public class QuestionParse {
         this.topCategory = topCategory;
     }
 
-    public void ParseAndCalcuateQuestion(){
+    public void ParseAndCalcuateQuestion() {
         getQuestionContent();
         List<QuestionContentDto> compareResults = compareQuestionContent();
         List<ParseQuestionExcelDto> calculateResults = calculateQuestionResult(compareResults);
@@ -57,7 +58,7 @@ public class QuestionParse {
         List<QuestionParseDto> results = new ArrayList<>();
         List<QuestionContent> questionContents = new ArrayList<>();
         int count = 1;
-        System.out.println(this.getTopCategory().getName() +  ", 去重后有待解析问题：" + this.getQuestions().size() + "个");
+        System.out.println(this.getTopCategory().getName() + ", 去重后有待解析问题：" + this.getQuestions().size() + "个");
 
         for (CombinedQuestion cq : this.getQuestions()
         ) {
@@ -84,7 +85,7 @@ public class QuestionParse {
         dao.updateCombinedQuestions(this.getQuestions());
         //把每次解析的结果存入db
         dao.batchInsertQuestionContents(questionContents);
-        System.out.println(this.getTopCategory().getName() + "， 一共解析问题：" + results.size() +"个");
+        System.out.println(this.getTopCategory().getName() + "， 一共解析问题：" + results.size() + "个");
         return results;
     }
 
@@ -141,7 +142,7 @@ public class QuestionParse {
         return fileFullPath;
     }
 
-    private String saveQuestionResultToExcel(List<ParseQuestionExcelDto> list){
+    private String saveQuestionResultToExcel(List<ParseQuestionExcelDto> list) {
         String parentFolder = properties.getProperty("questionOutputPath") + this.getTopCategory().getName();
         String fileFullPath = setSaveFileFullPath(this.getTopCategory().getName(), parentFolder);
         XSSFWorkbook workbook = new XSSFWorkbook();
@@ -173,14 +174,14 @@ public class QuestionParse {
         cell = row.createCell(11);
         cell.setCellValue("新创建时间");
 
-        for(int i=0;i<row.getLastCellNum();i++){
-            sheet.setColumnWidth(i,15 * 256);
+        for (int i = 0; i < row.getLastCellNum(); i++) {
+            sheet.setColumnWidth(i, 15 * 256);
         }
 
         sheet.setColumnWidth(1, 50 * 256);
         sheet.setColumnWidth(2, 50 * 256);
-        sheet.setColumnWidth(8,25 * 256);
-        sheet.setColumnWidth(11,25 * 256);
+        sheet.setColumnWidth(8, 25 * 256);
+        sheet.setColumnWidth(11, 25 * 256);
 
         for (ParseQuestionExcelDto q : list
         ) {
@@ -223,7 +224,8 @@ public class QuestionParse {
     //找到每个问题中待比较的两个数据
     private List<QuestionContentDto> compareQuestionContent() {
         List<QuestionContentDto> qcMinMaxList = new ArrayList<>();
-        List<QuestionContentDto> questionContents = dao.selectQuestionContents(this.getTopCategory().getId());;
+        List<QuestionContentDto> questionContents = dao.selectQuestionContents(this.getTopCategory().getId());
+        ;
         Map<String, List<QuestionContentDto>> groupCombinedQuestions = questionContents.stream().collect(Collectors.groupingBy(QuestionContentDto::getCombinedQuestionId));
         for (String key : groupCombinedQuestions.keySet()) {
             QuestionContentDto dto = new QuestionContentDto();
@@ -232,8 +234,8 @@ public class QuestionParse {
             Optional<QuestionContentDto> minContent = crtList.stream().min(Comparator.comparing(QuestionContentDto::getCreateTime));
             if (maxContent.isPresent() && minContent.isPresent()) {
                 dto.setCombinedQuestionId(key);
-                dto.setComparsionMinContent(getNearestByDate(crtList,maxContent.get(),minContent.get(),EnumMinMax.Min));
-                dto.setComparsionMaxContent(getNearestByDate(crtList,maxContent.get(),minContent.get(),EnumMinMax.Max));
+                dto.setComparsionMinContent(getNearestByDate(crtList, maxContent.get(), minContent.get(), EnumMinMax.Min));
+                dto.setComparsionMaxContent(getNearestByDate(crtList, maxContent.get(), minContent.get(), EnumMinMax.Max));
                 qcMinMaxList.add(dto);
             }
         }
@@ -241,10 +243,10 @@ public class QuestionParse {
         return qcMinMaxList;
     }
 
-    private List<ParseQuestionExcelDto> calculateQuestionResult(List<QuestionContentDto> list){
+    private List<ParseQuestionExcelDto> calculateQuestionResult(List<QuestionContentDto> list) {
         List<ParseQuestionExcelDto> results = new ArrayList<>();
-        for (QuestionContentDto q:list
-             ) {
+        for (QuestionContentDto q : list
+        ) {
             ParseQuestionExcelDto dto = new ParseQuestionExcelDto();
             dto.setId(UUID.randomUUID().toString());
             dto.setTopCategoryName(q.getComparsionMinContent().getTopCateogryName());
@@ -259,7 +261,7 @@ public class QuestionParse {
             dto.setDiffBrowserCount(q.getComparsionMaxContent().getBrowserCount().subtract(q.getComparsionMinContent().getBrowserCount()));
             dto.setDiffFollowerCount(q.getComparsionMaxContent().getFollowerCount().subtract(q.getComparsionMinContent().getFollowerCount()));
             long diff = q.getComparsionMaxContent().getCreateTime().getTime() - q.getComparsionMinContent().getCreateTime().getTime();
-            dto.setDiffCreateTime((int) (diff/(1000 * 60 * 60 * 24)));
+            dto.setDiffCreateTime((int) (diff / (1000 * 60 * 60 * 24)));
             results.add(dto);
         }
 
