@@ -64,7 +64,11 @@ b) XZse86 请求头：<br>
   * src/output: <br>
     程序保存文件的根目录
   * src/ouput/京东/: <br>
-    JD商品类目文件:JD商品一级类目.xls，JD商品二级类目.xls，JD商品三级类目.xls
+    JD商品类目文件:
+    * JD商品一级类目.xls
+    * JD商品二级类目.xls
+    * JD商品三级类目.xls
+    * JD商品不用获取商品的一级类目.xls (自己手动做的)
   * src/output/京东/京东商品导出：<br>
     JD商品导出文件, “京东商品导出”文件夹下，每个一级类目为一个子文件
   * change.properties文件中的jdCookie ：用账号 makemoneyyy1@163.com 登录一下，获取cookie
