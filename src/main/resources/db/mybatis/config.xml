@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!--    <settings>-->
+    <!--        <setting name="logImpl" value="LOG4J"/>-->
+    <!--    </settings>-->
+    <typeAliases>
+        <typeAlias alias="HotWord" type="entity.HotWord"/>
+        <typeAlias alias="Question" type="entity.Question" />
+        <typeAlias alias="QuestionContent" type="entity.QuestionContent" />
+        <typeAlias alias="TopCategory" type="entity.TopCategory" />
+        <typeAlias alias="XZSE86" type="entity.XZSE86"/>
+        <typeAlias alias="CombinedQuestion" type="entity.CombinedQuestion"/>
+        <typeAlias alias="QuestionContentDto" type="dto.QuestionContentDto"/>
+    </typeAliases>
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
+                <property name="url" value="jdbc:sqlserver://localhost:1433;databaseName=HaoWu"/>
+                <property name="username" value="sa"/>
+                <property name="password" value="P@ss1234"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <mapper resource="db/mybatis/mapper.xml"/>
+    </mappers>
+</configuration>

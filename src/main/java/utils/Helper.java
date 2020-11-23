@@ -1,17 +1,31 @@
 package utils;
 
+import dao.Dao;
 import dto.ConnectDto;
+import dto.QuestionContentDto;
+import dto.QuestionResultDto;
+import entity.HotWord;
+import entity.Question;
+import entity.QuestionContent;
 import modules.zhihu.ZhihuCrawler;
 import sun.misc.BASE64Decoder;
 
 import javax.net.ssl.HttpsURLConnection;
 import java.io.*;
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
+import java.util.UUID;
 
 public class Helper {
     private static Properties properties = Helper.GetAppProperties();
+    private static Dao dao = new Dao(DatabaseHelp.getSqlSessionFactory());
 
     public static Properties GetAppProperties() {
         Properties pro = null;
@@ -19,7 +33,7 @@ public class Helper {
             pro = new Properties();
             String filePath = "./src/main/resources/app.properties";
             File file = new File(filePath);
-            if(!file.exists()){
+            if (!file.exists()) {
                 filePath = "./classes/app.properties";
             }
             FileInputStream in = new FileInputStream(filePath);
@@ -35,9 +49,9 @@ public class Helper {
         Properties pro = null;
         try {
             pro = new Properties();
-            String filePath = "./src/main/resources/"  + propertyFileName;
+            String filePath = "./src/main/resources/" + propertyFileName;
             File file = new File(filePath);
-            if(!file.exists()){
+            if (!file.exists()) {
                 filePath = "./classes/" + propertyFileName;
             }
 
@@ -55,7 +69,7 @@ public class Helper {
 
         if (connection != null) {
             try {
-                BufferedReader rd = new BufferedReader(new InputStreamReader(connection.getInputStream(),"UTF-8"));
+                BufferedReader rd = new BufferedReader(new InputStreamReader(connection.getInputStream(), "UTF-8"));
                 String line;
                 while ((line = rd.readLine()) != null) {
                     sbResp.append(line);
@@ -98,23 +112,23 @@ public class Helper {
 
     }
 
-    public static String getProjectRootPath(){
+    public static String getProjectRootPath() {
         String projectPath = ZhihuCrawler.class.getResource("/").getPath();
         return projectPath.substring(0, projectPath.indexOf("target")).substring(1);
     }
 
-    public static String getProjectOutputPath(){
+    public static String getProjectOutputPath() {
         Properties properties = GetAppProperties();
         return getProjectRootPath() + properties.getProperty("questionOutputPath");
     }
 
-    public static String setFileNameDateFormat(){
+    public static String setFileNameDateFormat() {
         LocalDateTime dateTime = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy_HHmmss");
         return dateTime.format(formatter);
     }
 
-    public static boolean checkNetworkConnection(){
+    public static boolean checkNetworkConnection() {
         boolean cnnTest = false;
         String testUrl = "";
         //不用翻墙也可以访问：https://readhub.cn/topic/5bMmlAm75lD
@@ -139,7 +153,58 @@ public class Helper {
         return cnnTest;
     }
 
-    public static String replacePlusFromUrlEncode(String str){
-        return str.replace("+","%20");
+    public static String replacePlusFromUrlEncode(String str) {
+        return str.replace("+", "%20");
+    }
+
+    public static QuestionResultDto convertQuestionToQuestionResultDto(Question question){
+        QuestionResultDto resultDto = new QuestionResultDto();
+        resultDto.setLink(question.getUrl());
+        return resultDto;
+    }
+
+    //1.更新HotWord
+    //2.insert Question 到 dbo.Question表
+    public static void dbProcessAfterGetQuestion(HotWord crtHotWord,List<QuestionResultDto> crtQuestions, String source) {
+        List<Question> questions = new ArrayList<>();
+        if(source.equals(ConstantsHelper.Question.QuestionSource_Baidu)){
+            crtHotWord.setDoneBaidu(true);
+        }else {
+            crtHotWord.setDoneZhihu(true);
+        }
+        dao.updateHotWord(crtHotWord);
+
+        if(crtQuestions.size() > 0){
+            crtQuestions.stream().forEach(x-> questions.add(createQuestionObj(crtHotWord,x,source)));
+            dao.batchInsertQuestions(questions);
+        }
+    }
+
+    //此时只能拿到question url，没有名称。名称在最后合并zhihu、baidu所有问题后，再去解析时获取
+    public static Question createQuestionObj(HotWord hotWord, QuestionResultDto questionResult, String source){
+        Question question = new Question();
+        question.setId(UUID.randomUUID().toString());
+        question.setHotWordId(hotWord.getId());
+        question.setUrl(questionResult.getLink());
+        question.setSource(source);
+        question.setCreateTime(new Timestamp(System.currentTimeMillis()));
+        return question;
+    }
+
+    public static LocalDate convertTimestampToLocalDate(Timestamp timestamp){
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        return LocalDate.parse(dateFormat.format(timestamp));
+    }
+
+
+    public static QuestionContentDto convertEntityToQuestionContentDto(QuestionContent entity){
+        QuestionContentDto dto = new QuestionContentDto();
+        dto.setId(entity.getId());
+        dto.setBrowserCount(entity.getBrowserCount());
+        dto.setCombinedQuestionId(entity.getCombinedQuestionId());
+        dto.setCreateTime(entity.getCreateTime());
+        dto.setCreateTimeLocalDate(convertTimestampToLocalDate(entity.getCreateTime()));
+        dto.setFollowerCount(entity.getFollowerCount());
+        return dto;
     }
 }
