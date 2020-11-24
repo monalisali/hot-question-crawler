@@ -58,8 +58,6 @@ public class QuestionParse {
         List<QuestionParseDto> results = new ArrayList<>();
         int count = 1;
         System.out.println(this.getTopCategory().getName() + ", 去重后有待解析问题：" + this.getQuestions().size() + "个");
-        //todo: only for test
-        this.setQuestions(this.getQuestions().stream().limit(3).collect(Collectors.toList()));
         for (CombinedQuestion cq : this.getQuestions()
         ) {
             HttpsURLConnection conn = NetworkConnect.sendHttpGet(cq.getUrl());
