@@ -56,10 +56,8 @@ public class QuestionParse {
     private List<QuestionParseDto> getQuestionContent() {
         prepareBeforeParse();
         List<QuestionParseDto> results = new ArrayList<>();
-        List<QuestionContent> questionContents = new ArrayList<>();
         int count = 1;
         System.out.println(this.getTopCategory().getName() + ", 去重后有待解析问题：" + this.getQuestions().size() + "个");
-
         for (CombinedQuestion cq : this.getQuestions()
         ) {
             HttpsURLConnection conn = NetworkConnect.sendHttpGet(cq.getUrl());
@@ -70,7 +68,7 @@ public class QuestionParse {
                 parseDto.setQuestionUrl(cq.getUrl());
                 cq.setName(parseDto.getTitle());
                 results.add(parseDto);
-                questionContents.add(createQuestionContentObj(cq, parseDto));
+                dao.insertQuestionContentSingle(createQuestionContentObj(cq,parseDto));
                 System.out.println("第" + (count++) + "个解析完成：" + parseDto.getQuestionUrl());
                 if (count <= this.getQuestions().size()) {
                     try {
@@ -83,8 +81,6 @@ public class QuestionParse {
         }
         //主要用来更新CombinedQuestion中Name字段（只有解析后，才能知道问题的名称）
         dao.updateCombinedQuestions(this.getQuestions());
-        //把每次解析的结果存入db
-        dao.batchInsertQuestionContents(questionContents);
         System.out.println(this.getTopCategory().getName() + "， 一共解析问题：" + results.size() + "个");
         return results;
     }
