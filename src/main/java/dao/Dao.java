@@ -127,6 +127,18 @@ public class Dao {
         }
     }
 
+    public void insertQuestionContentSingle(QuestionContent questionContent){
+        try(SqlSession session = sqlSessionFactory.openSession(true)){
+            Map<String,Object> map = new HashMap<>();
+            map.put("id",questionContent.getId());
+            map.put("combinedQuestionId",questionContent.getCombinedQuestionId());
+            map.put("followerCount",questionContent.getFollowerCount());
+            map.put("browserCount",questionContent.getBrowserCount());
+            map.put("createTime",questionContent.getCreateTime());
+            session.insert("com.hcsp.Mapper.insertQuestionContentSingle",map);
+        }
+    }
+
     public List<QuestionContentDto> selectQuestionContents(String topCategoryId){
         try(SqlSession session = sqlSessionFactory.openSession(true)){
             Map<String,Object> map = new HashMap<>();
