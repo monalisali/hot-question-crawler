@@ -304,11 +304,11 @@ public class QuestionParse {
     //比较dbo.Question 与 dbo.CombinedQuestion中的记录，把新增的Question添加到dbo.CombinedQuestion
     private void insertCombinedQuestion() {
         List<CombinedQuestion> existedCombinedQuestions = dao.selectCombinedQuestion(this.getTopCategory().getId());
-        List<Question> currectQuestions = dao.selectQuestionByTopCategory(this.getTopCategory().getId());
+        List<Question> currectQuestions = dao.selectQuestionByTopCategory(this.getTopCategory().getId()).stream().distinct().collect(Collectors.toList());
         for (Question q : currectQuestions
         ) {
             Optional<CombinedQuestion> chk = existedCombinedQuestions.stream()
-                    .filter(x -> x.getHotWordId().equals(q.getHotWordId()) && x.getUrl().equals(q.getUrl()))
+                    .filter(x -> x.getUrl().equals(q.getUrl()))
                     .findFirst();
             if (!chk.isPresent()) {
                 CombinedQuestion cq = new CombinedQuestion();
