@@ -221,7 +221,6 @@ public class QuestionParse {
     private List<QuestionContentDto> compareQuestionContent() {
         List<QuestionContentDto> qcMinMaxList = new ArrayList<>();
         List<QuestionContentDto> questionContents = dao.selectQuestionContents(this.getTopCategory().getId());
-        ;
         Map<String, List<QuestionContentDto>> groupCombinedQuestions = questionContents.stream().collect(Collectors.groupingBy(QuestionContentDto::getCombinedQuestionId));
         for (String key : groupCombinedQuestions.keySet()) {
             QuestionContentDto dto = new QuestionContentDto();
