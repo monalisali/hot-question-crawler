@@ -10,8 +10,12 @@
 # 2. 程序使用步骤
 ## 2.1 获取关键字对应的知乎问题
 
-### 2.1.1 确保 dbo.TopCategory（品类名称） 和 dbo.HotWord（热词） 已经有需要的数据了
-数据由zhihu-get-dropdownlist-keywords 项目生成，[参考链接](https://github.com/monalisali/zhihu-get-dropdownlist-keywords/blob/main/README.md)
+### 2.1.1 确保先做了这几件事
+1. 确保 dbo.TopCategory（品类名称） 和 dbo.HotWord（热词） 已经有需要的数据了 <br/>
+   数据由zhihu-get-dropdownlist-keywords 项目生成，[参考链接](https://github.com/monalisali/zhihu-get-dropdownlist-keywords/blob/main/README.md)
+
+2. 确保已经为热词生成了 XZSE86 数据 <br />
+   dbo.XZSE86已经存放了知乎抓取问题时需要的XZSE86加密数据。它由zhihu-login 项目生成，[参考链接](https://github.com/monalisali/zhihu-login/blob/master/%E9%87%8D%E8%A6%81%E4%BA%8B%E9%A1%B9.md)
 
 
 ### 2.1.2 运行 hot-question-crawler 项目下的 ZhihuCrawler.java
