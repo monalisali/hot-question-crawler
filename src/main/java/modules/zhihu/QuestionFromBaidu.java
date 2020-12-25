@@ -147,13 +147,16 @@ public class QuestionFromBaidu implements IQuestion {
             for (Element el : elements
             ) {
                 Element link = el.select("a").first();
-                String href = link.attr("href");
-                if (!href.isEmpty()) {
-                    QuestionResultDto temp = new QuestionResultDto();
-                    temp.setLinkIndex(i + 1);
-                    temp.setDeCodeLink(href);
-                    result.add(temp);
+                if(link != null){
+                    String href = link.attr("href");
+                    if (!href.isEmpty()) {
+                        QuestionResultDto temp = new QuestionResultDto();
+                        temp.setLinkIndex(i + 1);
+                        temp.setDeCodeLink(href);
+                        result.add(temp);
+                    }
                 }
+
             }
         }
         return result;
