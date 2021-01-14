@@ -275,6 +275,10 @@ public class QuestionParse {
         Elements bodys = document.getElementsByTag("body");
         if (bodys != null && bodys.size() > 0) {
             Element body = bodys.get(0);
+            Elements headers = body.getElementsByClass("QuestionHeader-side");
+            if(headers == null || headers.size() == 0){
+                return resultDto;
+            }
             Element header = body.getElementsByClass("QuestionHeader-side").get(0);
             Elements numberBoders = header.getElementsByClass("NumberBoard-itemInner");
             Elements titles = body.getElementsByClass("QuestionHeader-title");
