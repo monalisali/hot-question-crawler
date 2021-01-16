@@ -17,6 +17,7 @@ public class QuestionContentDto {
     private String topCateogryName;
     private String questionName;
     private String questionUrl;
+    private int answerCount;
 
     public String getId() {
         return id;
@@ -106,4 +107,11 @@ public class QuestionContentDto {
         this.questionUrl = questionUrl;
     }
 
+    public int getAnswerCount() {
+        return answerCount;
+    }
+
+    public void setAnswerCount(int answerCount) {
+        this.answerCount = answerCount;
+    }
 }

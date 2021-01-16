@@ -9,6 +9,8 @@ public class QuestionParseDto {
     private String questionUrl;
     //问题名称
     private String title;
+    //回答数量
+    private int answerCount;
 
     public String getTitle() {
         return title;
@@ -42,5 +44,11 @@ public class QuestionParseDto {
         this.questionUrl = questionUrl;
     }
 
+    public int getAnswerCount() {
+        return answerCount;
+    }
 
+    public void setAnswerCount(int answerCount) {
+        this.answerCount = answerCount;
+    }
 }

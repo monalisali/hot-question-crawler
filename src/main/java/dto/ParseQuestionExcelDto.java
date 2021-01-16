@@ -17,6 +17,7 @@ public class ParseQuestionExcelDto {
     private BigInteger diffFollowerCount;
     private BigInteger diffBrowserCount;
     private int diffCreateTime;
+    private int answerCount;
 
     public String getId() {
         return id;
@@ -120,5 +121,13 @@ public class ParseQuestionExcelDto {
 
     public void setDiffCreateTime(int diffCreateTime) {
         this.diffCreateTime = diffCreateTime;
+    }
+
+    public int getAnswerCount() {
+        return answerCount;
+    }
+
+    public void setAnswerCount(int answerCount) {
+        this.answerCount = answerCount;
     }
 }

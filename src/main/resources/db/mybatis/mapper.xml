@@ -114,13 +114,14 @@
     </insert>
 
     <insert id="insertQuestionContentSingle" parameterType="map" >
-        insert into dbo.QuestionContent ( id, combinedQuestionId, followerCount, browserCount, createTime)
+        insert into dbo.QuestionContent ( id, combinedQuestionId, followerCount, browserCount, createTime,answerCount)
         values
-        (#{id},#{combinedQuestionId},#{followerCount},#{browserCount},#{createTime})
+        (#{id},#{combinedQuestionId},#{followerCount},#{browserCount},#{createTime},#{answerCount})
     </insert>
 
     <select id="selectQuestionContents" parameterType="String" resultType="QuestionContentDto">
         SELECT t.Name AS topCateogryName, c.Name AS questionName,c.url as questionUrl, q.Id, q.combinedQuestionId,q.followerCount,q.browserCount,q.createTime
+        ,q.answerCount
         FROM dbo.TopCategory t
         INNER JOIN dbo.HotWord h ON t.ID = h.TopCategoryID
         INNER JOIN dbo.CombinedQuestion c ON t.ID = c.TopCategoryID AND h.ID = c.HotWordID

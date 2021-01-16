@@ -135,6 +135,7 @@ public class Dao {
             map.put("followerCount",questionContent.getFollowerCount());
             map.put("browserCount",questionContent.getBrowserCount());
             map.put("createTime",questionContent.getCreateTime());
+            map.put("answerCount",questionContent.getAnswerCount());
             session.insert("com.hcsp.Mapper.insertQuestionContentSingle",map);
         }
     }

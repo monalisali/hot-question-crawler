@@ -9,6 +9,7 @@ public class QuestionContent {
     private BigInteger followerCount;
     private BigInteger browserCount;
     private Timestamp createTime;
+    private int answerCount;
 
     public String getId() {
         return id;
@@ -48,5 +49,13 @@ public class QuestionContent {
 
     public void setCreateTime(Timestamp createTime) {
         this.createTime = createTime;
+    }
+
+    public int getAnswerCount() {
+        return answerCount;
+    }
+
+    public void setAnswerCount(int answerCount) {
+        this.answerCount = answerCount;
     }
 }

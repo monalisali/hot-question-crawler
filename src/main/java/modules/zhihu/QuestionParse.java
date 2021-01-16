@@ -60,6 +60,7 @@ public class QuestionParse {
         System.out.println(this.getTopCategory().getName() + ", 去重后有待解析问题：" + this.getQuestions().size() + "个");
         for (CombinedQuestion cq : this.getQuestions()
         ) {
+            System.out.println("准备解析第" + (count) + "个问题，url：" + cq.getUrl());
             HttpsURLConnection conn = NetworkConnect.sendHttpGet(cq.getUrl());
             String response = Helper.getHttpsURLConnectionResponse(conn);
             if (!response.isEmpty()) {
@@ -156,18 +157,20 @@ public class QuestionParse {
         cell = row.createCell(4);
         cell.setCellValue("关注人增量");
         cell = row.createCell(5);
-        cell.setCellValue("时间间隔(天)");
+        cell.setCellValue("回答数量");
         cell = row.createCell(6);
-        cell.setCellValue("老流量数");
+        cell.setCellValue("时间间隔(天)");
         cell = row.createCell(7);
-        cell.setCellValue("老关注人数");
+        cell.setCellValue("老流量数");
         cell = row.createCell(8);
-        cell.setCellValue("老创建时间");
+        cell.setCellValue("老关注人数");
         cell = row.createCell(9);
-        cell.setCellValue("新流量数");
+        cell.setCellValue("老创建时间");
         cell = row.createCell(10);
-        cell.setCellValue("新关注人数");
+        cell.setCellValue("新流量数");
         cell = row.createCell(11);
+        cell.setCellValue("新关注人数");
+        cell = row.createCell(12);
         cell.setCellValue("新创建时间");
 
         for (int i = 0; i < row.getLastCellNum(); i++) {
@@ -187,13 +190,14 @@ public class QuestionParse {
             dataRow.createCell(2).setCellValue(q.getQuestionUrl());
             dataRow.createCell(3).setCellValue(q.getDiffBrowserCount().intValue());
             dataRow.createCell(4).setCellValue(q.getDiffFollowerCount().intValue());
-            dataRow.createCell(5).setCellValue(q.getDiffCreateTime());
-            dataRow.createCell(6).setCellValue(q.getOldBrowserCount().intValue());
-            dataRow.createCell(7).setCellValue(q.getOldFollowerCount().intValue());
-            dataRow.createCell(8).setCellValue(q.getOldCreateTime().toString());
-            dataRow.createCell(9).setCellValue(q.getNewBrowserCount().intValue());
-            dataRow.createCell(10).setCellValue(q.getNewFollowerCount().intValue());
-            dataRow.createCell(11).setCellValue(q.getNewCreateTime().toString());
+            dataRow.createCell(5).setCellValue(q.getAnswerCount());
+            dataRow.createCell(6).setCellValue(q.getDiffCreateTime());
+            dataRow.createCell(7).setCellValue(q.getOldBrowserCount().intValue());
+            dataRow.createCell(8).setCellValue(q.getOldFollowerCount().intValue());
+            dataRow.createCell(9).setCellValue(q.getOldCreateTime().toString());
+            dataRow.createCell(10).setCellValue(q.getNewBrowserCount().intValue());
+            dataRow.createCell(11).setCellValue(q.getNewFollowerCount().intValue());
+            dataRow.createCell(12).setCellValue(q.getNewCreateTime().toString());
         }
 
         File excelParentFolder = new File(parentFolder);
@@ -257,6 +261,7 @@ public class QuestionParse {
             dto.setDiffFollowerCount(q.getComparsionMaxContent().getFollowerCount().subtract(q.getComparsionMinContent().getFollowerCount()));
             long diff = q.getComparsionMaxContent().getCreateTime().getTime() - q.getComparsionMinContent().getCreateTime().getTime();
             dto.setDiffCreateTime((int) (diff / (1000 * 60 * 60 * 24)));
+            dto.setAnswerCount(q.getComparsionMaxContent().getAnswerCount());
             results.add(dto);
         }
 
@@ -282,6 +287,7 @@ public class QuestionParse {
             Element header = body.getElementsByClass("QuestionHeader-side").get(0);
             Elements numberBoders = header.getElementsByClass("NumberBoard-itemInner");
             Elements titles = body.getElementsByClass("QuestionHeader-title");
+            Elements questionMains = body.getElementsByClass("Question-main");
 
             if (titles != null && titles.size() > 0) {
                 Element title = titles.first();
@@ -297,6 +303,19 @@ public class QuestionParse {
 
                 if (!browserNumerTxt.isEmpty()) {
                     resultDto.setBrowseCount(Integer.parseInt(browserNumerTxt.replace(",", "")));
+                }
+            }
+
+            if(questionMains != null && questionMains.size() > 0){
+                Element questionMain = body.getElementsByClass("Question-main").get(0);
+                Elements questionNumberHeaders = questionMain.getElementsByTag("h4").select(".List-headerText");
+                if(questionNumberHeaders != null && questionNumberHeaders.size() > 0){
+                    Elements questionNumberSpans =  questionNumberHeaders.get(0).select("span");
+                    if(questionNumberSpans != null && questionNumberSpans.size() > 0){
+                        String questionNumText = questionNumberSpans.get(0).text();
+                        String numberTxt = questionNumText.substring(0,questionNumText.indexOf("个") - 1).trim().replace(",","");
+                        resultDto.setAnswerCount(Integer.parseInt(numberTxt));
+                    }
                 }
             }
         }
@@ -337,6 +356,7 @@ public class QuestionParse {
         questionContent.setBrowserCount(BigInteger.valueOf(dto.getBrowseCount()));
         questionContent.setFollowerCount(BigInteger.valueOf(dto.getFollowCount()));
         questionContent.setCreateTime(new Timestamp(System.currentTimeMillis()));
+        questionContent.setAnswerCount(dto.getAnswerCount());
         return questionContent;
     }
 
