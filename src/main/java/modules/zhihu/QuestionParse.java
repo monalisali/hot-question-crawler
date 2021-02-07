@@ -66,18 +66,20 @@ public class QuestionParse {
             if (!response.isEmpty()) {
                 Document document = Jsoup.parse(response);
                 QuestionParseDto parseDto = parseHtml(document);
-                parseDto.setQuestionUrl(cq.getUrl());
-                cq.setName(parseDto.getTitle());
-                results.add(parseDto);
-                dao.insertQuestionContentSingle(createQuestionContentObj(cq,parseDto));
-                //主要用来更新CombinedQuestion中Name字段（只有解析后，才能知道问题的名称）
-                dao.updateCombinedQuestion(cq);
-                System.out.println("第" + (count++) + "个解析完成：" + parseDto.getQuestionUrl());
-                if (count <= this.getQuestions().size()) {
-                    try {
-                        Thread.sleep(30000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
+                if(parseDto != null){
+                    parseDto.setQuestionUrl(cq.getUrl());
+                    cq.setName(parseDto.getTitle());
+                    results.add(parseDto);
+                    dao.insertQuestionContentSingle(createQuestionContentObj(cq,parseDto));
+                    //主要用来更新CombinedQuestion中Name字段（只有解析后，才能知道问题的名称）
+                    dao.updateCombinedQuestion(cq);
+                    System.out.println("第" + (count++) + "个解析完成：" + parseDto.getQuestionUrl());
+                    if (count <= this.getQuestions().size()) {
+                        try {
+                            Thread.sleep(30000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
             }
@@ -282,7 +284,7 @@ public class QuestionParse {
             Element body = bodys.get(0);
             Elements headers = body.getElementsByClass("QuestionHeader-side");
             if(headers == null || headers.size() == 0){
-                return resultDto;
+                return null;
             }
             Element header = body.getElementsByClass("QuestionHeader-side").get(0);
             Elements numberBoders = header.getElementsByClass("NumberBoard-itemInner");
