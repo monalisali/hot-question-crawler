@@ -118,8 +118,9 @@ public class Helper {
     }
 
     public static String getProjectOutputPath() {
-        Properties properties = GetAppProperties();
-        return getProjectRootPath() + properties.getProperty("questionOutputPath");
+//        Properties properties = GetAppProperties();
+//        return getProjectRootPath() + properties.getProperty("questionOutputPath");
+          return getProjectRootPath() + "src/output/";
     }
 
     public static String setFileNameDateFormat() {
