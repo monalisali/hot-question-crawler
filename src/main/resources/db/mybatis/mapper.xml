@@ -25,6 +25,12 @@
         where [name] = #{name}
     </select>
 
+    <select id="selectHotWordByConditions" parameterType="String" resultMap="HotWordResultMap">
+        select id,topCategoryID,[name],isDoneBaidu,isDoneZhihu
+        from dbo.[HotWord]
+        where [name] = #{name} and [topCategoryID] = #{topCategoryId}
+    </select>
+
     <update id="updateHotWord" parameterType="HotWord">
         update dbo.[HotWord]
         <set>

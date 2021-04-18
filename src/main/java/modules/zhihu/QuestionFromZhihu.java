@@ -35,9 +35,19 @@ public class QuestionFromZhihu implements IQuestion {
     private static Dao dao = new Dao(DatabaseHelp.getSqlSessionFactory());
     private ZhihuLoginDto zhihuLoginDto = new ZhihuLoginDto();
     private List<XZSE86Dto> hotWordXzse86;
+    private TopCategory topCategory;
+
+    public TopCategory getTopCategory() {
+        return topCategory;
+    }
+
+    public void setTopCategory(TopCategory topCategory) {
+        this.topCategory = topCategory;
+    }
 
     public QuestionFromZhihu(TopCategory topCategory) {
         this.hotWordXzse86 = getXzse86HotWordList(topCategory);
+        this.topCategory = topCategory;
     }
 
     public List<XZSE86Dto> getHotWordXzse86() {
@@ -64,7 +74,7 @@ public class QuestionFromZhihu implements IQuestion {
 
         for (XZSE86Dto h : this.getHotWordXzse86()
         ) {
-            HotWord crtHotWord = dao.selectHotWordByName(h.getHotword());
+            HotWord crtHotWord = dao.selectHotWordByConditions(h.getHotword(),this.topCategory.getId());
             //isDoneZhihu = 0 或者 null 时，才会从知乎获取Question
             if (crtHotWord.getDoneZhihu() == null || !crtHotWord.getDoneZhihu()) {
                 connectDto.setxZse86(h.getxZse86Val());

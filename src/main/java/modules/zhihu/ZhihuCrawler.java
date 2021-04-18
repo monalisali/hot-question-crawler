@@ -43,7 +43,7 @@ public class ZhihuCrawler {
 
 
             System.out.println("**************************通过百度，爬取知乎问题  开始********************************");
-            QuestionFromBaidu baidu = new QuestionFromBaidu(hotWords, true);
+            QuestionFromBaidu baidu = new QuestionFromBaidu(hotWords, true,top);
             baidu.getQuestion();
             System.out.println("**************************通过百度，爬取知乎问题  完成********************************");
 

@@ -41,6 +41,15 @@ public class Dao {
         }
     }
 
+    public HotWord selectHotWordByConditions(String name, String topCategoryId){
+        try (SqlSession session = sqlSessionFactory.openSession()) {
+            Map<String, Object> map = new HashMap<>();
+            map.put("topCategoryId",topCategoryId);
+            map.put("name", name);
+            return session.selectOne("com.hcsp.Mapper.selectHotWordByConditions", map);
+        }
+    }
+
     public void updateHotWord(HotWord hotWord){
         try(SqlSession session = sqlSessionFactory.openSession(true)){
             session.update("com.hcsp.Mapper.updateHotWord",hotWord);

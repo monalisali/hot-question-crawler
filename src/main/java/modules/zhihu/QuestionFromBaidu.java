@@ -5,6 +5,7 @@ import dto.ConnectDto;
 import dto.QuestionResultDto;
 import entity.HotWord;
 import entity.Question;
+import entity.TopCategory;
 import org.apache.commons.codec.Charsets;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -31,10 +32,20 @@ public class QuestionFromBaidu implements IQuestion {
     //搜索时，是否加上site:www.zhihu.com
     private Boolean isSearchFromZhihuOnly;
     private List<String> hotWordList;
+    private TopCategory topCategory;
 
-    public QuestionFromBaidu(List<String> hotWords, Boolean isSearchFromZhihuOnly) {
+    public TopCategory getTopCategory() {
+        return topCategory;
+    }
+
+    public void setTopCategory(TopCategory topCategory) {
+        this.topCategory = topCategory;
+    }
+
+    public QuestionFromBaidu(List<String> hotWords, Boolean isSearchFromZhihuOnly,TopCategory topCategory) {
         this.hotWordList = hotWords;
         this.isSearchFromZhihuOnly = isSearchFromZhihuOnly;
+        this.topCategory = topCategory;
     }
 
     public List<String> getHotWordList() {
@@ -58,7 +69,7 @@ public class QuestionFromBaidu implements IQuestion {
             int count = 1;
             for (String q : this.getHotWordList()
             ) {
-                HotWord crtHotWord = dao.selectHotWordByName(q);
+                HotWord crtHotWord = dao.selectHotWordByConditions(q,this.topCategory.getId());
                 //isDoneBaidu = 0 或者 null时，才从百度获取Question
                 if(crtHotWord.getDoneBaidu() == null || !crtHotWord.getDoneBaidu()){
                     List<QuestionResultDto> validResults = new ArrayList<>();
