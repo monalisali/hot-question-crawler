@@ -76,7 +76,7 @@ public class QuestionFromZhihu implements IQuestion {
         ) {
             HotWord crtHotWord = dao.selectHotWordByConditions(h.getHotword(),this.topCategory.getId());
             //isDoneZhihu = 0 或者 null 时，才会从知乎获取Question
-            if (crtHotWord.getDoneZhihu() == null || !crtHotWord.getDoneZhihu()) {
+            if (crtHotWord != null && (crtHotWord.getDoneZhihu() == null || !crtHotWord.getDoneZhihu())) {
                 connectDto.setxZse86(h.getxZse86Val());
                 QuestionResultDto resp = sendQuestionRequest(h.getHotword(), connectDto);
                 logger.info("知乎获取问题，发送请求完成：" + h.getHotword());
